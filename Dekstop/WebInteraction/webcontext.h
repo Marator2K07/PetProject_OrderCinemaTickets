@@ -20,7 +20,12 @@ private:
 public:
     explicit WebContext(QObject *parent = nullptr);
 
-signals:
+public slots:
+    ///
+    /// \brief sendRequest
+    /// послать на адрес url запрос с параметрами params
+    void sendRequest(QString url, QList<QString> params);
+    void getResponce(QNetworkReply *responce);
 
 };
 
