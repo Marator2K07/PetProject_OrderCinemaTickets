@@ -2,8 +2,10 @@
 #define WEBCONTEXT_H
 
 #include <QObject>
-#include <QNetworkRequest>
+#include <QDebug>
+#include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QJsonObject>
 
 ///
 /// \brief The WebContext class
@@ -11,6 +13,10 @@
 class WebContext : public QObject
 {
     Q_OBJECT
+
+private:
+    QNetworkAccessManager *webManager;
+
 public:
     explicit WebContext(QObject *parent = nullptr);
 
