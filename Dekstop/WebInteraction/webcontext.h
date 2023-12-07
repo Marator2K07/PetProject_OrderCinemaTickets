@@ -5,6 +5,10 @@
 #include <QDebug>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonParseError>
+#include <QByteArray>
 
 ///
 /// \brief The WebContext class
@@ -13,17 +17,21 @@ class WebContext : public QObject
 {
     Q_OBJECT
 
-private:
-    QNetworkAccessManager *webManager;
-
 public:
     explicit WebContext(QObject *parent = nullptr);
+
+private:
+    QNetworkAccessManager *webManager;
 
 public slots:
     ///
     /// \brief sendRequest
-    /// послать на адрес url запрос с параметрами params
-    void sendRequest(QString url, QList<QString> params);
+    /// послать на адрес url GET запрос с параметрами params
+    void sendGetRequest(QString url, QList<QString> params);
+    ///
+    /// \brief sendPostRequest
+    /// послать на адрес url POST запрос с телом jsonObject
+    void sendPostRequest(QString url, QJsonObject jsonObject);
     void getResponce(QNetworkReply *responce);
 
 };

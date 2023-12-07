@@ -8,7 +8,7 @@ WebContext::WebContext(QObject *parent)
             this, SLOT(getResponce(QNetworkReply*)));
 }
 
-void WebContext::sendRequest(QString url, QList<QString> params)
+void WebContext::sendGetRequest(QString url, QList<QString> params)
 {
     // конфигурируем строку запроса
     QString fullUrl = url;
@@ -24,8 +24,25 @@ void WebContext::sendRequest(QString url, QList<QString> params)
     webManager->get(request);
 }
 
+void WebContext::sendPostRequest(QString url, QJsonObject jsonObject)
+{
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QJsonDocument doc(jsonObject);
+    QByteArray data = doc.toJson();
+    webManager->post(request, data);
+}
+
 void WebContext::getResponce(QNetworkReply *responce)
 {
     // пока просто тестовый вывод в консоль
-    qDebug() << responce->readAll();
+    if(responce->error() == QNetworkReply::NoError){
+        QString contents = QString::fromUtf8(responce->readAll());
+        qDebug() << contents;
+    }
+    else{
+        QString err = responce->errorString();
+        qDebug() << err;
+    }
 }
