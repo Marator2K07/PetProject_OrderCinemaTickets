@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QJsonObject>
 
 ///
 /// \brief The WebContext class
