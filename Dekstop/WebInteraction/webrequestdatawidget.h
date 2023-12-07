@@ -22,6 +22,9 @@ private:
 public:
     explicit WebRequestDataWidget(QWidget *parent = nullptr);
 
+private slots:
+    void tryParse();
+
 signals:
 
 };

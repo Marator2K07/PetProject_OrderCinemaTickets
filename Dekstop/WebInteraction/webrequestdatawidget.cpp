@@ -18,4 +18,16 @@ WebRequestDataWidget::WebRequestDataWidget(QWidget *parent)
     layout->addWidget(parseButton);
 }
 
+void WebRequestDataWidget::tryParse()
+{
+    // пытаемся запарсить
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::
+        fromJson(textEdit->toPlainText().toUtf8(), &error);
+    parseStatusLabel->setText(error.errorString());
+    // если все в порядке
+    if (error.error == error.NoError) {
+        currentJsonData = doc.object();
+        emit jsonObjectReady(currentJsonData);
+    }
 }
