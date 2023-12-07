@@ -3,7 +3,10 @@
 
 #include <QWidget>
 #include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonParseError>
 #include <QVBoxLayout>
+#include <QPushButton>
 #include <QTextEdit>
 #include <QLabel>
 
@@ -14,6 +17,7 @@ class WebRequestDataWidget : public QWidget
 private:
     QJsonObject currentJsonData;
     QTextEdit *textEdit;
+    QLabel *parseStatusLabel;
 
 public:
     explicit WebRequestDataWidget(QWidget *parent = nullptr);
