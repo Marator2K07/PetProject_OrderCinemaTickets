@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    webContext = new WebContext(this);
+    ui->webRequestWidget->setWebContext(webContext);
 }
 
 MainWindow::~MainWindow()
