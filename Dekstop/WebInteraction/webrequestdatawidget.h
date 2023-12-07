@@ -1,10 +1,9 @@
 #ifndef WEBREQUESTDATAWIDGET_H
 #define WEBREQUESTDATAWIDGET_H
 
+#include "webrequestbody.h"
+
 #include <QWidget>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonParseError>
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QTextEdit>
@@ -15,7 +14,7 @@ class WebRequestDataWidget : public QWidget
     Q_OBJECT
 
 private:
-    QJsonObject currentJsonData;
+    WebRequestBody *requestBody;
     QTextEdit *textEdit;
     QLabel *parseStatusLabel;
 
