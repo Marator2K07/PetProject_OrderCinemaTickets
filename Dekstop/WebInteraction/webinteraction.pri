@@ -1,9 +1,9 @@
 HEADERS += \
     $$PWD/webcontext.h \
     $$PWD/webrequestbody.h \
-    $$PWD/webrequestdatawidget.h
+    $$PWD/webrequestwidget.h
 
 SOURCES += \
     $$PWD/webcontext.cpp \
     $$PWD/webrequestbody.cpp \
-    $$PWD/webrequestdatawidget.cpp
+    $$PWD/webrequestwidget.cpp
