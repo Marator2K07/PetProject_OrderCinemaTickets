@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QJsonObject>
+#include <QVBoxLayout>
+#include <QTextEdit>
+#include <QLabel>
 
 class WebRequestDataWidget : public QWidget
 {
@@ -10,6 +13,7 @@ class WebRequestDataWidget : public QWidget
 
 private:
     QJsonObject currentJsonData;
+    QTextEdit *textEdit;
 
 public:
     explicit WebRequestDataWidget(QWidget *parent = nullptr);
