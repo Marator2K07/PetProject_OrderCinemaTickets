@@ -2,6 +2,10 @@
 #define WEBREQUESTBODY_H
 
 #include <QObject>
+#include <QVariant>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonParseError>
 
 ///
 /// \brief The WebRequestBody class
@@ -10,6 +14,10 @@
 class WebRequestBody : public QObject
 {
     Q_OBJECT
+
+private:
+    QVariant data;
+
 public:
     explicit WebRequestBody(QObject *parent = nullptr);
 
