@@ -4,8 +4,6 @@
 #include <QObject>
 #include <QVariant>
 #include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonParseError>
 
 ///
 /// \brief The WebRequestBody class
@@ -15,13 +13,13 @@ class WebRequestBody : public QObject
 {
     Q_OBJECT
 
-private:
-    QVariant data;
-
 public:
     explicit WebRequestBody(QObject *parent = nullptr);
 
     QJsonObject getJsonData() const;
+
+private:
+    QVariant data;
 
 private slots:
     void setJsonData(const QJsonObject &newJsonData);
