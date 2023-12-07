@@ -33,7 +33,6 @@ void WebRequestDataWidget::tryParse()
     parseStatusLabel->setText(error.errorString());
     // если все в порядке
     if (error.error == error.NoError) {
-        currentJsonData = doc.object();
-        emit jsonObjectReady(currentJsonData);
+        emit jsonObjectReady(doc.object());
     }
 }
