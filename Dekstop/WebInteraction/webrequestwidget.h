@@ -1,5 +1,5 @@
-#ifndef WEBREQUESTDATAWIDGET_H
-#define WEBREQUESTDATAWIDGET_H
+#ifndef WEBREQUESTWIDGET_H
+#define WEBREQUESTWIDGET_H
 
 #include "webrequestbody.h"
 
@@ -9,7 +9,7 @@
 #include <QTextEdit>
 #include <QLabel>
 
-class WebRequestDataWidget : public QWidget
+class WebRequestWidget : public QWidget
 {
     Q_OBJECT
 
@@ -32,4 +32,3 @@ signals:
 
 };
 
-#endif // WEBREQUESTDATAWIDGET_H

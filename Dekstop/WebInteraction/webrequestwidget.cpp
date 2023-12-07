@@ -1,6 +1,5 @@
-#include "webrequestdatawidget.h"
 
-WebRequestDataWidget::WebRequestDataWidget(QWidget *parent)
+WebContext *WebRequestWidget::getWebContext() const
     : QWidget{parent}
 {
     // инициализация полей и их связей
@@ -24,7 +23,7 @@ WebRequestDataWidget::WebRequestDataWidget(QWidget *parent)
     layout->addWidget(parseButton);
 }
 
-void WebRequestDataWidget::tryParse()
+void WebRequestWidget::tryParse()
 {
     // пытаемся запарсить
     QJsonParseError error;
