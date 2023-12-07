@@ -26,6 +26,10 @@ private slots:
     void tryParse();
 
 signals:
+    ///
+    /// \brief jsonObjectReady
+    /// в случае удачного парсинга
+    void jsonObjectReady(QJsonObject jsonObject);
 
 };
 
