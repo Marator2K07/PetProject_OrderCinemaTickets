@@ -2,6 +2,7 @@
 #define WEBREQUESTWIDGET_H
 
 #include "webrequestbody.h"
+#include "webcontext.h"
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -13,16 +14,25 @@ class WebRequestWidget : public QWidget
 {
     Q_OBJECT
 
+public:
+    explicit WebRequestWidget(QWidget *parent = nullptr);
+
+    WebContext *getWebContext() const;
+    void setWebContext(WebContext *newWebContext);
+
 private:
+    WebContext *webContext;
     WebRequestBody *requestBody;
     QTextEdit *textEdit;
     QLabel *parseStatusLabel;
 
-public:
-    explicit WebRequestDataWidget(QWidget *parent = nullptr);
-
 private slots:
     void tryParse();
+    ///
+    /// \brief sendJson
+    /// метод-слот для отправки запроса
+    /// в виде Json файла через WebContext
+    void sendJson();
 
 signals:
     ///
@@ -32,3 +42,4 @@ signals:
 
 };
 
+#endif // WEBREQUESTWIDGET_H
