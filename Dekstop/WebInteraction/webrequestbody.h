@@ -21,7 +21,10 @@ private:
 public:
     explicit WebRequestBody(QObject *parent = nullptr);
 
-signals:
+    QJsonObject getJsonData() const;
+
+private slots:
+    void setJsonData(const QJsonObject &newJsonData);
 
 };
 
