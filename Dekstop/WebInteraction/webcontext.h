@@ -2,7 +2,11 @@
 #define WEBCONTEXT_H
 
 #include <QObject>
+#include "webrequestbody.h"
+#include "MethodType.h"
+
 #include <QDebug>
+#include <QByteArray>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QJsonObject>
@@ -28,6 +32,9 @@ public:
 
 private:
     QNetworkAccessManager *webManager;
+    // ссылка на метод: sendGetRequest или sendPostRequest
+    void(WebContext::*requestMethod)
+        (QString, WebRequestBody) = &sendGetRequest;
 
 public slots:
     ///
