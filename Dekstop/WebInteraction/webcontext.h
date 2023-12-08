@@ -9,6 +9,7 @@
 #include <QJsonDocument>
 #include <QJsonParseError>
 #include <QByteArray>
+#include <QSslConfiguration>
 
 ///
 /// \brief The WebContext class
@@ -19,6 +20,11 @@ class WebContext : public QObject
 
 public:
     explicit WebContext(QObject *parent = nullptr);
+    ///
+    /// \brief ignoreSslVerify
+    /// дабы избежать множество проблем
+    /// можно отключить Ssl верификацию
+    void ignoreSslVerify();
 
 private:
     QNetworkAccessManager *webManager;

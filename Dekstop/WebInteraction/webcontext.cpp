@@ -8,6 +8,13 @@ WebContext::WebContext(QObject *parent)
             this, SLOT(getResponce(QNetworkReply*)));
 }
 
+void WebContext::ignoreSslVerify()
+{
+    QSslConfiguration config = QSslConfiguration::defaultConfiguration();
+    config.setPeerVerifyMode(QSslSocket::VerifyNone);
+    QSslConfiguration::setDefaultConfiguration(config);
+}
+
 void WebContext::sendGetRequest(QString url, QList<QString> params)
 {
     // конфигурируем строку запроса
