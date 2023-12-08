@@ -6,14 +6,21 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QPushButton>
+#include <QComboBox>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QLabel>
 
+
 class WebRequestWidget : public QWidget
 {
     Q_OBJECT
+
+    enum MethodType {
+        GET = 0, POST = 1
+    };
 
 public:
     explicit WebRequestWidget(QWidget *parent = nullptr);

@@ -30,11 +30,17 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     textEditLabel->setBuddy(dataTextEdit);
     QPushButton *parseButton = new QPushButton("Проверить тело запроса", this);
     connect(parseButton, SIGNAL(pressed()), this, SLOT(tryParseJson()));
+    QComboBox *requestMethod = new QComboBox(this);
+    requestMethod->insertItem(0, "GET", MethodType::GET);
+    requestMethod->insertItem(1, "POST", MethodType::POST);
 
-    // установки компоновщика
+    // установки компоновщиков
+    QHBoxLayout *verLayout = new QHBoxLayout();
+    verLayout->addWidget(lineEditLabel);
+    verLayout->addWidget(urlLineEdit);
+    verLayout->addWidget(requestMethod);
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(lineEditLabel);
-    layout->addWidget(urlLineEdit);
+    layout->addLayout(verLayout);
     layout->addWidget(textEditLabel);
     layout->addWidget(dataTextEdit);
     layout->addWidget(parseStatusLabel);
