@@ -33,9 +33,10 @@ void WebContext::sendGetRequest(QString url, QList<QString> params)
 
 void WebContext::sendPostRequest(QString url, QJsonObject jsonObject)
 {
+    // ставим заголовок типа файла
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-
+    // составляем джейсон документ и отправляем его
     QJsonDocument doc(jsonObject);
     QByteArray data = doc.toJson();
     webManager->post(request, data);
