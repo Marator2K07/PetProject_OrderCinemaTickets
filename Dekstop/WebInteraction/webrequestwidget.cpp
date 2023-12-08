@@ -20,16 +20,16 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     dataTextEdit = new QTextEdit(this);
     urlLineEdit = new QLineEdit(this);
     parseStatusLabel = new QLabel("Status");
+    sendRequestButton = new QPushButton("Отправить", this);
+    connect(sendRequestButton, SIGNAL(pressed()), this, SLOT(sendJson()));
 
     // инициализация других виджетов и их связей
     QLabel *lineEditLabel = new QLabel("&Адрес запроса:", this);
     lineEditLabel->setBuddy(dataTextEdit);
-    QLabel *textEditLabel = new QLabel("&Тело запроса (json):", this);
+    QLabel *textEditLabel = new QLabel("&Тело запроса:", this);
     textEditLabel->setBuddy(dataTextEdit);
-    QPushButton *parseButton = new QPushButton("Запарсить", this);
-    connect(parseButton, SIGNAL(pressed()), this, SLOT(tryParse()));
-    QPushButton *sendButton = new QPushButton("Отправить", this);
-    connect(sendButton, SIGNAL(pressed()), this, SLOT(sendJson()));
+    QPushButton *parseButton = new QPushButton("Проверить тело запроса", this);
+    connect(parseButton, SIGNAL(pressed()), this, SLOT(tryParseJson()));
 
     // установки компоновщика
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -39,30 +39,35 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     layout->addWidget(dataTextEdit);
     layout->addWidget(parseStatusLabel);
     layout->addWidget(parseButton);
-    layout->addWidget(sendButton);
+    layout->addWidget(sendRequestButton);
 }
 
-void WebRequestWidget::tryParse()
+void WebRequestWidget::tryParseJson()
 {
     // пытаемся запарсить
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::
         fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
+    // выводим успешность парсинга
     parseStatusLabel->setText(error.errorString());
-    // если все в порядке
-    if (error.error == error.NoError) {
-        emit jsonObjectReady(doc.object());
-    }
 }
 
 void WebRequestWidget::sendJson()
 {
+    // парсим
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::
+        fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
+    // если все в порядке
+    if (error.error == error.NoError) {
+        emit jsonObjectReady(doc.object());
+    }
     // анализируем текущий обьект джейсона, если впорядке - отправляем
     QJsonObject curJson = requestBody->getJsonData();
-    if(!curJson.isEmpty()) {
-        webContext->sendPostRequest("https://localhost:7053/animal/new", curJson);
-        parseStatusLabel->setText("Succesful sended");
+    if(!curJson.isEmpty() && urlLineEdit->text().length() > 0) {
+        webContext->sendPostRequest(urlLineEdit->text(), curJson);
+        parseStatusLabel->setText("succesful sended");
     } else {
-        parseStatusLabel->setText("Error while send");
+        parseStatusLabel->setText("error while sending");
     }
 }

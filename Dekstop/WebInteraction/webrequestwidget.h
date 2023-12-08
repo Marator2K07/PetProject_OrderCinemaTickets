@@ -27,9 +27,13 @@ private:
     QLineEdit *urlLineEdit;
     QTextEdit *dataTextEdit;
     QLabel *parseStatusLabel;
+    QPushButton *sendRequestButton;
 
 private slots:
-    void tryParse();
+    ///
+    /// \brief tryParse
+    /// проверка правильности ввода тела запроса
+    void tryParseJson();
     ///
     /// \brief sendJson
     /// метод-слот для отправки запроса
