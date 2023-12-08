@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QLineEdit>
 #include <QTextEdit>
 #include <QLabel>
 
@@ -23,7 +24,8 @@ public:
 private:
     WebContext *webContext;
     WebRequestBody *requestBody;
-    QTextEdit *textEdit;
+    QLineEdit *urlLineEdit;
+    QTextEdit *dataTextEdit;
     QLabel *parseStatusLabel;
 
 private slots:

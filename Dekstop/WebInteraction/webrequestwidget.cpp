@@ -17,12 +17,15 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     requestBody = new WebRequestBody(this);
     connect(this, SIGNAL(jsonObjectReady(QJsonObject)),
             requestBody, SLOT(setJsonData(QJsonObject)));
-    textEdit = new QTextEdit(this);
+    dataTextEdit = new QTextEdit(this);
+    urlLineEdit = new QLineEdit(this);
     parseStatusLabel = new QLabel("Status");
 
-    // инициализация виджетов и их связей
-    QLabel *textEditLabel = new QLabel("Текст &Json запроса:", this);
-    textEditLabel->setBuddy(textEdit);
+    // инициализация других виджетов и их связей
+    QLabel *lineEditLabel = new QLabel("&Адрес запроса:", this);
+    lineEditLabel->setBuddy(dataTextEdit);
+    QLabel *textEditLabel = new QLabel("&Тело запроса (json):", this);
+    textEditLabel->setBuddy(dataTextEdit);
     QPushButton *parseButton = new QPushButton("Запарсить", this);
     connect(parseButton, SIGNAL(pressed()), this, SLOT(tryParse()));
     QPushButton *sendButton = new QPushButton("Отправить", this);
@@ -30,8 +33,10 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
 
     // установки компоновщика
     QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(lineEditLabel);
+    layout->addWidget(urlLineEdit);
     layout->addWidget(textEditLabel);
-    layout->addWidget(textEdit);
+    layout->addWidget(dataTextEdit);
     layout->addWidget(parseStatusLabel);
     layout->addWidget(parseButton);
     layout->addWidget(sendButton);
@@ -42,7 +47,7 @@ void WebRequestWidget::tryParse()
     // пытаемся запарсить
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::
-        fromJson(textEdit->toPlainText().toUtf8(), &error);
+        fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
     parseStatusLabel->setText(error.errorString());
     // если все в порядке
     if (error.error == error.NoError) {
