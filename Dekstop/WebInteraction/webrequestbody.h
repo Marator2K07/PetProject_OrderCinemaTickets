@@ -19,9 +19,12 @@ public:
 
     QJsonObject getJsonData() const;
     QVariant getData() const;
+    QString getContentType() const;
+    void setContentType(const QString &newContentType);
 
 private:
     QVariant data;
+    QString contentType; // информация для заголовка запроса
 
 private slots:
     void setJsonData(const QJsonObject &newJsonData);
