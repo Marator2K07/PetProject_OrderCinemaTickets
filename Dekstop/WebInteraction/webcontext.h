@@ -41,17 +41,22 @@ private:
     void(WebContext::*requestMethod)
         (QString, WebRequestBody) = &sendGetRequest;
 
-public slots:
     ///
     /// \brief sendRequest
-    /// послать на адрес url GET запрос с параметрами params
-    void sendGetRequest(QString url, QList<QString> params);
+    /// послать на адрес url GET запрос с
+    /// параметрами params и телом запроса requestBody
+    void sendGetRequest(QString url, WebRequestBody requestBody);
     ///
     /// \brief sendPostRequest
-    /// послать на адрес url POST запрос с телом jsonObject
-    void sendPostRequest(QString url, QJsonObject jsonObject);
-    void getResponce(QNetworkReply *responce);
+    /// послать на адрес url POST запрос с
+    /// параметрами params и телом запроса requestBody
+    void sendPostRequest(QString url, WebRequestBody requestBody);
 
+private slots:
+    ///
+    /// \brief getResponce
+    /// получить и обработать возможный ответ
+    void getResponce(QNetworkReply *responce);
 };
 
 #endif // WEBCONTEXT_H
