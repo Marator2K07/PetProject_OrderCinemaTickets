@@ -15,19 +15,18 @@ void WebContext::ignoreSslVerify()
     QSslConfiguration::setDefaultConfiguration(config);
 }
 
-void WebContext::sendGetRequest(QString url, QList<QString> params)
+void WebContext::sendRequest(QString url, WebRequestBody requestBody)
 {
-    // конфигурируем строку запроса
-    QString fullUrl = url;
-    if (params.size() != 0) {
-        fullUrl += "?";
-        for (const QString &param : params) {
-            fullUrl += param + "&";
-        }
-        fullUrl.chop(1);
+    ((this)->*requestMethod)(url, requestBody);
+}
+
+void WebContext::changeRequestMethod(MethodType type)
+{
+    if (type == MethodType::GET) {
+        requestMethod = &sendGetRequest;
+    } else if (type == MethodType::POST) {
+        requestMethod = &sendPostRequest;
     }
-    // посылаем запрос
-    QNetworkRequest request(fullUrl);
     webManager->get(request);
 }
 

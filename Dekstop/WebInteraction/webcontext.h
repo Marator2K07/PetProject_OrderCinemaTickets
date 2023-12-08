@@ -1,7 +1,6 @@
 #ifndef WEBCONTEXT_H
 #define WEBCONTEXT_H
 
-#include <QObject>
 #include "webrequestbody.h"
 #include "MethodType.h"
 
@@ -9,10 +8,8 @@
 #include <QByteArray>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonParseError>
-#include <QByteArray>
 #include <QSslConfiguration>
 
 ///
@@ -29,6 +26,14 @@ public:
     /// дабы избежать множество проблем
     /// можно отключить Ssl верификацию
     void ignoreSslVerify();
+
+public:
+    ///
+    /// \brief sendRequest
+    /// послать запрос с установленными значениями
+    void sendRequest(QString url,
+                     WebRequestBody data);
+    void changeRequestMethod(MethodType type);
 
 private:
     QNetworkAccessManager *webManager;
