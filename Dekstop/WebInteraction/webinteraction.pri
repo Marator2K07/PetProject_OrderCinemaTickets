@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/MethodType.h \
     $$PWD/webcontext.h \
     $$PWD/webrequestbody.h \
     $$PWD/webrequestwidget.h
