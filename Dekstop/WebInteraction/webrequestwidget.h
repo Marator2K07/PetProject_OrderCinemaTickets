@@ -40,17 +40,19 @@ private slots:
     /// проверка правильности ввода тела запроса как Json файла
     void tryParseJson();
     ///
-    /// \brief sendJson
-    /// метод-слот для отправки запроса
-    /// в виде Json файла через WebContext
-    void sendJson();
+    /// \brief prepareInfo
+    /// подготавливаем данные для передачи веб контексту
+    void prepareInfo();
 
 signals:
     ///
     /// \brief jsonObjectReady
     /// в случае удачного парсинга
     void jsonObjectReady(QJsonObject jsonObject);
-
+    ///
+    /// \brief requestReady
+    /// когда считали всю информацию с виджета
+    void requestReady(QHash<QString, QVariant> request);
 };
 
 #endif // WEBREQUESTWIDGET_H

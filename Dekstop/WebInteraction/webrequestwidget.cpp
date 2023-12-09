@@ -11,7 +11,7 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     urlLineEdit = new QLineEdit(this);
     parseStatusLabel = new QLabel("Status");
     sendRequestButton = new QPushButton("Отправить", this);
-    connect(sendRequestButton, SIGNAL(pressed()), this, SLOT(sendJson()));
+    connect(sendRequestButton, SIGNAL(pressed()), this, SLOT(prepareInfo()));
     requestMethodType = new QComboBox(this);
     requestMethodType->insertItem(0, "GET", MethodType::GET);
     requestMethodType->insertItem(1, "POST", MethodType::POST);
@@ -58,22 +58,28 @@ void WebRequestWidget::tryParseJson()
     parseStatusLabel->setText(error.errorString());
 }
 
-void WebRequestWidget::sendJson()
-{
-    // парсим
-    QJsonParseError error;
-    QJsonDocument doc = QJsonDocument::
-        fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
-    // если все в порядке
-    if (error.error == error.NoError) {
-        emit jsonObjectReady(doc.object());
+void WebRequestWidget::prepareInfo()
+{    
+    // если POST запрос
+    // тестовая реализация!
+    if ((MethodType)requestMethodType->currentIndex() == MethodType::POST) {
+        // парсим
+        QJsonParseError error;
+        QJsonDocument doc = QJsonDocument::
+            fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
+        // если все в порядке
+        if (error.error == error.NoError) {
+            emit jsonObjectReady(doc.object());
+            requestInfo->setContentType("application/json");
+        }
     }
-    // анализируем текущий обьект джейсона, если впорядке - отправляем
-    QJsonObject curJson = requestBody->getJsonData();
-    if(!curJson.isEmpty() && urlLineEdit->text().length() > 0) {
-        webContext->sendPostRequest(urlLineEdit->text(), curJson);
-        parseStatusLabel->setText("succesful sended");
-    } else {
-        parseStatusLabel->setText("error while sending");
-    }
+
+    // подготоваливаем словарь и записываем данные запроса и отправляем их
+    QHash<QString, QVariant> result;
+    result.insert("Url", urlLineEdit->text());
+    result.insert("Content type", requestInfo->getContentType());
+    result.insert("Data", requestInfo->getData());
+    emit requestReady(result);
+}
+
 }
