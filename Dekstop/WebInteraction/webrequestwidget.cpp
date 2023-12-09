@@ -1,15 +1,5 @@
 #include "webrequestwidget.h"
 
-WebContext *WebRequestWidget::getWebContext() const
-{
-    return webContext;
-}
-
-void WebRequestWidget::setWebContext(WebContext *newWebContext)
-{
-    webContext = newWebContext;
-}
-
 WebRequestWidget::WebRequestWidget(QWidget *parent)
     : QWidget{parent}
 {

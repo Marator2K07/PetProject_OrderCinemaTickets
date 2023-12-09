@@ -27,7 +27,6 @@ public:
     void setWebContext(WebContext *newWebContext);
 
 private:
-    WebContext *webContext;
     WebRequestBody *requestBody;
     QLineEdit *urlLineEdit;
     QTextEdit *dataTextEdit;
