@@ -1,26 +1,24 @@
 #ifndef WEBREQUESTWIDGET_H
 #define WEBREQUESTWIDGET_H
 
-#include "webrequestbody.h"
-#include "webcontext.h"
+#include "MethodType.h"
+#include "webrequestinfo.h"
 
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QNetworkReply>
+#include <QJsonParseError>
 #include <QPushButton>
 #include <QComboBox>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QLabel>
-
+#include <QHash>
 
 class WebRequestWidget : public QWidget
 {
     Q_OBJECT
-
-    enum MethodType {
-        GET = 0, POST = 1
-    };
 
 public:
     explicit WebRequestWidget(QWidget *parent = nullptr);
