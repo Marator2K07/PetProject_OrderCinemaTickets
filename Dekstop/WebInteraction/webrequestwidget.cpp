@@ -4,9 +4,9 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     : QWidget{parent}
 {
     // инициализация полей и их связей
-    requestBody = new WebRequestBody(this);
+    requestInfo = new WebRequestInfo(this);
     connect(this, SIGNAL(jsonObjectReady(QJsonObject)),
-            requestBody, SLOT(setJsonData(QJsonObject)));
+            requestInfo, SLOT(setJsonData(QJsonObject)));
     dataTextEdit = new QTextEdit(this);
     urlLineEdit = new QLineEdit(this);
     parseStatusLabel = new QLabel("Status");
@@ -21,7 +21,7 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     lineEditLabel->setBuddy(dataTextEdit);
     QLabel *textEditLabel = new QLabel("&Тело запроса:", this);
     textEditLabel->setBuddy(dataTextEdit);
-    QPushButton *parseButton = new QPushButton("Проверить тело запроса", this);
+    QPushButton *parseButton = new QPushButton("Проверить тело запроса как Json", this);
     connect(parseButton, SIGNAL(pressed()), this, SLOT(tryParseJson()));
 
     // установки компоновщиков

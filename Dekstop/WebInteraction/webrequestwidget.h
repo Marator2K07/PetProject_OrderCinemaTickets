@@ -27,7 +27,7 @@ public:
     void setRequestMethodType(QComboBox *newRequestMethodType);
 
 private:
-    WebRequestBody *requestBody;
+    WebRequestInfo *requestInfo;
     QLineEdit *urlLineEdit;
     QTextEdit *dataTextEdit;
     QLabel *parseStatusLabel;
@@ -36,8 +36,8 @@ private:
 
 private slots:
     ///
-    /// \brief tryParse
-    /// проверка правильности ввода тела запроса
+    /// \brief tryParseJson
+    /// проверка правильности ввода тела запроса как Json файла
     void tryParseJson();
     ///
     /// \brief sendJson
