@@ -15,9 +15,18 @@ void WebContext::ignoreSslVerify()
     QSslConfiguration::setDefaultConfiguration(config);
 }
 
-void WebContext::sendRequest(QString url, WebRequestBody requestBody)
+void WebContext::sendRequest(QHash<QString, QVariant> request)
 {
-    ((this)->*requestMethod)(url, requestBody);
+    // готовим данные
+    QString url = qvariant_cast<QString>(request.value("Url"));
+    QString contentType = qvariant_cast<QString>(request.value("Content type"));
+    QVariant data = request.value("Data");
+    // составляем обьект с информацией и отправляем уже куда надо
+    WebRequestInfo requestInfo;
+    requestInfo.setUrl(url);
+    requestInfo.setContentType(contentType);
+    requestInfo.setData(data);
+    ((this)->*requestMethod)(requestInfo);
 }
 
 void WebContext::changeRequestMethod(MethodType type)

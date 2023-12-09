@@ -25,13 +25,6 @@ public:
     /// дабы избежать множество проблем
     /// можно отключить Ssl верификацию
     void ignoreSslVerify();
-
-public:
-    ///
-    /// \brief sendRequest
-    /// послать запрос с установленными значениями
-    void sendRequest(QString url,
-                     WebRequestBody data);
     void changeRequestMethod(MethodType type);
     WebRequestWidget *getRequestWidget() const;
     void setRequestWidget(WebRequestWidget *newRequestWidget);
@@ -53,6 +46,10 @@ private:
     void sendPostRequest(WebRequestInfo requestInfo);
 
 private slots:
+    ///
+    /// \brief sendRequest
+    /// послать запрос с установленными значениями
+    void sendRequest(QHash<QString, QVariant> request);
     ///
     /// \brief getResponce
     /// получить и обработать возможный ответ
