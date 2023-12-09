@@ -29,20 +29,22 @@ void WebContext::changeRequestMethod(MethodType type)
     }
 }
 
-void WebContext::sendGetRequest(QString url, WebRequestBody requestBody)
+void WebContext::sendGetRequest(WebRequestInfo requestInfo)
 {
-    QNetworkRequest request(url);
+    QNetworkRequest request(requestInfo.getUrl());
     webManager->get(request);
 }
 
-void WebContext::sendPostRequest(QString url, WebRequestBody requestBody)
+void WebContext::sendPostRequest(WebRequestInfo requestInfo)
 {
     // ставим заголовок типа содержимого запроса
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    // составляем джейсон документ и отправляем его
-    QJsonDocument doc(requestBody.getJsonData()); // пока работаем только с JSON!
-    QByteArray data = doc.toJson();
+    QNetworkRequest request(requestInfo.getUrl());
+    request.setHeader(QNetworkRequest::ContentTypeHeader,
+                      requestInfo.getContentType());
+    // пишем данные из тела запроса и отправляем их
+    QByteArray data;
+    QDataStream ds(&data, QIODevice::ReadWrite);
+    ds << requestInfo.getData();
     webManager->post(request, data);
 }
 

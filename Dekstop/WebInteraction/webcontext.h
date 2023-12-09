@@ -1,15 +1,14 @@
 #ifndef WEBCONTEXT_H
 #define WEBCONTEXT_H
 
-#include "webrequestbody.h"
-#include "MethodType.h"
+#include "webrequestinfo.h"
+#include "webrequestwidget.h"
 
 #include <QDebug>
 #include <QByteArray>
+#include <QDataStream>
 #include <QNetworkAccessManager>
-#include <QNetworkReply>
 #include <QJsonDocument>
-#include <QJsonParseError>
 #include <QSslConfiguration>
 
 ///
@@ -42,15 +41,13 @@ private:
         (QString, WebRequestBody) = &sendGetRequest;
 
     ///
-    /// \brief sendRequest
-    /// послать на адрес url GET запрос с
-    /// параметрами params и телом запроса requestBody
-    void sendGetRequest(QString url, WebRequestBody requestBody);
+    /// \brief sendGetRequest
+    /// послать на адрес url GET запрос с данными requestInfo
+    void sendGetRequest(WebRequestInfo requestInfo);
     ///
     /// \brief sendPostRequest
-    /// послать на адрес url POST запрос с
-    /// параметрами params и телом запроса requestBody
-    void sendPostRequest(QString url, WebRequestBody requestBody);
+    /// послать на адрес url POST запрос с данными requestInfo
+    void sendPostRequest(WebRequestInfo requestInfo);
 
 private slots:
     ///
