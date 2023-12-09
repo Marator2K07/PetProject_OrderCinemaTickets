@@ -19,11 +19,12 @@ class WebContext : public QObject
     Q_OBJECT
 
 public:
-    explicit WebContext(QObject *parent = nullptr);
+    explicit WebContext(WebRequestWidget *requestWidget, QObject *parent = nullptr);
+
     ///
     /// \brief ignoreSslVerify
     /// дабы избежать множество проблем
-    /// можно отключить Ssl верификацию
+    /// можно отключить/игнорировать Ssl верификацию
     void ignoreSslVerify();
     WebRequestWidget *getRequestWidget() const;
     void setRequestWidget(WebRequestWidget *newRequestWidget);
@@ -54,6 +55,9 @@ private slots:
     /// \brief getResponce
     /// получить и обработать возможный ответ
     void getResponce(QNetworkReply *responce);
+
+signals:
+    void webResponceReady(QNetworkReply *responce);
 };
 
 #endif // WEBCONTEXT_H

@@ -1,11 +1,16 @@
 #include "webcontext.h"
 
-WebContext::WebContext(QObject *parent)
+WebContext::WebContext(WebRequestWidget *requestWidget, QObject *parent)
     : QObject{parent}
+    , requestWidget{requestWidget}
 {
     webManager = new QNetworkAccessManager(this);
     connect(webManager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(getResponce(QNetworkReply*)));
+    connect(requestWidget, SIGNAL(requestReady(QHash<QString, QVariant>)),
+            this, SLOT(sendRequest(QHash<QString, QVariant>)));
+    connect(requestWidget->getRequestMethodType(), SIGNAL(currentIndexChanged(int)),
+            this, SLOT(changeRequestType(int)));
 }
 
 void WebContext::ignoreSslVerify()
