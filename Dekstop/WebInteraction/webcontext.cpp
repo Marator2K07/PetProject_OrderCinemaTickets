@@ -29,14 +29,8 @@ void WebContext::sendRequest(QHash<QString, QVariant> request)
     ((this)->*requestMethod)(requestInfo);
 }
 
-void WebContext::changeRequestMethod(MethodType type)
 WebRequestWidget *WebContext::getRequestWidget() const
 {
-    if (type == MethodType::GET) {
-        requestMethod = &sendGetRequest;
-    } else if (type == MethodType::POST) {
-        requestMethod = &sendPostRequest;
-    }
     return requestWidget;
 }
 
@@ -62,6 +56,16 @@ void WebContext::sendPostRequest(WebRequestInfo requestInfo)
     QDataStream ds(&data, QIODevice::ReadWrite);
     ds << requestInfo.getData();
     webManager->post(request, data);
+}
+
+void WebContext::changeRequestType(int index)
+{
+    MethodType type = (MethodType)index;
+    if (type == MethodType::GET) {
+        requestMethod = &sendGetRequest;
+    } else if (type == MethodType::POST) {
+        requestMethod = &sendPostRequest;
+    }
 }
 
 void WebContext::getResponce(QNetworkReply *responce)

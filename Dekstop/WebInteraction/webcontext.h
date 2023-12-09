@@ -25,7 +25,6 @@ public:
     /// дабы избежать множество проблем
     /// можно отключить Ssl верификацию
     void ignoreSslVerify();
-    void changeRequestMethod(MethodType type);
     WebRequestWidget *getRequestWidget() const;
     void setRequestWidget(WebRequestWidget *newRequestWidget);
 
@@ -46,6 +45,7 @@ private:
     void sendPostRequest(WebRequestInfo requestInfo);
 
 private slots:
+    void changeRequestType(int index);
     ///
     /// \brief sendRequest
     /// послать запрос с установленными значениями
