@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    WebContext webContext;
-    webContext.sendRequest("https://catfact.ninja/fact", QList<QString>{});
+    //WebContext webContext;
+    //webContext.sendGetRequest("https://localhost:7139/", QList<QString>{});
 
     return a.exec();
 }
