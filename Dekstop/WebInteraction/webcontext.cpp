@@ -57,9 +57,14 @@ void WebContext::sendPostRequest(WebRequestInfo requestInfo)
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       requestInfo.getContentType());
     // пишем данные из тела запроса и отправляем их
+
+    // Тестовый участок, который в дальнейшем будет вынесен
+    // в отдельный метод
     QByteArray data;
-    QDataStream ds(&data, QIODevice::ReadWrite);
-    ds << requestInfo.getData();
+    QJsonObject json = requestInfo.getJsonData();
+    QJsonDocument doc(json);
+    data = doc.toJson();
+
     webManager->post(request, data);
 }
 
