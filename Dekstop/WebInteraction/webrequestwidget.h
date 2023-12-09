@@ -23,8 +23,8 @@ class WebRequestWidget : public QWidget
 public:
     explicit WebRequestWidget(QWidget *parent = nullptr);
 
-    WebContext *getWebContext() const;
-    void setWebContext(WebContext *newWebContext);
+    QComboBox *getRequestMethodType() const;
+    void setRequestMethodType(QComboBox *newRequestMethodType);
 
 private:
     WebRequestBody *requestBody;
@@ -32,6 +32,7 @@ private:
     QTextEdit *dataTextEdit;
     QLabel *parseStatusLabel;
     QPushButton *sendRequestButton;
+    QComboBox *requestMethodType;
 
 private slots:
     ///

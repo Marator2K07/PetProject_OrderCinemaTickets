@@ -12,6 +12,9 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     parseStatusLabel = new QLabel("Status");
     sendRequestButton = new QPushButton("Отправить", this);
     connect(sendRequestButton, SIGNAL(pressed()), this, SLOT(sendJson()));
+    requestMethodType = new QComboBox(this);
+    requestMethodType->insertItem(0, "GET", MethodType::GET);
+    requestMethodType->insertItem(1, "POST", MethodType::POST);
 
     // инициализация других виджетов и их связей
     QLabel *lineEditLabel = new QLabel("&Адрес запроса:", this);
@@ -20,15 +23,12 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     textEditLabel->setBuddy(dataTextEdit);
     QPushButton *parseButton = new QPushButton("Проверить тело запроса", this);
     connect(parseButton, SIGNAL(pressed()), this, SLOT(tryParseJson()));
-    QComboBox *requestMethod = new QComboBox(this);
-    requestMethod->insertItem(0, "GET", MethodType::GET);
-    requestMethod->insertItem(1, "POST", MethodType::POST);
 
     // установки компоновщиков
     QHBoxLayout *verLayout = new QHBoxLayout();
     verLayout->addWidget(lineEditLabel);
     verLayout->addWidget(urlLineEdit);
-    verLayout->addWidget(requestMethod);
+    verLayout->addWidget(requestMethodType);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addLayout(verLayout);
     layout->addWidget(textEditLabel);
@@ -36,6 +36,16 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     layout->addWidget(parseStatusLabel);
     layout->addWidget(parseButton);
     layout->addWidget(sendRequestButton);
+}
+
+QComboBox *WebRequestWidget::getRequestMethodType() const
+{
+    return requestMethodType;
+}
+
+void WebRequestWidget::setRequestMethodType(QComboBox *newRequestMethodType)
+{
+    requestMethodType = newRequestMethodType;
 }
 
 void WebRequestWidget::tryParseJson()
