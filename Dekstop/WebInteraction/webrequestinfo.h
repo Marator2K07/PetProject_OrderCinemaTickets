@@ -1,5 +1,5 @@
-#ifndef WEBREQUESTBODY_H
-#define WEBREQUESTBODY_H
+#ifndef WEBREQUESTINFO_H
+#define WEBREQUESTINFO_H
 
 #include <QObject>
 #include <QVariant>
@@ -9,13 +9,13 @@
 /// \brief The WebRequestBody class
 /// класс для работы с данными запроса
 /// (в нашем случае пока Json формат)
-class WebRequestBody : public QObject
+class WebRequestInfo : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit WebRequestBody(QObject *parent = nullptr);
-    WebRequestBody(const WebRequestBody &other);
+    explicit WebRequestInfo(QObject *parent = nullptr);
+    WebRequestInfo(const WebRequestInfo &other);
 
     QString getUrl() const;
     void setUrl(const QString &newUrl);
@@ -32,4 +32,4 @@ private:
 };
 Q_DECLARE_METATYPE(WebRequestBody)
 
-#endif // WEBREQUESTBODY_H
+#endif // WEBREQUESTINFO_H
