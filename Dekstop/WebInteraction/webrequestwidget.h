@@ -43,6 +43,10 @@ private slots:
     /// \brief prepareInfo
     /// подготавливаем данные для передачи веб контексту
     void prepareInfo();
+    ///
+    /// \brief catchWebResponse
+    /// ловим ответ от класса веб контекста
+    void catchWebResponse(QNetworkReply *responce);
 
 signals:
     ///

@@ -82,4 +82,7 @@ void WebRequestWidget::prepareInfo()
     emit requestReady(result);
 }
 
+void WebRequestWidget::catchWebResponse(QNetworkReply *responce)
+{
+    parseStatusLabel->setText(responce->errorString());
 }
