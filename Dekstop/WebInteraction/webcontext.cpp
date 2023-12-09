@@ -21,12 +21,19 @@ void WebContext::sendRequest(QString url, WebRequestBody requestBody)
 }
 
 void WebContext::changeRequestMethod(MethodType type)
+WebRequestWidget *WebContext::getRequestWidget() const
 {
     if (type == MethodType::GET) {
         requestMethod = &sendGetRequest;
     } else if (type == MethodType::POST) {
         requestMethod = &sendPostRequest;
     }
+    return requestWidget;
+}
+
+void WebContext::setRequestWidget(WebRequestWidget *newRequestWidget)
+{
+    requestWidget = newRequestWidget;
 }
 
 void WebContext::sendGetRequest(WebRequestInfo requestInfo)

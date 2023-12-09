@@ -33,12 +33,15 @@ public:
     void sendRequest(QString url,
                      WebRequestBody data);
     void changeRequestMethod(MethodType type);
+    WebRequestWidget *getRequestWidget() const;
+    void setRequestWidget(WebRequestWidget *newRequestWidget);
 
 private:
     QNetworkAccessManager *webManager;
+    // виджет для удобной отправки запросов
+    WebRequestWidget *requestWidget;
     // ссылка на метод: sendGetRequest или sendPostRequest
-    void(WebContext::*requestMethod)
-        (QString, WebRequestBody) = &sendGetRequest;
+    void(WebContext::*requestMethod)(WebRequestInfo) = &sendGetRequest;
 
     ///
     /// \brief sendGetRequest
