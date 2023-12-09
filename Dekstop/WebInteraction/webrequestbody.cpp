@@ -20,9 +20,19 @@ void WebRequestBody::setContentType(const QString &newContentType)
     contentType = newContentType;
 }
 
-void WebRequestBody::setJsonData(const QJsonObject &newJsonData)
+void WebRequestBody::setData(const QVariant &newData)
 {
-    data = QVariant::fromValue(newJsonData);
+    data = newData;
+}
+
+QString WebRequestBody::getUrl() const
+{
+    return url;
+}
+
+void WebRequestBody::setUrl(const QString &newUrl)
+{
+    url = newUrl;
 }
 
 WebRequestBody::WebRequestBody(QObject *parent)
@@ -30,8 +40,9 @@ WebRequestBody::WebRequestBody(QObject *parent)
 {
 }
 
-WebRequestBody::WebRequestBody(const WebRequestBody &other) :
-    data(other.getData()),
-    contentType(other.getContentType())
+WebRequestBody::WebRequestBody(const WebRequestBody &other)
+    : data(other.getData())
+    , contentType(other.getContentType())
+    , url(other.getUrl())
 {
 }
