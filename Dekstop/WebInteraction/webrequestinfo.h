@@ -29,7 +29,10 @@ private:
     QString contentType; // информация для заголовка запроса
     QString url;
     QVariant data;
+
+private slots:
+    void setJsonData(const QJsonObject &newJsonData);
 };
-Q_DECLARE_METATYPE(WebRequestBody)
+Q_DECLARE_METATYPE(WebRequestInfo)
 
 #endif // WEBREQUESTINFO_H

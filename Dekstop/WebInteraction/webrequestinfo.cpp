@@ -25,6 +25,11 @@ void WebRequestInfo::setData(const QVariant &newData)
     data = newData;
 }
 
+void WebRequestInfo::setJsonData(const QJsonObject &newJsonData)
+{
+    data = QVariant::fromValue(newJsonData);
+}
+
 QString WebRequestInfo::getUrl() const
 {
     return url;
