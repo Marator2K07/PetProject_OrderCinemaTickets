@@ -6,9 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    webContext = new WebContext(this);
+    webContext = new WebContext(ui->webRequestWidget, this);
     webContext->ignoreSslVerify(); // отключаем верификацию
-    ui->webRequestWidget->setWebContext(webContext);
 }
 
 MainWindow::~MainWindow()
