@@ -33,11 +33,9 @@ private:
     QNetworkAccessManager *webManager;
     // виджет для удобной отправки запросов
     WebRequestWidget *requestWidget;
+
     // указатель на метод: sendGetRequest или sendPostRequest
     void(WebContext::*requestMethod)(WebRequestInfo) = &sendGetRequest;
-    // указатель на метод обработки данных в определенном формате
-    QByteArray(WebContext::*requestBodyData)(QVariant);
-
     ///
     /// \brief sendGetRequest
     /// послать на адрес url GET запрос с данными requestInfo
@@ -46,6 +44,10 @@ private:
     /// \brief sendPostRequest
     /// послать на адрес url POST запрос с данными requestInfo
     void sendPostRequest(WebRequestInfo requestInfo);
+
+    // указатель на метод обработки данных в определенном формате
+    // (методы: convertFromString и convertFromJson)
+    QByteArray(WebContext::*requestBodyData)(QVariant) = &convertFromString;
     ///
     /// \brief convertFromString
     /// обрабатываем полученную универсальную информацию в формате строки
