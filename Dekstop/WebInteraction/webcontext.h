@@ -33,8 +33,10 @@ private:
     QNetworkAccessManager *webManager;
     // виджет для удобной отправки запросов
     WebRequestWidget *requestWidget;
-    // ссылка на метод: sendGetRequest или sendPostRequest
+    // указатель на метод: sendGetRequest или sendPostRequest
     void(WebContext::*requestMethod)(WebRequestInfo) = &sendGetRequest;
+    // указатель на метод обработки данных в определенном формате
+    QByteArray(WebContext::*requestBodyData)(QVariant);
 
     ///
     /// \brief sendGetRequest
