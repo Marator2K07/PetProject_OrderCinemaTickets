@@ -47,6 +47,10 @@ private:
     /// послать на адрес url POST запрос с данными requestInfo
     void sendPostRequest(WebRequestInfo requestInfo);
     ///
+    /// \brief convertFromString
+    /// обрабатываем полученную универсальную информацию в формате строки
+    QByteArray convertFromString(QVariant data);
+    ///
     /// \brief convertFromJson
     /// обрабатываем полученную универсальную информацию в формате джейсон
     QByteArray convertFromJson(QVariant data);
