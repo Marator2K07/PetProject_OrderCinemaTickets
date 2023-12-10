@@ -1,7 +1,7 @@
 #ifndef WEBREQUESTWIDGET_H
 #define WEBREQUESTWIDGET_H
 
-#include "MethodType.h"
+#include "typesforrequestmethod.h"
 #include "webrequestinfo.h"
 
 #include <QWidget>

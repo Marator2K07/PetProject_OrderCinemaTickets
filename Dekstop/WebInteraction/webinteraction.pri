@@ -1,5 +1,5 @@
 HEADERS += \
-    $$PWD/MethodType.h \
+    $$PWD/typesforrequestmethod.h \
     $$PWD/webcontext.h \
     $$PWD/webrequestinfo.h \
     $$PWD/webrequestwidget.h
