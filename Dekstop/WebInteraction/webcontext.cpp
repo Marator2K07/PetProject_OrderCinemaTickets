@@ -68,6 +68,13 @@ void WebContext::sendPostRequest(WebRequestInfo requestInfo)
     webManager->post(request, data);
 }
 
+QByteArray WebContext::convertFromJson(QVariant data)
+{
+    QJsonObject json = data.toJsonObject();
+    QJsonDocument doc(json);
+    return doc.toJson()
+}
+
 void WebContext::changeRequestType(int index)
 {
     MethodType type = (MethodType)index;

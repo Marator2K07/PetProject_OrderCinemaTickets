@@ -46,6 +46,10 @@ private:
     /// \brief sendPostRequest
     /// послать на адрес url POST запрос с данными requestInfo
     void sendPostRequest(WebRequestInfo requestInfo);
+    ///
+    /// \brief convertFromJson
+    /// обрабатываем полученную универсальную информацию в формате джейсон
+    QByteArray convertFromJson(QVariant data);
 
 private slots:
     void changeRequestType(int index);
