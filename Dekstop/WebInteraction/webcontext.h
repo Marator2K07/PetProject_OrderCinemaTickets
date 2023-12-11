@@ -20,7 +20,6 @@ class WebContext : public QObject
 
 public:
     explicit WebContext(WebRequestWidget *requestWidget, QObject *parent = nullptr);
-
     ///
     /// \brief ignoreSslVerify
     /// дабы избежать множество проблем
@@ -34,27 +33,15 @@ private:
     // виджет для удобной отправки запросов
     WebRequestWidget *requestWidget;
 
-    // указатель на метод: sendGetRequest или sendPostRequest
+    // указатель на посылаемый метод с типом: sendGetRequest или sendPostRequest
     void(WebContext::*requestMethod)(WebRequestInfo) = &sendGetRequest;
-    ///
-    /// \brief sendGetRequest
-    /// послать на адрес url GET запрос с данными requestInfo
     void sendGetRequest(WebRequestInfo requestInfo);
-    ///
-    /// \brief sendPostRequest
-    /// послать на адрес url POST запрос с данными requestInfo
     void sendPostRequest(WebRequestInfo requestInfo);
 
     // указатель на метод обработки данных в определенном формате
     // (методы: handleRequestDataAsString и handleRequestDataAsJson)
     QByteArray(WebContext::*handleRequestDataMethod)(QVariant) = &handleRequestDataAsString;
-    ///
-    /// \brief handleRequestDataAsString
-    /// обрабатываем полученную универсальную информацию в формате строки
     QByteArray handleRequestDataAsString(QVariant data);
-    ///
-    /// \brief handleRequestDataAsJson
-    /// обрабатываем полученную универсальную информацию в формате джейсон
     QByteArray handleRequestDataAsJson(QVariant data);
 
 private slots:
@@ -62,11 +49,9 @@ private slots:
     void changeRequestDataType(int index);
     ///
     /// \brief sendRequest
-    /// послать запрос с установленными значениями
+    /// этот метод напрямую не вызывает посылку запроса,а служит промежуточным
+    /// звеном, где с помощью переменной requestMethod уже вызывается нужный метод
     void sendRequest(QHash<QString, QVariant> request);
-    ///
-    /// \brief getResponce
-    /// получить и обработать возможный ответ
     void getResponce(QNetworkReply *responce);
 
 signals:
