@@ -93,22 +93,27 @@ bool WebRequestWidget::correctJson()
 }
 
 void WebRequestWidget::prepareInfo()
-{    
-    // если POST запрос
-    // тестовая реализация!
+{
+    bool correctParse = true;
+    // если POST запрос, то нужна дополнительная обработка
     if ((MethodType)requestMethodType->currentIndex() == MethodType::POST) {
-        // парсим
-        QJsonParseError error;
-        QJsonDocument doc = QJsonDocument::
-            fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
-        // если все в порядке
-        if (error.error == error.NoError) {
-            emit jsonObjectReady(doc.object());
-            requestInfo->setContentType("application/json");
+        // парсим в соотвествии с типом
+        switch ((MethodBodyType)methodDataTypeComboBox->currentIndex()) {
+        case MethodBodyType::TEXT:
+            correctParse = correctText();
+            break;
+        case MethodBodyType::JSON:
+            correctParse = correctJson();
+            break;
+        default:
+            break;
         }
     }
-
-    // подготоваливаем словарь и записываем данные запроса и отправляем их
+    // если была ошибка на предыдущем этапе, то запрос отправлять нет смысла
+    if (!correctParse) {
+        return;
+    }
+    // подготоваливаем словарь и записываем данные запроса, далее отправляем их
     QHash<QString, QVariant> result;
     result.insert("Url", urlLineEdit->text());
     result.insert("Content type", requestInfo->getContentType());
