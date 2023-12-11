@@ -40,8 +40,12 @@ private:
 private slots:
     ///
     /// \brief tryParseJson
+    ///
+    /// \brief correctJson
     /// проверка правильности ввода тела запроса как Json файла
-    void tryParseJson();
+    bool correctJson();
+
+private slots:
     ///
     /// \brief prepareInfo
     /// подготавливаем данные для передачи веб контексту

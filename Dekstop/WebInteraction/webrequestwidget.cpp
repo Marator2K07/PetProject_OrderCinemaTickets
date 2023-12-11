@@ -64,14 +64,20 @@ void WebRequestWidget::setMethodDataTypeComboBox(QComboBox *newMethodDataTypeCom
     methodDataTypeComboBox = newMethodDataTypeComboBox;
 }
 
-void WebRequestWidget::tryParseJson()
+bool WebRequestWidget::correctJson()
 {
     // пытаемся запарсить
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::
         fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
-    // выводим успешность парсинга
-    parseStatusLabel->setText(error.errorString());
+    // возвращаем успешность парсинга, причем при успехе - пишем данные
+    if (error.error == error.NoError) {
+        parseStatusLabel->setText(error.errorString());
+        emit requestDataReady(QVariant::fromValue(doc.object()));
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void WebRequestWidget::prepareInfo()
