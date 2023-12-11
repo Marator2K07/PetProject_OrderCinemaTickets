@@ -59,6 +59,7 @@ private:
 
 private slots:
     void changeRequestType(int index);
+    void changeRequestDataType(int index);
     ///
     /// \brief sendRequest
     /// послать запрос с установленными значениями

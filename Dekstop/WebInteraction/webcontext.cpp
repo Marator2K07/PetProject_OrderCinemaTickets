@@ -91,6 +91,16 @@ void WebContext::changeRequestType(int index)
     }
 }
 
+void WebContext::changeRequestDataType(int index)
+{
+    MethodBodyType type = (MethodBodyType)index;
+    if (type == MethodBodyType::TEXT) {
+        handleRequestDataMethod = &handleRequestDataAsString;
+    } else if (type == MethodBodyType::JSON) {
+        handleRequestDataMethod = &handleRequestDataAsJson;
+    }
+}
+
 void WebContext::getResponce(QNetworkReply *responce)
 {
     // пока просто тестовый вывод в консоль
