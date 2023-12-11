@@ -22,8 +22,6 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     lineEditLabel->setBuddy(dataTextEdit);
     QLabel *textEditLabel = new QLabel("&Тело запроса:", this);
     textEditLabel->setBuddy(dataTextEdit);
-    QPushButton *parseButton = new QPushButton("Проверить тело запроса как Json", this);
-    connect(parseButton, SIGNAL(pressed()), this, SLOT(tryParseJson()));
 
     // установки компоновщиков
     QHBoxLayout *verLayout = new QHBoxLayout();
@@ -38,7 +36,6 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     layout->addLayout(hDataLayout);
     layout->addWidget(dataTextEdit);
     layout->addWidget(parseStatusLabel);
-    layout->addWidget(parseButton);
     layout->addWidget(sendRequestButton);
 }
 
@@ -121,7 +118,10 @@ void WebRequestWidget::prepareInfo()
     emit requestReady(result);
 }
 
-void WebRequestWidget::catchWebResponse(QNetworkReply *responce)
+void WebRequestWidget::catchWebResponseError(QNetworkReply *responce)
 {
-    parseStatusLabel->setText(responce->errorString());
+    if (responce->error() != QNetworkReply::NoError) {
+        QString error = responce->errorString();
+        parseStatusLabel->setText(error);       
+    }
 }

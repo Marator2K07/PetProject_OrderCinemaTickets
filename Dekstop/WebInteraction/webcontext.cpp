@@ -7,6 +7,8 @@ WebContext::WebContext(WebRequestWidget *requestWidget, QObject *parent)
     webManager = new QNetworkAccessManager(this);
     connect(webManager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(getResponce(QNetworkReply*)));
+    connect(webManager, SIGNAL(finished(QNetworkReply*)),
+            requestWidget, SLOT(catchWebResponseError(QNetworkReply*)));
     connect(requestWidget, SIGNAL(requestReady(QHash<QString, QVariant>)),
             this, SLOT(sendRequest(QHash<QString, QVariant>)));
     connect(requestWidget->getRequestMethodType(), SIGNAL(currentIndexChanged(int)),

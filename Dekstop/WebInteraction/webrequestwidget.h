@@ -54,7 +54,7 @@ private slots:
     ///
     /// \brief catchWebResponse
     /// ловим ответ от класса веб контекста
-    void catchWebResponse(QNetworkReply *responce);
+    void catchWebResponseError(QNetworkReply *responce);
 
 signals:
     ///
