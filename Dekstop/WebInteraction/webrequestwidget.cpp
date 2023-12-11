@@ -64,6 +64,18 @@ void WebRequestWidget::setMethodDataTypeComboBox(QComboBox *newMethodDataTypeCom
     methodDataTypeComboBox = newMethodDataTypeComboBox;
 }
 
+bool WebRequestWidget::correctText()
+{
+    // проверка на корректность текста пока довольно условна
+    if (dataTextEdit->toPlainText().length() >= 1) {
+        emit requestDataReady(QVariant::fromValue(doc.object()));
+        return true;
+    } else {
+        parseStatusLabel->setText("text is too short");
+        return false;
+    }
+}
+
 bool WebRequestWidget::correctJson()
 {
     // пытаемся запарсить
@@ -72,10 +84,10 @@ bool WebRequestWidget::correctJson()
         fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
     // возвращаем успешность парсинга, причем при успехе - пишем данные
     if (error.error == error.NoError) {
-        parseStatusLabel->setText(error.errorString());
         emit requestDataReady(QVariant::fromValue(doc.object()));
         return true;
     } else {
+        parseStatusLabel->setText(error.errorString());
         return false;
     }
 }

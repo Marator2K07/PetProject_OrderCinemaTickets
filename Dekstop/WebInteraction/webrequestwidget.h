@@ -37,9 +37,10 @@ private:
     QComboBox *requestMethodType;
     QComboBox *methodDataTypeComboBox ; // выбор типа данных тела запроса
 
-private slots:
     ///
-    /// \brief tryParseJson
+    /// \brief correctText
+    /// проверка правильности ввода тела запроса как обычного текста
+    bool correctText();
     ///
     /// \brief correctJson
     /// проверка правильности ввода тела запроса как Json файла
