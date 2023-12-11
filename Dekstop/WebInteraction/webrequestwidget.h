@@ -33,6 +33,7 @@ private:
     QLabel *parseStatusLabel;
     QPushButton *sendRequestButton;
     QComboBox *requestMethodType;
+    QComboBox *methodDataTypeComboBox ; // выбор типа данных тела запроса
 
 private slots:
     ///
