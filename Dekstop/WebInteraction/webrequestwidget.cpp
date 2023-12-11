@@ -54,6 +54,16 @@ void WebRequestWidget::setRequestMethodType(QComboBox *newRequestMethodType)
     requestMethodType = newRequestMethodType;
 }
 
+QComboBox *WebRequestWidget::getMethodDataTypeComboBox() const
+{
+    return methodDataTypeComboBox;
+}
+
+void WebRequestWidget::setMethodDataTypeComboBox(QComboBox *newMethodDataTypeComboBox)
+{
+    methodDataTypeComboBox = newMethodDataTypeComboBox;
+}
+
 void WebRequestWidget::tryParseJson()
 {
     // пытаемся запарсить

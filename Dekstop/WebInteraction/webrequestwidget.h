@@ -25,6 +25,8 @@ public:
 
     QComboBox *getRequestMethodType() const;
     void setRequestMethodType(QComboBox *newRequestMethodType);
+    QComboBox *getMethodDataTypeComboBox() const;
+    void setMethodDataTypeComboBox(QComboBox *newMethodDataTypeComboBox);
 
 private:
     WebRequestInfo *requestInfo;

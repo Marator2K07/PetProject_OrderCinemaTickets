@@ -11,6 +11,8 @@ WebContext::WebContext(WebRequestWidget *requestWidget, QObject *parent)
             this, SLOT(sendRequest(QHash<QString, QVariant>)));
     connect(requestWidget->getRequestMethodType(), SIGNAL(currentIndexChanged(int)),
             this, SLOT(changeRequestType(int)));
+    connect(requestWidget->getMethodDataTypeComboBox(), SIGNAL(currentIndexChanged(int)),
+            this, SLOT(changeRequestDataType(int)));
 }
 
 void WebContext::ignoreSslVerify()
