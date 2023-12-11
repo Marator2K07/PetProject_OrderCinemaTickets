@@ -22,12 +22,10 @@ public:
     QString getContentType() const;
     void setContentType(const QString &newContentType);
 
+    void setData(const QVariant &newData);
     QVariant getData() const;
     QJsonObject getJsonData() const;
     QString getTextData() const;
-
-public slots:
-    void setData(const QVariant &newData);
 
 private:
     QString contentType; // информация для заголовка запроса

@@ -5,8 +5,6 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
 {
     // инициализация полей и их связей
     requestInfo = new WebRequestInfo(this);
-    connect(this, SIGNAL(requestDataReady(QVariant)),
-            requestInfo, SLOT(setData(QVariant)));
     dataTextEdit = new QTextEdit(this);
     urlLineEdit = new QLineEdit(this);
     parseStatusLabel = new QLabel("Status");
@@ -68,7 +66,8 @@ bool WebRequestWidget::correctText()
 {
     // проверка на корректность текста пока довольно условна
     if (dataTextEdit->toPlainText().length() >= 1) {
-        emit requestDataReady(QVariant::fromValue(dataTextEdit->toPlainText()));
+        requestInfo->setContentType("text/plain");
+        requestInfo->setData(QVariant::fromValue(dataTextEdit->toPlainText()));
         return true;
     } else {
         parseStatusLabel->setText("text is too short");
@@ -84,7 +83,8 @@ bool WebRequestWidget::correctJson()
         fromJson(dataTextEdit->toPlainText().toUtf8(), &error);
     // возвращаем успешность парсинга, причем при успехе - пишем данные
     if (error.error == error.NoError) {
-        emit requestDataReady(QVariant::fromValue(doc.object()));
+        requestInfo->setContentType("application/json");
+        requestInfo->setData(QVariant::fromValue(doc.object()));
         return true;
     } else {
         parseStatusLabel->setText(error.errorString());

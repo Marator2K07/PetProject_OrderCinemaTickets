@@ -58,10 +58,6 @@ private slots:
 
 signals:
     ///
-    /// \brief requestDataReady
-    /// в случае корректного экземпляра тела запроса
-    void requestDataReady(QVariant data);
-    ///
     /// \brief requestReady
     /// когда считали всю информацию с виджета
     void requestReady(QHash<QString, QVariant> request);
