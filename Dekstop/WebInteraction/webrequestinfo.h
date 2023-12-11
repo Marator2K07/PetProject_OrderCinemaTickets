@@ -8,7 +8,7 @@
 ///
 /// \brief The WebRequestBody class
 /// класс для работы с данными запроса
-/// (в нашем случае пока Json формат)
+/// (сейчас это: Text и Json формат)
 class WebRequestInfo : public QObject
 {
     Q_OBJECT
@@ -21,17 +21,18 @@ public:
     void setUrl(const QString &newUrl);
     QString getContentType() const;
     void setContentType(const QString &newContentType);
+
     QVariant getData() const;
     QJsonObject getJsonData() const;
+    QString getTextData() const;
+
+public slots:
     void setData(const QVariant &newData);
 
 private:
     QString contentType; // информация для заголовка запроса
     QString url;
     QVariant data;
-
-private slots:
-    void setJsonData(const QJsonObject &newJsonData);
 };
 Q_DECLARE_METATYPE(WebRequestInfo)
 

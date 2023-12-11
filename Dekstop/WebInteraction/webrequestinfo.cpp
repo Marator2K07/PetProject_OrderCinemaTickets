@@ -5,6 +5,11 @@ QJsonObject WebRequestInfo::getJsonData() const
     return qvariant_cast<QJsonObject>(data);
 }
 
+QString WebRequestInfo::getTextData() const
+{
+    return qvariant_cast<QString>(data);
+}
+
 QVariant WebRequestInfo::getData() const
 {
     return data;
@@ -23,11 +28,6 @@ void WebRequestInfo::setContentType(const QString &newContentType)
 void WebRequestInfo::setData(const QVariant &newData)
 {
     data = newData;
-}
-
-void WebRequestInfo::setJsonData(const QJsonObject &newJsonData)
-{
-    data = QVariant::fromValue(newJsonData);
 }
 
 QString WebRequestInfo::getUrl() const
