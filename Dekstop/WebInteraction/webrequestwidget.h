@@ -50,9 +50,9 @@ private slots:
 
 signals:
     ///
-    /// \brief jsonObjectReady
-    /// в случае удачного парсинга
-    void jsonObjectReady(QJsonObject jsonObject);
+    /// \brief requestDataReady
+    /// в случае корректного экземпляра тела запроса
+    void requestDataReady(QVariant data);
     ///
     /// \brief requestReady
     /// когда считали всю информацию с виджета
