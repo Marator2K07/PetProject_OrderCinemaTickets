@@ -46,16 +46,16 @@ private:
     void sendPostRequest(WebRequestInfo requestInfo);
 
     // указатель на метод обработки данных в определенном формате
-    // (методы: convertFromString и convertFromJson)
-    QByteArray(WebContext::*requestBodyData)(QVariant) = &convertFromString;
+    // (методы: handleRequestDataAsString и handleRequestDataAsJson)
+    QByteArray(WebContext::*handleRequestDataMethod)(QVariant) = &handleRequestDataAsString;
     ///
-    /// \brief convertFromString
+    /// \brief handleRequestDataAsString
     /// обрабатываем полученную универсальную информацию в формате строки
-    QByteArray convertFromString(QVariant data);
+    QByteArray handleRequestDataAsString(QVariant data);
     ///
-    /// \brief convertFromJson
+    /// \brief handleRequestDataAsJson
     /// обрабатываем полученную универсальную информацию в формате джейсон
-    QByteArray convertFromJson(QVariant data);
+    QByteArray handleRequestDataAsJson(QVariant data);
 
 private slots:
     void changeRequestType(int index);

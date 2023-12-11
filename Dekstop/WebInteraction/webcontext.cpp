@@ -68,13 +68,13 @@ void WebContext::sendPostRequest(WebRequestInfo requestInfo)
     webManager->post(request, data);
 }
 
-QByteArray WebContext::convertFromString(QVariant data)
+QByteArray WebContext::handleRequestDataAsString(QVariant data)
 {
     QString str = data.toString();
     return str.toUtf8();
 }
 
-QByteArray WebContext::convertFromJson(QVariant data)
+QByteArray WebContext::handleRequestDataAsJson(QVariant data)
 {
     QJsonObject json = data.toJsonObject();
     QJsonDocument doc(json);
