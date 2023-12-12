@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/web/request/widget">
+        <file>Pictures/LoadingPicture.png</file>
+    </qresource>
+</RCC>
