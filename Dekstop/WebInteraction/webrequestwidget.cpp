@@ -128,6 +128,10 @@ void WebRequestWidget::catchWebResponseError(QNetworkReply *responce)
     if (responce->error() != QNetworkReply::NoError) {
         QString error = responce->errorString();
         parseStatusLabel->setText(error);
+    } else if (responce->error() == QNetworkReply::NoError) {
+        parseStatusLabel->setText("request was successfully processed");
+    } else {
+        parseStatusLabel->setText("unidentified situation");
     }
 }
 
