@@ -7,7 +7,8 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     requestInfo = new WebRequestInfo(this);
     dataTextEdit = new QTextEdit(this);
     urlLineEdit = new QLineEdit(this);
-    parseStatusLabel = new QLabel("Status");
+    parseStatusTextEdit = new QPlainTextEdit("...");
+    parseStatusTextEdit->setReadOnly(true);
     sendRequestButton = new QPushButton("Отправить", this);
     connect(sendRequestButton, SIGNAL(pressed()), this, SLOT(prepareInfo()));
     requestMethodType = new QComboBox(this);
@@ -24,6 +25,7 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     lineEditLabel->setBuddy(dataTextEdit);
     QLabel *textEditLabel = new QLabel("&Тело запроса:", this);
     textEditLabel->setBuddy(dataTextEdit);
+    QLabel *parseStatusLabel = new QLabel("Статус запроса:", this);
 
     // установки компоновщиков
     QHBoxLayout *verLayout = new QHBoxLayout();
@@ -38,6 +40,7 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     layout->addLayout(hDataLayout);
     layout->addWidget(dataTextEdit);
     layout->addWidget(parseStatusLabel);
+    layout->addWidget(parseStatusTextEdit);
     layout->addWidget(sendRequestButton);
 
     // включение/отключение  виджетов
@@ -72,7 +75,7 @@ bool WebRequestWidget::correctText()
         requestInfo->setData(QVariant::fromValue(dataTextEdit->toPlainText()));
         return true;
     } else {
-        parseStatusLabel->setText("text is too short");
+        parseStatusTextEdit->setPlainText("text is too short");
         return false;
     }
 }
@@ -89,7 +92,7 @@ bool WebRequestWidget::correctJson()
         requestInfo->setData(QVariant::fromValue(doc.object()));
         return true;
     } else {
-        parseStatusLabel->setText(error.errorString());
+        parseStatusTextEdit->setPlainText(error.errorString());
         return false;
     }
 }
@@ -127,11 +130,11 @@ void WebRequestWidget::catchWebResponseError(QNetworkReply *responce)
 {
     if (responce->error() != QNetworkReply::NoError) {
         QString error = responce->errorString();
-        parseStatusLabel->setText(error);
+        parseStatusTextEdit->setPlainText(error);
     } else if (responce->error() == QNetworkReply::NoError) {
-        parseStatusLabel->setText("request was successfully processed");
+        parseStatusTextEdit->setPlainText("request was successfully processed");
     } else {
-        parseStatusLabel->setText("unidentified situation");
+        parseStatusTextEdit->setPlainText("unidentified situation");
     }
 }
 

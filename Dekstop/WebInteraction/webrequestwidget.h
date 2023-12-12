@@ -13,6 +13,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QTextEdit>
+#include <QPlainTextEdit>
 #include <QLabel>
 #include <QHash>
 
@@ -32,7 +33,7 @@ private:
     WebRequestInfo *requestInfo;
     QLineEdit *urlLineEdit;
     QTextEdit *dataTextEdit;
-    QLabel *parseStatusLabel;
+    QPlainTextEdit *parseStatusTextEdit;
     QPushButton *sendRequestButton;
     QComboBox *requestMethodType;
     QComboBox *methodDataTypeComboBox ; // выбор типа данных тела запроса
