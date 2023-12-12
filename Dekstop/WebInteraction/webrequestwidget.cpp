@@ -13,6 +13,8 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     requestMethodType = new QComboBox(this);
     requestMethodType->insertItem(0, "GET", MethodType::GET);
     requestMethodType->insertItem(1, "POST", MethodType::POST);
+    connect(requestMethodType, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(subwidgetsConditionChanges()));
     methodDataTypeComboBox = new QComboBox(this);
     methodDataTypeComboBox->insertItem(0, "TEXT", MethodBodyType::TEXT);
     methodDataTypeComboBox->insertItem(1, "JSON", MethodBodyType::JSON);
@@ -37,6 +39,9 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     layout->addWidget(dataTextEdit);
     layout->addWidget(parseStatusLabel);
     layout->addWidget(sendRequestButton);
+
+    // включение/отключение  виджетов
+    subwidgetsConditionChanges();
 }
 
 QComboBox *WebRequestWidget::getRequestMethodType() const
@@ -122,6 +127,18 @@ void WebRequestWidget::catchWebResponseError(QNetworkReply *responce)
 {
     if (responce->error() != QNetworkReply::NoError) {
         QString error = responce->errorString();
-        parseStatusLabel->setText(error);       
+        parseStatusLabel->setText(error);
+    }
+}
+
+void WebRequestWidget::subwidgetsConditionChanges()
+{
+    MethodType curType = (MethodType)requestMethodType->currentIndex();
+    if (curType == MethodType::GET) {
+        dataTextEdit->setEnabled(false);
+        methodDataTypeComboBox->setEnabled(false);
+    } else if (curType == MethodType::POST) {
+        dataTextEdit->setEnabled(true);
+        methodDataTypeComboBox->setEnabled(true);
     }
 }

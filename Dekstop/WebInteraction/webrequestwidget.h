@@ -55,6 +55,11 @@ private slots:
     /// \brief catchWebResponse
     /// ловим ответ от класса веб контекста
     void catchWebResponseError(QNetworkReply *responce);
+    ///
+    /// \brief subwidgetsConditionChanges
+    /// слот в котором проверяется состояние под виджетов
+    /// и в зависимости от этого, включаются/отключаются остальные
+    void subwidgetsConditionChanges();
 
 signals:
     ///
