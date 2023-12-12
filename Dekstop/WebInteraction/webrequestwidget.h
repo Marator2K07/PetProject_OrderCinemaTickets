@@ -34,8 +34,8 @@ private:
     QLineEdit *urlLineEdit;
     QTextEdit *dataTextEdit;
     QPlainTextEdit *parseStatusTextEdit;
-    QPushButton *sendRequestButton;
-    QComboBox *requestMethodType;
+    QPushButton *sendButton;
+    QComboBox *methodTypeComboBox;
     QComboBox *methodDataTypeComboBox ; // выбор типа данных тела запроса
 
     ///

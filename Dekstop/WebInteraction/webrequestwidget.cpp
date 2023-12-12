@@ -9,12 +9,12 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     urlLineEdit = new QLineEdit(this);
     parseStatusTextEdit = new QPlainTextEdit("...");
     parseStatusTextEdit->setReadOnly(true);
-    sendRequestButton = new QPushButton("Отправить", this);
-    connect(sendRequestButton, SIGNAL(pressed()), this, SLOT(prepareInfo()));
-    requestMethodType = new QComboBox(this);
-    requestMethodType->insertItem(0, "GET", MethodType::GET);
-    requestMethodType->insertItem(1, "POST", MethodType::POST);
-    connect(requestMethodType, SIGNAL(currentIndexChanged(int)),
+    sendButton = new QPushButton("Отправить", this);
+    connect(sendButton, SIGNAL(pressed()), this, SLOT(prepareInfo()));
+    methodTypeComboBox = new QComboBox(this);
+    methodTypeComboBox->insertItem(0, "GET", MethodType::GET);
+    methodTypeComboBox->insertItem(1, "POST", MethodType::POST);
+    connect(methodTypeComboBox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(subwidgetsConditionChanges()));
     methodDataTypeComboBox = new QComboBox(this);
     methodDataTypeComboBox->insertItem(0, "TEXT", MethodBodyType::TEXT);
@@ -31,7 +31,7 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     QHBoxLayout *verLayout = new QHBoxLayout();
     verLayout->addWidget(lineEditLabel);
     verLayout->addWidget(urlLineEdit);
-    verLayout->addWidget(requestMethodType);
+    verLayout->addWidget(methodTypeComboBox);
     QHBoxLayout *hDataLayout = new QHBoxLayout();
     hDataLayout->addWidget(textEditLabel);
     hDataLayout->addWidget(methodDataTypeComboBox);
@@ -41,7 +41,7 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
     layout->addWidget(dataTextEdit);
     layout->addWidget(parseStatusLabel);
     layout->addWidget(parseStatusTextEdit);
-    layout->addWidget(sendRequestButton);
+    layout->addWidget(sendButton);
 
     // включение/отключение  виджетов
     subwidgetsConditionChanges();
@@ -49,12 +49,12 @@ WebRequestWidget::WebRequestWidget(QWidget *parent)
 
 QComboBox *WebRequestWidget::getRequestMethodType() const
 {
-    return requestMethodType;
+    return methodTypeComboBox;
 }
 
 void WebRequestWidget::setRequestMethodType(QComboBox *newRequestMethodType)
 {
-    requestMethodType = newRequestMethodType;
+    methodTypeComboBox = newRequestMethodType;
 }
 
 QComboBox *WebRequestWidget::getMethodDataTypeComboBox() const
@@ -101,7 +101,7 @@ void WebRequestWidget::prepareInfo()
 {
     bool correctParse = true;
     // если POST запрос, то нужна дополнительная обработка
-    if ((MethodType)requestMethodType->currentIndex() == MethodType::POST) {
+    if ((MethodType)methodTypeComboBox->currentIndex() == MethodType::POST) {
         // парсим в соотвествии с типом
         switch ((MethodBodyType)methodDataTypeComboBox->currentIndex()) {
         case MethodBodyType::TEXT:
@@ -140,7 +140,7 @@ void WebRequestWidget::catchWebResponseError(QNetworkReply *responce)
 
 void WebRequestWidget::subwidgetsConditionChanges()
 {
-    MethodType curType = (MethodType)requestMethodType->currentIndex();
+    MethodType curType = (MethodType)methodTypeComboBox->currentIndex();
     if (curType == MethodType::GET) {
         dataTextEdit->setEnabled(false);
         methodDataTypeComboBox->setEnabled(false);
