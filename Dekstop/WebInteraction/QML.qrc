@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/web/request/widget">
-        <file>Resourses/Pictures/Rotating arrow.png</file>
+        <file>Resourses/QML/QMLLoadingPicture.qml</file>
     </qresource>
 </RCC>
