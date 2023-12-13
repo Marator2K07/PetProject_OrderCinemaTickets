@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/web/request/widget">
-        <file>Resourses/QML/QMLLoadingPicture.qml</file>
-    </qresource>
-</RCC>
