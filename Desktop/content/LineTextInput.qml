@@ -6,8 +6,8 @@ Rectangle {
     id: rectangle
     width: 400
     height: 30
-    color: rectangle.color
     border.width: 0
+    clip: true
 
     MouseArea {
         anchors.fill: parent
@@ -25,7 +25,7 @@ Rectangle {
     TextInput {
         id: textInput
         color: "#5e2970"
-        text: qsTr("Text Input")
+        text: qsTr("...")
         anchors.fill: parent
         font.pixelSize: 20
         horizontalAlignment: Text.AlignLeft
