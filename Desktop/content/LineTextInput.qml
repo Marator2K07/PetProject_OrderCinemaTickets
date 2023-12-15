@@ -6,7 +6,8 @@ Rectangle {
     id: rectangle
     width: 400
     height: 30
-    border.width: 0
+    radius: 3
+    border.width: 1
     clip: true
 
     MouseArea {
@@ -30,6 +31,7 @@ Rectangle {
         font.pixelSize: 20
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+        anchors.leftMargin: 7
         font.strikeout: false
         font.weight: Font.Medium
         selectionColor: "#5e2970"
