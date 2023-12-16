@@ -5,14 +5,15 @@ import QtQuick 6.2
 import Desktop
 
 Window {
-    width: mainScreen.width
-    height: mainScreen.height
+    width: 600
+    height: 550
 
     visible: true
     title: "Desktop"
 
-    Screen01 {
+    WebRequestForm {
         id: mainScreen
+        anchors.fill: parent
     }
 
 }
