@@ -7,7 +7,16 @@ project(DesktopApp LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.2 REQUIRED COMPONENTS
+    Core
+    Gui
+    Widgets
+    Network
+    Qml
+    Quick
+)
+
+add_subdirectory(src/)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
     qt_standard_project_setup()
@@ -27,7 +36,6 @@ target_link_libraries(DesktopApp PRIVATE
     Qt6::Qml
     Qt6::Quick
 )
-
 if (BUILD_QDS_COMPONENTS)
     include(${CMAKE_CURRENT_SOURCE_DIR}/qmlcomponents)
 endif()
