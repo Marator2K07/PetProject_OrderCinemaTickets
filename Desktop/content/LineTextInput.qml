@@ -10,6 +10,8 @@ Rectangle {
     border.width: 1
     clip: true
 
+    readonly property string url: textInput.text
+
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true

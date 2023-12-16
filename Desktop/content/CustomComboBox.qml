@@ -9,10 +9,12 @@ ComboBox {
     font.pixelSize: 20
     topInset: 0
     bottomInset: 0
+
     property color fillColor: "#ffffff"
     property color fillDropColor: "#e3c8eb"
     property color selectFillColor: "#5e2970"
     property color borderColor: "#000000"
+    readonly property var value: currentValue
 
     contentItem: Text {
         leftPadding: 10
