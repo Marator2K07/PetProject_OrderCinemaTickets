@@ -7,6 +7,8 @@ ComboBox {
     width: 120
     height: 40
     font.pixelSize: 20
+    topInset: 0
+    bottomInset: 0
     property color fillColor: "#ffffff"
     property color fillDropColor: "#e3c8eb"
     property color selectFillColor: "#5e2970"
@@ -39,7 +41,8 @@ ComboBox {
         {
             anchors.fill:parent
             color: hovered ? selectFillColor : fillDropColor
-            height:40
+            height: 40
+
             Text {
                 anchors.centerIn: parent
                 text: modelData
