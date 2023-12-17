@@ -1,6 +1,7 @@
 #ifndef WEBCONTEXT_H
 #define WEBCONTEXT_H
 
+#include "typesforrequestmethod.h"
 #include "webrequestinfo.h"
 #include "webrequestwidget.h"
 
