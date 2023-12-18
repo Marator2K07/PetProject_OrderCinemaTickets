@@ -1,53 +1,45 @@
-cmake_minimum_required(VERSION 3.21.1)
+cmake_minimum_required(VERSION 3.16)
 
-option(LINK_INSIGHT "Link Qt Insight Tracker library" ON)
-option(BUILD_QDS_COMPONENTS "Build design studio components" ON)
-
-project(DesktopApp LANGUAGES CXX)
+project(DesktopApp VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS
-    Core
-    Gui
-    Widgets
-    Network
-    Qml
-    Quick
+find_package(Qt6 6.2 REQUIRED COMPONENTS Quick)
+
+set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/content"
+    CACHE STRING "Qt Creator 6.X extra qml_modules import paths")
+
+add_subdirectory(content)
+add_subdirectory(src)
+
+qt_add_executable(appDesktopApp
+    main.cpp
 )
 
-add_subdirectory(src/)
-
-if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
-    qt_standard_project_setup()
-endif()
-
-qt_add_executable(DesktopApp src/main.cpp)
-
-qt_add_resources(DesktopApp "configuration"
-    PREFIX "/"
-    FILES
-        qtquickcontrols2.conf
+qt_add_qml_module(appDesktopApp
+    URI DesktopApp
+    VERSION 1.0
+    QML_FILES Main.qml
 )
 
-target_link_libraries(DesktopApp PRIVATE
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Qml
-    Qt6::Quick
+# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
+# If you are developing for iOS or macOS you should consider setting an
+# explicit, fixed bundle identifier manually though.
+set_target_properties(appDesktopApp PROPERTIES
+#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appDesktopApp
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
 )
-if (BUILD_QDS_COMPONENTS)
-    include(${CMAKE_CURRENT_SOURCE_DIR}/qmlcomponents)
-endif()
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/qmlmodules)
-
-if (LINK_INSIGHT)
-    include(${CMAKE_CURRENT_SOURCE_DIR}/insight)
-endif ()
+target_link_libraries(appDesktopApp
+    PRIVATE Qt6::Quick
+)
 
 include(GNUInstallDirs)
-install(TARGETS DesktopApp
+install(TARGETS appDesktopApp
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

@@ -1,0 +1,4 @@
+Module qmlcustomwidgets
+CustomComboBox 1.0 CustomComboBox.qml
+LineTextInput 1.0 LineTextInput.qml
+MultiLineTextInput 1.0 MultiLineTextInput.qml

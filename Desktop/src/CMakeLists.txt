@@ -1,1 +1,1 @@
-add_subdirectory(WebInteraction)
+add_subdirectory(webinteraction)

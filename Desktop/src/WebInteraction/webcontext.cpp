@@ -80,22 +80,20 @@ QByteArray WebContext::handleRequestDataAsJson(QVariant data)
 
 void WebContext::changeRequestType(int index)
 {
-    TypesForRequestMethod::MethodType type =
-        (TypesForRequestMethod::MethodType)index;
-    if (type == TypesForRequestMethod::MethodType::GET) {
+    MethodType::State type = (MethodType::State)index;
+    if (type == MethodType::GET) {
         requestMethod = &sendGetRequest;
-    } else if (type == TypesForRequestMethod::MethodType::POST) {
+    } else if (type == MethodType::POST) {
         requestMethod = &sendPostRequest;
     }
 }
 
 void WebContext::changeRequestDataType(int index)
 {
-    TypesForRequestMethod::MethodBodyType type =
-        (TypesForRequestMethod::MethodBodyType)index;
-    if (type == TypesForRequestMethod::MethodBodyType::TEXT) {
+    MethodBodyType::State type = (MethodBodyType::State)index;
+    if (type == MethodBodyType::TEXT) {
         handleRequestDataMethod = &handleRequestDataAsString;
-    } else if (type == TypesForRequestMethod::MethodBodyType::JSON) {
+    } else if (type == MethodBodyType::JSON) {
         handleRequestDataMethod = &handleRequestDataAsJson;
     }
 }

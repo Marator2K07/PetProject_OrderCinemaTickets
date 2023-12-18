@@ -15,7 +15,7 @@ Rectangle {
     Keys.onUpPressed: vbar.decrease()
     Keys.onDownPressed: vbar.increase()
 
-    readonly property string data: textEdit.text
+    readonly property string body: textEdit.text
 
     MouseArea{
         id: mouseArea
