@@ -19,6 +19,8 @@ class WebRequestInfo : public QObject
                    WRITE setRequestType NOTIFY requestTypeChanged)
     Q_PROPERTY(Types::RequestBody requestBodyType READ requestBodyType
                    WRITE setRequestBodyType NOTIFY requestBodyTypeChanged)
+    Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
+    Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
 public:
     explicit WebRequestInfo(QObject *parent = nullptr);
     WebRequestInfo(const WebRequestInfo &other);
@@ -27,28 +29,30 @@ public:
     Types::Request requestType() const;
     void setRequestBodyType(const Types::RequestBody &type);
     Types::RequestBody requestBodyType() const;
+    void setUrl(const QString &url);
+    QString url() const;
+    void setData(const QVariant &data);
+    QVariant data() const;
 
-    QString getUrl() const;
-    void setUrl(const QString &newUrl);
     QString getContentType() const;
     void setContentType(const QString &newContentType);
 
-    void setData(const QVariant &newData);
-    QVariant getData() const;
     QJsonObject getJsonData() const;
     QString getTextData() const;
 
 private:
     Types::Request m_requestType; // тип запроса (ГЕТ или ПОСТ)
     Types::RequestBody m_requestBodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
+    QString m_url; // сам текст строки запроса
+    QVariant m_data; // содержимое тела запроса
 
-    QString contentType; // информация для заголовка запроса
-    QString url;
-    QVariant data;
+    QString contentType; // информация для заголовка запроса    
 
 signals:
     void requestTypeChanged();
     void requestBodyTypeChanged();
+    void urlChanged();
+    void dataChanged();
 };
 Q_DECLARE_METATYPE(WebRequestInfo)
 

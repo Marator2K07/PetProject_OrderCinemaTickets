@@ -2,17 +2,12 @@
 
 QJsonObject WebRequestInfo::getJsonData() const
 {
-    return qvariant_cast<QJsonObject>(data);
+    return qvariant_cast<QJsonObject>(m_data);
 }
 
 QString WebRequestInfo::getTextData() const
 {
-    return qvariant_cast<QString>(data);
-}
-
-QVariant WebRequestInfo::getData() const
-{
-    return data;
+    return qvariant_cast<QString>(m_data);
 }
 
 QString WebRequestInfo::getContentType() const
@@ -25,19 +20,30 @@ void WebRequestInfo::setContentType(const QString &newContentType)
     contentType = newContentType;
 }
 
-void WebRequestInfo::setData(const QVariant &newData)
+void WebRequestInfo::setData(const QVariant &data)
 {
-    data = newData;
+    if (data != m_data) {
+        m_data = data;
+        emit dataChanged();
+    }
 }
 
-QString WebRequestInfo::getUrl() const
+QVariant WebRequestInfo::data() const
 {
-    return url;
+    return m_data;
 }
 
-void WebRequestInfo::setUrl(const QString &newUrl)
+QString WebRequestInfo::url() const
 {
-    url = newUrl;
+    return m_url;
+}
+
+void WebRequestInfo::setUrl(const QString &url)
+{
+    if (url != m_url) {
+        m_url = url;
+        emit urlChanged();
+    }
 }
 
 WebRequestInfo::WebRequestInfo(QObject *parent)
@@ -46,9 +52,9 @@ WebRequestInfo::WebRequestInfo(QObject *parent)
 }
 
 WebRequestInfo::WebRequestInfo(const WebRequestInfo &other)
-    : data(other.getData())
+    : m_data(other.data())
     , contentType(other.getContentType())
-    , url(other.getUrl())
+    , m_url(other.url())
 {
 }
 
