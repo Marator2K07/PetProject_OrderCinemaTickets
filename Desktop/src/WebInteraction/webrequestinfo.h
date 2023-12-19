@@ -1,21 +1,28 @@
 #ifndef WEBREQUESTINFO_H
 #define WEBREQUESTINFO_H
 
-#include <QObject>
+#include "types.h"
+
 #include <QVariant>
 #include <QJsonObject>
+#include <QtQml>
 
 ///
-/// \brief The WebRequestBody class
+/// \brief The WebRequestInfo class
 /// класс для работы с данными запроса
-/// (сейчас это: Text и Json формат)
+/// теперь может обрабатываться/быть qml элементом
 class WebRequestInfo : public QObject
 {
     Q_OBJECT
-
+    QML_ELEMENT
+    Q_PROPERTY(Types::Request requestType READ requestType WRITE
+                   setRequestType NOTIFY requestTypeChanged)
 public:
     explicit WebRequestInfo(QObject *parent = nullptr);
     WebRequestInfo(const WebRequestInfo &other);
+
+    void setRequestType(const Types::Request &type);
+    Types::Request requestType() const;
 
     QString getUrl() const;
     void setUrl(const QString &newUrl);
@@ -28,9 +35,14 @@ public:
     QString getTextData() const;
 
 private:
+    Types::Request m_requestType; // тип запроса (ГЕТ или ПОСТ)
+
     QString contentType; // информация для заголовка запроса
     QString url;
     QVariant data;
+
+signals:
+    void requestTypeChanged();
 };
 Q_DECLARE_METATYPE(WebRequestInfo)
 

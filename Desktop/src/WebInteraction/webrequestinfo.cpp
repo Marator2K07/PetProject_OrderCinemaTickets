@@ -51,3 +51,16 @@ WebRequestInfo::WebRequestInfo(const WebRequestInfo &other)
     , url(other.getUrl())
 {
 }
+
+void WebRequestInfo::setRequestType(const Types::Request &type)
+{
+    if (type != m_requestType) {
+        m_requestType = type;
+        emit requestTypeChanged();
+    }
+}
+
+Types::Request WebRequestInfo::requestType() const
+{
+    return m_requestType;
+}
