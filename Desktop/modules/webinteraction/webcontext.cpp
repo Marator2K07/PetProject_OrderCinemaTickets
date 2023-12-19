@@ -50,18 +50,18 @@ void WebContext::setRequestWidget(WebRequestWidget *newRequestWidget)
 
 void WebContext::sendGetRequest(WebRequestInfo requestInfo)
 {
-    QNetworkRequest request(requestInfo.getUrl());
+    QNetworkRequest request(requestInfo.url());
     webManager->get(request);
 }
 
 void WebContext::sendPostRequest(WebRequestInfo requestInfo)
 {
     // ставим заголовок типа содержимого запроса
-    QNetworkRequest request(requestInfo.getUrl());
+    QNetworkRequest request(requestInfo.url());
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       requestInfo.getContentType());
     // обрабатываем данные из тела запроса в определенном формате и отправляем их
-    QByteArray data = ((this)->*handleRequestDataMethod)(requestInfo.getData());
+    QByteArray data = ((this)->*handleRequestDataMethod)(requestInfo.data());
     webManager->post(request, data);
 }
 
@@ -80,20 +80,20 @@ QByteArray WebContext::handleRequestDataAsJson(QVariant data)
 
 void WebContext::changeRequestType(int index)
 {
-    MethodType::State type = (MethodType::State)index;
-    if (type == MethodType::GET) {
+    Types::Request type = (Types::Request)index;
+    if (type == Types::Request::GET) {
         requestMethod = &sendGetRequest;
-    } else if (type == MethodType::POST) {
+    } else if (type == Types::Request::POST) {
         requestMethod = &sendPostRequest;
     }
 }
 
 void WebContext::changeRequestDataType(int index)
 {
-    MethodBodyType::State type = (MethodBodyType::State)index;
-    if (type == MethodBodyType::TEXT) {
+    Types::RequestBody type = (Types::RequestBody)index;
+    if (type == Types::RequestBody::TEXT) {
         handleRequestDataMethod = &handleRequestDataAsString;
-    } else if (type == MethodBodyType::JSON) {
+    } else if (type == Types::RequestBody::JSON) {
         handleRequestDataMethod = &handleRequestDataAsJson;
     }
 }

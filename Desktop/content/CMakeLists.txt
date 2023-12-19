@@ -1,2 +1,1 @@
 add_subdirectory(qmlcustomwidgets)
-add_subdirectory(qmlelements)

@@ -4,6 +4,7 @@ project(DesktopApp VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/content)
 
 find_package(Qt6 6.2 REQUIRED COMPONENTS
     Core
@@ -13,11 +14,8 @@ find_package(Qt6 6.2 REQUIRED COMPONENTS
     Quick
 )
 
-set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/content"
-    CACHE STRING "Qt Creator 6.X extra qml_modules import paths")
-
 add_subdirectory(content)
-add_subdirectory(src)
+add_subdirectory(modules)
 
 qt_add_executable(appDesktopApp
     main.cpp
@@ -42,6 +40,7 @@ set_target_properties(appDesktopApp PROPERTIES
 
 target_link_libraries(appDesktopApp
     PRIVATE Qt6::Quick
+    PRIVATE webrequestformplugin
 )
 
 include(GNUInstallDirs)
