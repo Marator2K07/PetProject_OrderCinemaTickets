@@ -5,7 +5,13 @@ project(DesktopApp VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.2 REQUIRED COMPONENTS
+    Core
+    Widgets
+    Network
+    Qml
+    Quick
+)
 
 set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/content"
     CACHE STRING "Qt Creator 6.X extra qml_modules import paths")
