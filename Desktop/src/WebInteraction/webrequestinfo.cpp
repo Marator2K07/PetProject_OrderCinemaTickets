@@ -64,3 +64,16 @@ Types::Request WebRequestInfo::requestType() const
 {
     return m_requestType;
 }
+
+void WebRequestInfo::setRequestBodyType(const Types::RequestBody &type)
+{
+    if (type != m_requestBodyType) {
+        m_requestBodyType = type;
+        emit requestTypeChanged();
+    }
+}
+
+Types::RequestBody WebRequestInfo::requestBodyType() const
+{
+    return m_requestBodyType;
+}

@@ -15,14 +15,18 @@ class WebRequestInfo : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
-    Q_PROPERTY(Types::Request requestType READ requestType WRITE
-                   setRequestType NOTIFY requestTypeChanged)
+    Q_PROPERTY(Types::Request requestType READ requestType
+                   WRITE setRequestType NOTIFY requestTypeChanged)
+    Q_PROPERTY(Types::RequestBody requestBodyType READ requestBodyType
+                   WRITE setRequestBodyType NOTIFY requestBodyTypeChanged)
 public:
     explicit WebRequestInfo(QObject *parent = nullptr);
     WebRequestInfo(const WebRequestInfo &other);
 
     void setRequestType(const Types::Request &type);
     Types::Request requestType() const;
+    void setRequestBodyType(const Types::RequestBody &type);
+    Types::RequestBody requestBodyType() const;
 
     QString getUrl() const;
     void setUrl(const QString &newUrl);
@@ -36,6 +40,7 @@ public:
 
 private:
     Types::Request m_requestType; // тип запроса (ГЕТ или ПОСТ)
+    Types::RequestBody m_requestBodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
 
     QString contentType; // информация для заголовка запроса
     QString url;
@@ -43,6 +48,7 @@ private:
 
 signals:
     void requestTypeChanged();
+    void requestBodyTypeChanged();
 };
 Q_DECLARE_METATYPE(WebRequestInfo)
 
