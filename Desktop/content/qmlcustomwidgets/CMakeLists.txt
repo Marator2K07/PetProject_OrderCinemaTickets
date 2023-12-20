@@ -6,6 +6,4 @@ qt6_add_qml_module(qmlcustomwidgets
         LineTextInput.qml
         MultiLineTextInput.qml
         CustomComboBox.qml
-    RESOURCES
-        fonts/fonts.txt
 )
