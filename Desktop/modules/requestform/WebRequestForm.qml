@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts
-import Qml.Custom.Widgets
+import Custom
 
 Rectangle {
     id: rectangle
@@ -29,7 +29,7 @@ Rectangle {
             height: 40
             spacing: 10
 
-            CustomWidgets.LineTextInput {
+            LineTextInput {
                 id: urlTextInput
                 height: rowUrlLayout.height
                 Layout.fillWidth: true
@@ -37,7 +37,7 @@ Rectangle {
                 Layout.rightMargin: 0
             }
 
-            CustomWidgets.CustomComboBox {
+            CustomComboBox {
                 id: requestTypeComboBox
                 Layout.fillWidth: false
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
@@ -59,7 +59,7 @@ Rectangle {
                 Layout.leftMargin: 10
             }
 
-            CustomWidgets.CustomComboBox {
+            CustomComboBox {
                 id: requestDataTypeComboBox
                 Layout.rightMargin: 10
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
@@ -76,7 +76,7 @@ Rectangle {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-            CustomWidgets.MultiLineTextInput {
+            MultiLineTextInput {
                 id: requestDataTextInput
                 anchors.fill: parent
             }

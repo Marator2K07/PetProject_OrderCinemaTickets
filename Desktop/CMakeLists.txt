@@ -13,27 +13,10 @@ find_package(Qt6 6.2 REQUIRED COMPONENTS
     Quick
 )
 
-#list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/content/qmlcustomwidgets")
-#file(GLOB_RECURSE QML_FILES "${CMAKE_CURRENT_SOURCE_DIR}/content/qmlcustomwidgets/*.qml")
-#qt6_add_resources(QML_RESOURCES ${QML_FILES})
-
-№list(APPEND QML_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/content/qmlcustomwidgets/")
-#list(APPEND QML_DIRS "")
-#set(QML_IMPORT_PATH "${QML_DIRS}"
-#   CACHE STRING "Qt Creator 6.X extra qml import paths")
-
-add_subdirectory(content)
-add_subdirectory(modules)
+add_subdirectory(backend)
 
 qt6_add_executable(appDesktopApp
     main.cpp
-)
-
-qt6_add_qml_module(appDesktopApp
-    URI DesktopApp
-    VERSION 1.0
-    QML_FILES
-        Main.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -57,3 +40,5 @@ install(TARGETS appDesktopApp
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+# вся работа с qml файлами происходит здесь
+include(${CMAKE_CURRENT_SOURCE_DIR}/qmlmodules)
