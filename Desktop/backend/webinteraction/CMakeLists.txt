@@ -1,5 +1,7 @@
 qt_add_library(webinteraction STATIC
-    types.h
+    RequestBodyType.h
+    RequestType.h
+    webcontext.h webcontext.cpp
 )
 target_link_libraries(webinteraction PRIVATE
     Qt6::Core

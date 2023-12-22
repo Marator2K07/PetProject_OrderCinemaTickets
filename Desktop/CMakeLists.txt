@@ -30,8 +30,11 @@ set_target_properties(appDesktopApp PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(appDesktopApp
-    PRIVATE Qt6::Quick
+target_link_libraries(appDesktopApp PRIVATE
+    Qt6::Quick
+)
+target_link_libraries(appDesktopApp PRIVATE
+    webinteraction
 )
 
 include(GNUInstallDirs)
