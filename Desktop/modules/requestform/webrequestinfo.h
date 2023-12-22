@@ -1,7 +1,8 @@
 #ifndef WEBREQUESTINFO_H
 #define WEBREQUESTINFO_H
 
-#include "types.h"
+#include "RequestType.h"
+#include "RequestBodyType.h"
 
 #include <QVariant>
 #include <QJsonObject>
@@ -15,9 +16,9 @@ class WebRequestInfo : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
-    Q_PROPERTY(Types::Request requestType READ requestType
+    Q_PROPERTY(RequestType::State requestType READ requestType
                    WRITE setRequestType NOTIFY requestTypeChanged)
-    Q_PROPERTY(Types::RequestBody requestBodyType READ requestBodyType
+    Q_PROPERTY(RequestBodyType::State requestBodyType READ requestBodyType
                    WRITE setRequestBodyType NOTIFY requestBodyTypeChanged)
     Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
@@ -25,10 +26,10 @@ public:
     explicit WebRequestInfo(QObject *parent = nullptr);
     WebRequestInfo(const WebRequestInfo &other);
 
-    void setRequestType(const Types::Request &type);
-    Types::Request requestType() const;
-    void setRequestBodyType(const Types::RequestBody &type);
-    Types::RequestBody requestBodyType() const;
+    void setRequestType(const RequestType::State &type);
+    RequestType::State requestType() const;
+    void setRequestBodyType(const RequestBodyType::State &type);
+    RequestBodyType::State requestBodyType() const;
     void setUrl(const QString &url);
     QString url() const;
     void setData(const QVariant &data);
@@ -41,8 +42,8 @@ public:
     QString getTextData() const;
 
 private:
-    Types::Request m_requestType; // тип запроса (ГЕТ или ПОСТ)
-    Types::RequestBody m_requestBodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
+    RequestType::State m_requestType; // тип запроса (ГЕТ или ПОСТ)
+    RequestBodyType::State m_requestBodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
     QString m_url; // сам текст строки запроса
     QVariant m_data; // содержимое тела запроса
 

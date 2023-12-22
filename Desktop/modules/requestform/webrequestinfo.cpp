@@ -58,7 +58,7 @@ WebRequestInfo::WebRequestInfo(const WebRequestInfo &other)
 {
 }
 
-void WebRequestInfo::setRequestType(const Types::Request &type)
+void WebRequestInfo::setRequestType(const RequestType::State &type)
 {
     if (type != m_requestType) {
         m_requestType = type;
@@ -66,12 +66,12 @@ void WebRequestInfo::setRequestType(const Types::Request &type)
     }
 }
 
-Types::Request WebRequestInfo::requestType() const
+RequestType::State WebRequestInfo::requestType() const
 {
     return m_requestType;
 }
 
-void WebRequestInfo::setRequestBodyType(const Types::RequestBody &type)
+void WebRequestInfo::setRequestBodyType(const RequestBodyType::State &type)
 {
     if (type != m_requestBodyType) {
         m_requestBodyType = type;
@@ -79,7 +79,7 @@ void WebRequestInfo::setRequestBodyType(const Types::RequestBody &type)
     }
 }
 
-Types::RequestBody WebRequestInfo::requestBodyType() const
+RequestBodyType::State WebRequestInfo::requestBodyType() const
 {
     return m_requestBodyType;
 }
