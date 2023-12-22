@@ -1,7 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include "src/app_environment.h"
+#include "RequestType.h"
+#include "RequestBodyType.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,8 +12,12 @@ int main(int argc, char *argv[])
     set_qt_environment();
 
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
+
+    // регистрация типов перечислений из библиотеки webinteraction
+    qmlRegisterType<RequestType>("RequestTypes", 1, 0, "RequestTypes");
+    qmlRegisterType<RequestBodyType>("RequestBodyTypes", 1, 0, "RequestBodyTypes");
+
     const QUrl url(u"qrc:/DesktopApp/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {
