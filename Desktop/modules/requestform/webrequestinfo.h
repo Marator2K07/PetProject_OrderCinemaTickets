@@ -22,6 +22,7 @@ class WebRequestInfo : public QObject
                    WRITE setRequestBodyType NOTIFY requestBodyTypeChanged)
     Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
+
 public:
     explicit WebRequestInfo(QObject *parent = nullptr);
     WebRequestInfo(const WebRequestInfo &other);
