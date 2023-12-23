@@ -11,6 +11,7 @@ qt6_add_qml_module(webrequestform
     SOURCES
         webrequestinfo.h webrequestinfo.cpp
         comboboxmodel.h comboboxmodel.cpp
+        enumitem.h enumitem.cpp
 )
 
 target_link_libraries(webrequestform PRIVATE
