@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import EnumItemsModel 1.0
 
 ComboBox {
     id: control
@@ -8,6 +9,8 @@ ComboBox {
     font.pixelSize: 20
     topInset: 0
     bottomInset: 0
+    textRole: "key"
+    valueRole: "value"
 
     property color fillColor: "#ffffff"
     property color fillDropColor: "#e3c8eb"
@@ -46,14 +49,27 @@ ComboBox {
 
             Text {
                 anchors.centerIn: parent
-                text: modelData
+                text: key
                 color: "white"
                 font: control.font
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
             }
         }
+    }   
+
+    // тестовая реализация
+    model: ListModel {
+        id: originalModel
+        Component.onCompleted: {
+            originalModel.append({key: "GET", value: 1.0});
+            originalModel.append({key: "POST", value: 2.0});
+        }
     }
+
+    EnumItemsModel {
+        id: customModel        
+    }    
 }
 
 
