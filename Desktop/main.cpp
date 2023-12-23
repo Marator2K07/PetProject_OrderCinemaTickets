@@ -5,6 +5,8 @@
 #include "src/app_environment.h"
 #include "RequestType.h"
 #include "RequestBodyType.h"
+#include "enumitemsmodel.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +19,8 @@ int main(int argc, char *argv[])
     // регистрация типов перечислений из библиотеки webinteraction
     qmlRegisterType<RequestType>("RequestTypes", 1, 0, "RequestTypes");
     qmlRegisterType<RequestBodyType>("RequestBodyTypes", 1, 0, "RequestBodyTypes");
+    // и не только перечислений
+    qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
 
     const QUrl url(u"qrc:/DesktopApp/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
