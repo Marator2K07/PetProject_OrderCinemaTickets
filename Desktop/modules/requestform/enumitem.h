@@ -7,25 +7,25 @@
 ///
 /// \brief The EnumItem class
 /// элемент для модели EnumItemsModel
-class EnumItem : public QObject
+class EnumItem
 {
-    Q_OBJECT
+    Q_GADGET
     QML_ELEMENT
 
 public:
-    explicit EnumItem(QObject *parent = nullptr);
     EnumItem(const EnumItem &other);
-    EnumItem(int value,
-             QString text,
-             QObject *parent = nullptr);
+    EnumItem(int value, QString text);
 
     EnumItem& operator =(const EnumItem &other);
     bool operator == (const EnumItem item) const;
     bool operator != (const EnumItem item) const;
 
+    Q_INVOKABLE int value() const;
+    Q_INVOKABLE QString text() const;
+
 private:
-    int value;
-    QString text;
+    int m_value;
+    QString m_text;
 };
 
 #endif // ENUMITEM_H
