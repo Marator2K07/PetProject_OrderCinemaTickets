@@ -1,5 +1,5 @@
-#ifndef COMBOBOXMODEL_H
-#define COMBOBOXMODEL_H
+#ifndef ENUMITEMSMODEL_H
+#define ENUMITEMSMODEL_H
 
 #include "RequestType.h"
 #include "RequestBodyType.h"
@@ -11,8 +11,9 @@
 
 ///
 /// \brief The ComboBoxModel class
-/// класс управления моделью для комбобокса формы веб запроса
-class ComboBoxModel : public QObject
+/// класс управления моделью в виде
+/// списка значений перечислений
+class EnumItemsModel : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
@@ -20,7 +21,7 @@ class ComboBoxModel : public QObject
                    WRITE setModel NOTIFY modelChanged)
 
 public:
-    explicit ComboBoxModel(QObject *parent = nullptr);
+    explicit EnumItemsModel(QObject *parent = nullptr);
 
     QList<EnumItem> model() const;
     void setModel(const QList<EnumItem> &model);
@@ -34,4 +35,4 @@ signals:
     void modelChanged();
 };
 
-#endif // COMBOBOXMODEL_H
+#endif // ENUMITEMSMODEL_H

@@ -1,6 +1,6 @@
 qt_add_library(modelforenums STATIC
     enumitem.h enumitem.cpp	
-    comboboxmodel.h comboboxmodel.cpp	
+    enumitemsmodel.h enumitemsmodel.cpp
 )
 target_link_libraries(modelforenums PRIVATE
     Qt6::Core
