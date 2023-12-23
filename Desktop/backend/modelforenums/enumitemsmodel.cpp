@@ -29,3 +29,17 @@ void EnumItemsModel::addEnumItem(int value, QString text)
 {
     m_model.append(EnumItem(value, text));
 }
+
+EnumItem EnumItemsModel::getEnumItem(int pos) const
+{
+    if (pos >= 0 && pos-1 <= m_model.length()) {
+        return m_model[pos];
+    }
+    // в случае неудачи пока что возвращаем особый элемент с ошибкой
+    return EnumItem(2222, "Not found");
+}
+
+int EnumItemsModel::itemsCount() const
+{
+    return m_model.length();
+}

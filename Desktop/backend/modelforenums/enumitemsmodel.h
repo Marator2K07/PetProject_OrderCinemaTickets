@@ -27,6 +27,8 @@ public:
     void setModel(const QList<EnumItem> &model);
     Q_INVOKABLE void initializeAsRequestTypes();
     Q_INVOKABLE void addEnumItem(int value, QString text);
+    Q_INVOKABLE EnumItem getEnumItem(int pos) const;
+    Q_INVOKABLE int itemsCount() const;
 
 private:
     QList<EnumItem> m_model;
