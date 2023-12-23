@@ -1,7 +1,6 @@
 #ifndef ENUMITEM_H
 #define ENUMITEM_H
 
-#include <QObject>
 #include <QQmlEngine>
 
 ///
