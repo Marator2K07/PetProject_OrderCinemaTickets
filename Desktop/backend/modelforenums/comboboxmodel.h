@@ -3,10 +3,11 @@
 
 #include "RequestType.h"
 #include "RequestBodyType.h"
+#include "enumitem.h"
 
 #include <QObject>
 #include <QHash>
-#include <QtQml>
+#include <QList>
 
 ///
 /// \brief The ComboBoxModel class
@@ -15,17 +16,19 @@ class ComboBoxModel : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
-    Q_PROPERTY(QHash<int, QString> model READ model
+    Q_PROPERTY(QList<EnumItem> model READ model
                    WRITE setModel NOTIFY modelChanged)
 
 public:
     explicit ComboBoxModel(QObject *parent = nullptr);
 
-    QHash<int, QString> model() const;
-    void setModel(const QHash<int, QString> &model);
+    QList<EnumItem> model() const;
+    void setModel(const QList<EnumItem> &model);
+    Q_INVOKABLE void initializeAsRequestTypes();
+    Q_INVOKABLE void addEnumItem(int value, QString text);
 
 private:
-    QHash<int, QString> m_model;
+    QList<EnumItem> m_model;
 
 signals:
     void modelChanged();
