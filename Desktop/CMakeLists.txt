@@ -45,4 +45,4 @@ install(TARGETS appDesktopApp
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 # вся работа с qml файлами происходит здесь
-include(${CMAKE_CURRENT_SOURCE_DIR}/qmlmodules)
+include(${CMAKE_CURRENT_SOURCE_DIR}/qmlsettings)
