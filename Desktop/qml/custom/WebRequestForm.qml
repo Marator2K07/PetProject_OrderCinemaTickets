@@ -1,7 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts
-import Custom
+
+import Custom 1.0
+import RequestTypes 1.0
 
 Rectangle {
     id: rectangle
@@ -42,6 +44,17 @@ Rectangle {
                 Layout.fillWidth: false
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.rightMargin: 10
+
+                model: ListModel {
+                    id: originalModel
+                }
+                ComboBoxModel {
+                    id: customModel
+                }
+                Component.onCompleted: {
+                    customModel.initializeAsRequestTypes();
+                    originalModel = customModel;
+                }
             }
         }
 
@@ -114,5 +127,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
         }
     }
+
+
 }
 
