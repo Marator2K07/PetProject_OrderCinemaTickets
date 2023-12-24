@@ -1,5 +1,5 @@
 qt_add_library(modelforwebrequest STATIC
-    
+    webrequestinfo.h webrequestinfo.cpp
 )
 target_link_libraries(modelforwebrequest PRIVATE
     Qt6::Core
