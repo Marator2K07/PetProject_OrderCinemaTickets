@@ -18,6 +18,11 @@ add_subdirectory(backend)
 qt6_add_executable(appDesktopApp
     main.cpp
 )
+qt6_add_resources(appDesktopApp "configuration"
+    PREFIX "/"
+    FILES
+        qtquickcontrols2.conf
+)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
