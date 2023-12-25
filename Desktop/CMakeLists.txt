@@ -32,6 +32,7 @@ set_target_properties(appDesktopApp PROPERTIES
 
 target_link_libraries(appDesktopApp PRIVATE
     Qt6::Quick
+    Qt6::Qml
 )
 target_link_libraries(appDesktopApp PRIVATE
     webinteraction
