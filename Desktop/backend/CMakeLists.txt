@@ -1,3 +1,3 @@
 add_subdirectory(webinteraction)
-add_subdirectory(modelforenums)
-add_subdirectory(modelforwebrequest)
+add_subdirectory(enumsmodel)
+add_subdirectory(webrequestmodel)

@@ -41,7 +41,8 @@ target_link_libraries(appDesktopApp PRIVATE
 )
 target_link_libraries(appDesktopApp PRIVATE
     webinteraction
-    modelforenums
+    enumsmodel
+    webrequestmodel
 )
 
 include(GNUInstallDirs)
