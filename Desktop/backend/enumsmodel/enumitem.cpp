@@ -22,6 +22,8 @@ QString EnumItem::text() const {
 
 EnumItem &EnumItem::operator =(const EnumItem &other)
 {
+    m_value = other.value();
+    m_text = other.text();
     return *this;
 }
 

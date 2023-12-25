@@ -12,6 +12,7 @@ class EnumItem
     QML_ELEMENT
 
 public:
+    EnumItem() = default;
     EnumItem(const EnumItem &other);
     EnumItem(int value, QString text);
 
