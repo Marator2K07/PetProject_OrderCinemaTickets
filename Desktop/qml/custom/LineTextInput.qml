@@ -9,7 +9,7 @@ Rectangle {
     border.width: 1
     clip: true
 
-    readonly property string url: textInput.text
+    property alias url: textInput.text
 
     MouseArea {
         anchors.fill: parent

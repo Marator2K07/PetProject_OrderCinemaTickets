@@ -11,6 +11,10 @@ Rectangle {
     anchors.fill: parent
     color: "#ffffff"
 
+    property string url: urlTextInput.url
+    property string body: requestDataTextInput.body
+    property int requestType
+    property int requestDataType
 
     ColumnLayout {
         id: mainLayout
@@ -60,11 +64,14 @@ Rectangle {
                         for (var i = 0; i < customTypeModel.itemsCount(); i++) {
                             var item = customTypeModel.getEnumItem(i);
                             originalTypeModel.append({"info": item.text(),
-                                                      "value": item.value});
+                                                      "value": item.value()});
                         }
                         requestTypeComboBox.currentIndex = 0;
+                        requestType = 0;
                     }
                 }
+                onActivated: requestType =
+                             requestTypeComboBox.currentValue;
             }            
         }
 
@@ -101,11 +108,14 @@ Rectangle {
                         for (var i = 0; i < customDataTypeModel.itemsCount(); i++) {
                             var item = customDataTypeModel.getEnumItem(i);
                             originalDataTypeModel.append({"info": item.text(),
-                                                          "value": item.value});
+                                                          "value": item.value()});
                         }
                         requestDataTypeComboBox.currentIndex = 0;
+                        requestDataType = 0;
                     }
                 }
+                onActivated: requestDataType =
+                             requestDataTypeComboBox.currentValue;
             }
         }
 

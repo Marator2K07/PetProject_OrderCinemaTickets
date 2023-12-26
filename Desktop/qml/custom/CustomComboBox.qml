@@ -16,8 +16,6 @@ ComboBox {
     property color selectFillColor: "#5e2970"
     property color borderColor: "#000000"
 
-    readonly property var value: currentValue
-
     contentItem: Text {
         leftPadding: 10
         text: control.displayText
