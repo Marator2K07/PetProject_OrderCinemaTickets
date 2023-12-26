@@ -1,5 +1,5 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 Rectangle {
     id: rectangle
@@ -14,7 +14,7 @@ Rectangle {
     Keys.onUpPressed: vbar.decrease()
     Keys.onDownPressed: vbar.increase()
 
-    readonly property string body: textEdit.text
+    readonly property string text: textEdit.text
 
     MouseArea{
         id: mouseArea
@@ -28,8 +28,8 @@ Rectangle {
                 colorAnimation2.start()
             }
         }
-        onWheel: {
-            if (wheel.angleDelta.y > 0) {
+        onWheel: function moveTextField(wheelEvent) {
+            if (wheelEvent.angleDelta.y > 0) {
                 vbar.decrease();
             }
             else {
