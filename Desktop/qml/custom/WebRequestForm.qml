@@ -4,6 +4,8 @@ import QtQuick.Layouts
 
 import EnumItemsModel // своя подключенная модель данных
 
+import "web_request_form.js" as Script
+
 Rectangle {
     id: rectangle
     width: 600
@@ -61,17 +63,23 @@ Rectangle {
                 model: ListModel {
                     id: originalTypeModel
                     Component.onCompleted: {
-                        for (var i = 0; i < customTypeModel.itemsCount(); i++) {
-                            var item = customTypeModel.getEnumItem(i);
-                            originalTypeModel.append({"info": item.text(),
-                                                      "value": item.value()});
-                        }
+                        Script.initComboBoxModel(originalTypeModel,
+                                                 customTypeModel);
                         requestTypeComboBox.currentIndex = 0;
                         requestType = 0;
+                        // активировируем/деактивируем связанные элементы
+                        Script.controlFormElements(requestTypeComboBox.currentValue,
+                                                   requestDataTypeComboBox,
+                                                   requestDataTextInput)
                     }
                 }
-                onActivated: requestType =
-                             requestTypeComboBox.currentValue;
+                onActivated: {
+                    requestType = currentValue;
+                    // активировируем/деактивируем связанные элементы
+                    Script.controlFormElements(currentValue,
+                                               requestDataTypeComboBox,
+                                               requestDataTextInput)
+                }
             }            
         }
 
@@ -105,11 +113,8 @@ Rectangle {
                 model: ListModel {
                     id: originalDataTypeModel
                     Component.onCompleted: {
-                        for (var i = 0; i < customDataTypeModel.itemsCount(); i++) {
-                            var item = customDataTypeModel.getEnumItem(i);
-                            originalDataTypeModel.append({"info": item.text(),
-                                                          "value": item.value()});
-                        }
+                        Script.initComboBoxModel(originalDataTypeModel,
+                                                 customDataTypeModel);
                         requestDataTypeComboBox.currentIndex = 0;
                         requestDataType = 0;
                     }
