@@ -1,15 +1,16 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 
-import Custom 1.0
-import RequestTypes 1.0
+import EnumItemsModel // своя подключенная модель данных
 
 Rectangle {
     id: rectangle
     width: 600
     height: 550
+    anchors.fill: parent
     color: "#ffffff"
+
 
     ColumnLayout {
         id: mainLayout
@@ -45,17 +46,26 @@ Rectangle {
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.rightMargin: 10
 
+                // сначала создаем и ицициализируем свою модель данных
+                EnumItemsModel {
+                    id: customTypeModel
+                    Component.onCompleted: {
+                        customTypeModel.initializeAsRequestTypes();
+                    }
+                }
+                // и после инициализируем оригинальную модель данными из своей
                 model: ListModel {
-                    id: originalModel
+                    id: originalTypeModel
+                    Component.onCompleted: {
+                        for (var i = 0; i < customTypeModel.itemsCount(); i++) {
+                            var item = customTypeModel.getEnumItem(i);
+                            originalTypeModel.append({"info": item.text(),
+                                                      "value": item.value});
+                        }
+                        requestTypeComboBox.currentIndex = 0;
+                    }
                 }
-                ComboBoxModel {
-                    id: customModel
-                }
-                Component.onCompleted: {
-                    customModel.initializeAsRequestTypes();
-                    originalModel = customModel;
-                }
-            }
+            }            
         }
 
         RowLayout {
@@ -76,6 +86,26 @@ Rectangle {
                 id: requestDataTypeComboBox
                 Layout.rightMargin: 10
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+                // сначала создаем и ицициализируем свою модель данных
+                EnumItemsModel {
+                    id: customDataTypeModel
+                    Component.onCompleted: {
+                        customDataTypeModel.initializeAsRequestBodyTypes();
+                    }
+                }
+                // и после инициализируем оригинальную модель данными из своей
+                model: ListModel {
+                    id: originalDataTypeModel
+                    Component.onCompleted: {
+                        for (var i = 0; i < customDataTypeModel.itemsCount(); i++) {
+                            var item = customDataTypeModel.getEnumItem(i);
+                            originalDataTypeModel.append({"info": item.text(),
+                                                          "value": item.value});
+                        }
+                        requestDataTypeComboBox.currentIndex = 0;
+                    }
+                }
             }
         }
 
@@ -127,7 +157,5 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
         }
     }
-
-
 }
 
