@@ -25,7 +25,14 @@ public:
 
     QList<EnumItem> model() const;
     void setModel(const QList<EnumItem> &model);
+    ///
+    /// \brief initializeAsRequestTypes
+    /// заполняем данную модель перечислениями из типа RequestType
     Q_INVOKABLE void initializeAsRequestTypes();
+    ///
+    /// \brief initializeAsRequestBodyTypes
+    /// заполняем данную модель перечислениями из типа RequestBodyType
+    Q_INVOKABLE void initializeAsRequestBodyTypes();
     Q_INVOKABLE void addEnumItem(int value, QString text);
     Q_INVOKABLE EnumItem getEnumItem(int pos) const;
     Q_INVOKABLE int itemsCount() const;

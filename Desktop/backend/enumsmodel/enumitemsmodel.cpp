@@ -25,6 +25,13 @@ void EnumItemsModel::initializeAsRequestTypes()
     m_model.append(EnumItem((int)RequestType::State::POST, "POST"));
 }
 
+void EnumItemsModel::initializeAsRequestBodyTypes()
+{
+    m_model.clear();
+    m_model.append(EnumItem((int)RequestBodyType::State::TEXT, "TEXT"));
+    m_model.append(EnumItem((int)RequestBodyType::State::JSON, "JSON"));
+}
+
 void EnumItemsModel::addEnumItem(int value, QString text)
 {
     m_model.append(EnumItem(value, text));
