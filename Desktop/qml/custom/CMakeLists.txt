@@ -8,4 +8,6 @@ qt6_add_qml_module(qmlcustom
         MultiLineTextInput.qml
         WebRequestForm.qml
     RESOURCE_PREFIX "/"
+    RESOURCES
+        web_request_form.js
 )
