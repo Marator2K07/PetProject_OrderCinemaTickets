@@ -14,6 +14,7 @@ Rectangle {
     Keys.onUpPressed: vbar.decrease()
     Keys.onDownPressed: vbar.increase()
 
+    property bool isActive: true
     property alias body: textEdit.text
 
     MouseArea{
@@ -21,10 +22,10 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         onHoveredChanged: {
-            if (containsMouse) {
+            if (containsMouse && isActive) {
                 colorAnimation1.start()
                 textEdit.forceActiveFocus();
-            } else {
+            } else if (!containsMouse && isActive) {
                 colorAnimation2.start()
             }
         }
