@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Window
-import Custom // наш подгруженный модуль/плагин в папке qml
+import Qml.Custom 1.0 // наш подгруженный модуль/плагин в папке qml
 
 Window {
     // CustomComboBox - элемент из модуля custom
