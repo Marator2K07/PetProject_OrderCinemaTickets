@@ -3,10 +3,12 @@
 #include <QQmlContext>
 
 #include "src/app_environment.h"
+
 #include "RequestType.h"
 #include "RequestBodyType.h"
-#include "enumitemsmodel.h"
 
+#include "enumitemsmodel.h"
+#include "webrequestforminfo.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,6 +23,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<RequestBodyType>("RequestBodyTypes", 1, 0, "RequestBodyTypes");
     // и не только перечислений
     qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
+    qmlRegisterType<WebRequestFormInfo>("WebRequestFormInfo", 1, 0, "WebRequestFormInfo");
 
     const QUrl url(u"qrc:/DesktopApp/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
