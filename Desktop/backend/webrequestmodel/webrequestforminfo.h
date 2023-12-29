@@ -33,6 +33,7 @@ public:
     QString url() const override;
     void setData(const QVariant &data) override;
     QVariant data() const override;
+    void send(const IWebRequestInfo *) override;
     // }
 
     QString getContentType() const;
@@ -63,8 +64,11 @@ signals:
     void requestBodyTypeChanged();
     void urlChanged();
     void dataChanged();
+
     // простой сигнал для вывода относительно важных сообщений
     void updateStatus(QString);
+    // в случае валидности запроса
+    void requestIsReady(WebRequestFormInfo *);
 };
 Q_DECLARE_METATYPE(WebRequestFormInfo)
 
