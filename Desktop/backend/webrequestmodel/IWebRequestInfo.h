@@ -18,7 +18,7 @@ public:
     // каждый запрос должен иметь тип запроса
     virtual void setRequestType(const RequestType::State &type);
     virtual RequestType::State requestType() const;
-    // каждый запрос должен иметь тип тела запроса
+    // каждый запрос может иметь тип тела запроса
     virtual void setRequestBodyType(const RequestBodyType::State &type);
     virtual RequestBodyType::State requestBodyType() const;
     // каждый запрос должен иметь адрес
@@ -29,6 +29,10 @@ public:
     virtual QVariant data() const;
 
     virtual ~IWebRequestInfo() {}
+
+private:
+    // должна существовать возможность проверить запрос
+    virtual bool isValid();
 };
 
 #endif // IWEBREQUESTINFO_H
