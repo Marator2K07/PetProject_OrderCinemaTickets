@@ -10,6 +10,35 @@ QString WebRequestFormInfo::getTextData() const
     return qvariant_cast<QString>(m_data);
 }
 
+bool WebRequestFormInfo::correctDataAsText()
+{
+    QString data = qvariant_cast<QString>(m_data);
+    // проверка на корректность текста пока довольно условна
+    if (data.length() >= 1) {
+        emit updateStatus("Data as text is correct.");
+        return true;
+    } else {
+        emit updateStatus("Data as text is too short.");
+        return false;
+    }
+}
+
+bool WebRequestFormInfo::correctDataAsJson()
+{
+    // пытаемся запарсить
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::
+        fromJson(QString(qvariant_cast<QString>(m_data)).toUtf8(), &error);
+    // возвращаем успешность парсинга
+    if (error.error == error.NoError) {
+        emit updateStatus("Data as json is correct.");
+        return true;
+    } else {
+        emit updateStatus(error.errorString());
+        return false;
+    }
+}
+
 QString WebRequestFormInfo::getContentType() const
 {
     return contentType;

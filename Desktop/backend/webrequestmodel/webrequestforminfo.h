@@ -49,6 +49,12 @@ private:
 
     QString contentType; // информация для заголовка запроса    
 
+private:
+    // проверка тела запроса в виде TEXT файла
+    bool correctDataAsText();
+    // проверка тела запроса в виде JSON файла
+    bool correctDataAsJson();
+
 signals:
     void requestTypeChanged();
     void requestBodyTypeChanged();
