@@ -1,8 +1,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
-import EnumItemsModel // своя подключенная модель данных
+// своя подключенная модель данных для комбобокс
+import EnumItemsModel
+// своя общая модель данных для данного визуального элемента
+import WebRequestFormInfo
 
 import "web_request_form.js" as Script
 
@@ -17,6 +19,11 @@ Rectangle {
     property string body: requestDataTextInput.body
     property int requestType
     property int requestDataType
+
+    // класс с основной моделью формы
+    WebRequestFormInfo {
+        id: requestInfo
+    }
 
     ColumnLayout {
         id: mainLayout
