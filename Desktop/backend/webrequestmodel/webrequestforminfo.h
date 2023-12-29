@@ -54,6 +54,8 @@ signals:
     void requestBodyTypeChanged();
     void urlChanged();
     void dataChanged();
+    // простой сигнал для вывода относительно важных сообщений
+    void updateStatus(QString);
 };
 Q_DECLARE_METATYPE(WebRequestInfo)
 
