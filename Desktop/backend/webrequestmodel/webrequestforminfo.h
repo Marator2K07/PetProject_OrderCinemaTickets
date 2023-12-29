@@ -1,18 +1,15 @@
-#ifndef WEBREQUESTINFO_H
-#define WEBREQUESTINFO_H
+#ifndef WEBREQUESTFORMINFO_H
+#define WEBREQUESTFORMINFO_H
 
-#include "RequestType.h"
-#include "RequestBodyType.h"
-
-#include <QVariant>
-#include <QJsonObject>
-#include <QtQml>
+#include "IWebRequestInfo.h"
+#include <QObject>
 
 ///
 /// \brief The WebRequestInfo class
 /// класс для работы с данными запроса
 /// теперь может обрабатываться/быть qml элементом
-class WebRequestInfo : public QObject
+class WebRequestFormInfo : public QObject,
+                           public IWebRequestInfo
 {
     Q_OBJECT
     QML_ELEMENT
@@ -24,17 +21,19 @@ class WebRequestInfo : public QObject
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
 
 public:
-    explicit WebRequestInfo(QObject *parent = nullptr);
-    WebRequestInfo(const WebRequestInfo &other);
+    explicit WebRequestFormInfo(QObject *parent = nullptr);
+    WebRequestFormInfo(const WebRequestFormInfo &other);
 
-    void setRequestType(const RequestType::State &type);
-    RequestType::State requestType() const;
-    void setRequestBodyType(const RequestBodyType::State &type);
-    RequestBodyType::State requestBodyType() const;
-    void setUrl(const QString &url);
-    QString url() const;
-    void setData(const QVariant &data);
-    QVariant data() const;
+    // IWebRequestInfo interface {
+    void setRequestType(const RequestType::State &type) override;
+    RequestType::State requestType() const override;
+    void setRequestBodyType(const RequestBodyType::State &type) override;
+    RequestBodyType::State requestBodyType() const override;
+    void setUrl(const QString &url) override;
+    QString url() const override;
+    void setData(const QVariant &data) override;
+    QVariant data() const override;
+    // }
 
     QString getContentType() const;
     void setContentType(const QString &newContentType);
@@ -58,4 +57,4 @@ signals:
 };
 Q_DECLARE_METATYPE(WebRequestInfo)
 
-#endif // WEBREQUESTINFO_H
+#endif // WEBREQUESTFORMINFO_H

@@ -1,5 +1,5 @@
 qt_add_library(webrequestmodel STATIC
-    webrequestinfo.h webrequestinfo.cpp
+    webrequestforminfo.h webrequestforminfo.cpp
     IWebRequestInfo.h
 )
 target_link_libraries(webrequestmodel PRIVATE
