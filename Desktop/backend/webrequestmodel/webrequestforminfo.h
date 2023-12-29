@@ -33,7 +33,7 @@ public:
     QString url() const override;
     void setData(const QVariant &data) override;
     QVariant data() const override;
-    void send(const IWebRequestInfo *) override;
+    ~WebRequestFormInfo() override;
     // }
 
     QString getContentType() const;
@@ -41,6 +41,10 @@ public:
 
     QJsonObject getJsonData() const;
     QString getTextData() const;
+
+public slots:
+    // IWebRequestInfo interface
+    void send(const IWebRequestInfo *) override;
 
 private:
     RequestType::State m_requestType; // тип запроса (ГЕТ или ПОСТ)

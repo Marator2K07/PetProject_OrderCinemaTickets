@@ -94,6 +94,10 @@ QVariant WebRequestFormInfo::data() const
     return m_data;
 }
 
+WebRequestFormInfo::~WebRequestFormInfo()
+{
+}
+
 void WebRequestFormInfo::send(const IWebRequestInfo *)
 {
     if (isValid()) {
