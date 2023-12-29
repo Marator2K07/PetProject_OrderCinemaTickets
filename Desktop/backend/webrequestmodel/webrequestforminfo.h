@@ -47,13 +47,16 @@ private:
     QString m_url; // сам текст строки запроса
     QVariant m_data; // содержимое тела запроса
 
-    QString contentType; // информация для заголовка запроса    
+    QString contentType; // информация для заголовка запроса
 
 private:
     // проверка тела запроса в виде TEXT файла
     bool correctDataAsText();
     // проверка тела запроса в виде JSON файла
     bool correctDataAsJson();
+    // IWebRequestInfo interface {
+    bool isValid() override;
+    // }
 
 signals:
     void requestTypeChanged();
@@ -63,6 +66,6 @@ signals:
     // простой сигнал для вывода относительно важных сообщений
     void updateStatus(QString);
 };
-Q_DECLARE_METATYPE(WebRequestInfo)
+Q_DECLARE_METATYPE(WebRequestFormInfo)
 
 #endif // WEBREQUESTFORMINFO_H

@@ -39,6 +39,38 @@ bool WebRequestFormInfo::correctDataAsJson()
     }
 }
 
+bool WebRequestFormInfo::isValid()
+{
+    // не помешает и такая банальная проверка
+    if (m_url.length() <= 1) {
+        emit updateStatus("To short request url adress.");
+        return false;
+    }
+
+    bool correctData = true;
+    // если POST запрос, то нужна дополнительная обработка
+    if (m_requestType == RequestType::State::POST) {
+        // парсим в соотвествии с типом
+        switch (m_requestBodyType) {
+        case RequestBodyType::State::TEXT:
+            correctData = correctDataAsText();
+            break;
+        case RequestBodyType::State::JSON:
+            correctData = correctDataAsJson();
+            break;
+        default:
+            break;
+        }
+    }
+    // если была ошибка на предыдущем этапе, то запрос отправлять нет смысла
+    if (!correctData) {
+        return false;
+    }
+    // если дошли до сюда, то все прошло хорошо
+    emit updateStatus("Request is valid.");
+    return true;
+}
+
 QString WebRequestFormInfo::getContentType() const
 {
     return contentType;
