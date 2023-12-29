@@ -11,7 +11,7 @@
 ///
 /// \brief The IWebRequestInfo class
 /// интерфейс для организации структуры
-/// данных какого либо веб запроса
+/// данных и функциональности какого-либо веб запроса
 class IWebRequestInfo
 {
 public:
@@ -27,6 +27,9 @@ public:
     // каждый запрос может иметь данные запроса
     virtual void setData(const QVariant &data);
     virtual QVariant data() const;
+
+    // самый главный метод - метод отправки данных запроса
+    virtual void send(const IWebRequestInfo *);
 
     virtual ~IWebRequestInfo() {}
 
