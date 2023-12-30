@@ -17,7 +17,7 @@ Rectangle {
 
     // класс с основной моделью формы
     WebRequestFormInfo {
-        id: requestInfo
+        id: requestModel
         url: urlTextInput.url
         data: requestDataTextInput.body
     }
@@ -70,7 +70,7 @@ Rectangle {
                         Script.initComboBoxModel(originalTypeModel,
                                                  customTypeModel);
                         requestTypeComboBox.currentIndex = 0;
-                        requestType = 0;
+                        requestModel.type = 0;
                         // активировируем/деактивируем связанные элементы
                         Script.controlFormElements(requestTypeComboBox.currentValue,
                                                    requestDataTypeComboBox,
@@ -78,7 +78,7 @@ Rectangle {
                     }
                 }
                 onActivated: {                    
-                    requestInfo.requestType = currentValue;
+                    requestModel.type = currentValue;
                     // активировируем/деактивируем связанные элементы
                     Script.controlFormElements(currentValue,
                                                requestDataTypeComboBox,
@@ -120,10 +120,10 @@ Rectangle {
                         Script.initComboBoxModel(originalDataTypeModel,
                                                  customDataTypeModel);
                         requestDataTypeComboBox.currentIndex = 0;
-                        requestDataType = 0;
+                        requestModel.bodyType = 0;
                     }
                 }
-                onActivated: requestInfo.requestBodyType = currentValue;
+                onActivated: requestModel.bodyType = currentValue;
             }
         }
 
@@ -173,6 +173,13 @@ Rectangle {
             text: qsTr("Send request")
             Layout.bottomMargin: 10
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
+            onClicked: {
+                console.log(requestModel.url);
+                console.log(requestModel.data);
+                console.log(requestModel.type);
+                console.log(requestModel.bodyType);
+            }
         }
     }
 }
