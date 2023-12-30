@@ -16,11 +16,11 @@ class IWebRequestInfo
 {
 public:
     // каждый запрос должен иметь тип запроса
-    virtual void setRequestType(const RequestType::State &type) = 0;
-    virtual RequestType::State requestType() const = 0;
+    virtual void setType(const RequestType::State &type) = 0;
+    virtual RequestType::State type() const = 0;
     // каждый запрос может иметь тип тела запроса
-    virtual void setRequestBodyType(const RequestBodyType::State &type) = 0;
-    virtual RequestBodyType::State requestBodyType() const = 0;
+    virtual void setBodyType(const RequestBodyType::State &type) = 0;
+    virtual RequestBodyType::State bodyType() const = 0;
     // каждый запрос должен иметь адрес
     virtual void setUrl(const QString &url) = 0;
     virtual QString url() const = 0;

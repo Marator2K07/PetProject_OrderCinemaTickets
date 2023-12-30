@@ -13,10 +13,10 @@ class WebRequestFormInfo : public QObject,
 {
     Q_OBJECT
     QML_ELEMENT
-    Q_PROPERTY(RequestType::State requestType READ requestType
-                   WRITE setRequestType NOTIFY requestTypeChanged)
-    Q_PROPERTY(RequestBodyType::State requestBodyType READ requestBodyType
-                   WRITE setRequestBodyType NOTIFY requestBodyTypeChanged)
+    Q_PROPERTY(RequestType::State type READ type
+                   WRITE setType NOTIFY typeChanged)
+    Q_PROPERTY(RequestBodyType::State bodyType READ bodyType
+                   WRITE setBodyType NOTIFY bodyTypeChanged)
     Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
 
@@ -25,10 +25,10 @@ public:
     WebRequestFormInfo(const WebRequestFormInfo &other);
 
     // IWebRequestInfo interface {
-    void setRequestType(const RequestType::State &type) override;
-    RequestType::State requestType() const override;
-    void setRequestBodyType(const RequestBodyType::State &type) override;
-    RequestBodyType::State requestBodyType() const override;
+    void setType(const RequestType::State &type) override;
+    RequestType::State type() const override;
+    void setBodyType(const RequestBodyType::State &type) override;
+    RequestBodyType::State bodyType() const override;
     void setUrl(const QString &url) override;
     QString url() const override;
     void setData(const QVariant &data) override;
@@ -47,8 +47,8 @@ public slots:
     void send(const IWebRequestInfo *) override;
 
 private:
-    RequestType::State m_requestType; // тип запроса (ГЕТ или ПОСТ)
-    RequestBodyType::State m_requestBodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
+    RequestType::State m_type; // тип запроса (ГЕТ или ПОСТ)
+    RequestBodyType::State m_bodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
     QString m_url; // сам текст строки запроса
     QVariant m_data; // содержимое тела запроса
 
@@ -64,8 +64,8 @@ private:
     // }
 
 signals:
-    void requestTypeChanged();
-    void requestBodyTypeChanged();
+    void typeChanged();
+    void bodyTypeChanged();
     void urlChanged();
     void dataChanged();
 

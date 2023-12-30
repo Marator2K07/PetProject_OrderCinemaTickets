@@ -49,9 +49,9 @@ bool WebRequestFormInfo::isValid()
 
     bool correctData = true;
     // если POST запрос, то нужна дополнительная обработка
-    if (m_requestType == RequestType::State::POST) {
+    if (m_type == RequestType::State::POST) {
         // парсим в соотвествии с типом
-        switch (m_requestBodyType) {
+        switch (m_bodyType) {
         case RequestBodyType::State::TEXT:
             correctData = correctDataAsText();
             break;
@@ -130,28 +130,28 @@ WebRequestFormInfo::WebRequestFormInfo(const WebRequestFormInfo &other)
 {
 }
 
-void WebRequestFormInfo::setRequestType(const RequestType::State &type)
+void WebRequestFormInfo::setType(const RequestType::State &type)
 {
-    if (type != m_requestType) {
-        m_requestType = type;
-        emit requestTypeChanged();
+    if (type != m_type) {
+        m_type = type;
+        emit typeChanged();
     }
 }
 
-RequestType::State WebRequestFormInfo::requestType() const
+RequestType::State WebRequestFormInfo::type() const
 {
-    return m_requestType;
+    return m_type;
 }
 
-void WebRequestFormInfo::setRequestBodyType(const RequestBodyType::State &type)
+void WebRequestFormInfo::setBodyType(const RequestBodyType::State &type)
 {
-    if (type != m_requestBodyType) {
-        m_requestBodyType = type;
-        emit requestTypeChanged();
+    if (type != m_bodyType) {
+        m_bodyType = type;
+        emit typeChanged();
     }
 }
 
-RequestBodyType::State WebRequestFormInfo::requestBodyType() const
+RequestBodyType::State WebRequestFormInfo::bodyType() const
 {
-    return m_requestBodyType;
+    return m_bodyType;
 }
