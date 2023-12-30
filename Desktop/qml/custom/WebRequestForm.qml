@@ -15,14 +15,11 @@ Rectangle {
     anchors.fill: parent
     color: "#ffffff"
 
-    property string url: urlTextInput.url
-    property string body: requestDataTextInput.body
-    property int requestType
-    property int requestDataType
-
     // класс с основной моделью формы
     WebRequestFormInfo {
         id: requestInfo
+        url: urlTextInput.url
+        data: requestDataTextInput.body
     }
 
     ColumnLayout {
@@ -80,8 +77,8 @@ Rectangle {
                                                    requestDataTextInput)
                     }
                 }
-                onActivated: {
-                    requestType = currentValue;
+                onActivated: {                    
+                    requestInfo.requestType = currentValue;
                     // активировируем/деактивируем связанные элементы
                     Script.controlFormElements(currentValue,
                                                requestDataTypeComboBox,
@@ -126,8 +123,7 @@ Rectangle {
                         requestDataType = 0;
                     }
                 }
-                onActivated: requestDataType =
-                             requestDataTypeComboBox.currentValue;
+                onActivated: requestInfo.requestBodyType = currentValue;
             }
         }
 
