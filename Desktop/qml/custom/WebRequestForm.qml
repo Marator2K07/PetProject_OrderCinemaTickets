@@ -83,6 +83,8 @@ Rectangle {
                     Script.controlFormElements(currentValue,
                                                requestDataTypeComboBox,
                                                requestDataTextInput)
+                    // ставим заголовок типа контента
+                    Script.selectContentType(requestModel, requestDataTypeComboBox.currentValue);
                 }
             }            
         }
@@ -123,7 +125,11 @@ Rectangle {
                         requestModel.bodyType = 0;
                     }
                 }
-                onActivated: requestModel.bodyType = currentValue;
+                onActivated: {
+                    requestModel.bodyType = currentValue;
+                    // ставим заголовок типа контента
+                    Script.selectContentType(requestModel, currentValue);
+                }
             }
         }
 
@@ -179,6 +185,7 @@ Rectangle {
                 console.log(requestModel.data);
                 console.log(requestModel.type);
                 console.log(requestModel.bodyType);
+                console.log(requestModel.contentType);
             }
         }
     }
