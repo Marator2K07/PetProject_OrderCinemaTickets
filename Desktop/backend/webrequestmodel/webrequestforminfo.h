@@ -18,8 +18,10 @@ class WebRequestFormInfo : public QObject,
                    WRITE setType NOTIFY typeChanged)
     Q_PROPERTY(RequestBodyType::State bodyType READ bodyType
                    WRITE setBodyType NOTIFY bodyTypeChanged)
+    Q_PROPERTY(QString contentType READ contentType
+                   WRITE setContentType NOTIFY contentTypeChanged)
     Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
-    Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)
+    Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)    
 
 public:
     explicit WebRequestFormInfo(QObject *parent = nullptr);
@@ -34,14 +36,10 @@ public:
     QString url() const override;
     void setData(const QVariant &data) override;
     QVariant data() const override;
+    void setContentType(const QString &сontentType) override;
+    QString contentType() const override;
     ~WebRequestFormInfo() override;
     // }
-
-    QString getContentType() const;
-    void setContentType(const QString &newContentType);
-
-    QJsonObject getJsonData() const;
-    QString getTextData() const;
 
 public slots:
     // IWebRequestInfo interface
@@ -52,8 +50,7 @@ private:
     RequestBodyType::State m_bodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
     QString m_url; // сам текст строки запроса
     QVariant m_data; // содержимое тела запроса
-
-    QString contentType; // информация для заголовка запроса
+    QString m_contentType; // информация для заголовка запроса о типе контента тела
 
 private:
     // проверка тела запроса в виде TEXT файла
@@ -69,6 +66,7 @@ signals:
     void bodyTypeChanged();
     void urlChanged();
     void dataChanged();
+    void contentTypeChanged();
 
     // простой сигнал для вывода относительно важных сообщений
     void updateStatus(QString);

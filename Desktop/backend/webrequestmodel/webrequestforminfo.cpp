@@ -1,15 +1,5 @@
 #include "webrequestforminfo.h"
 
-QJsonObject WebRequestFormInfo::getJsonData() const
-{
-    return qvariant_cast<QJsonObject>(m_data);
-}
-
-QString WebRequestFormInfo::getTextData() const
-{
-    return qvariant_cast<QString>(m_data);
-}
-
 bool WebRequestFormInfo::correctDataAsText()
 {
     QString data = qvariant_cast<QString>(m_data);
@@ -71,14 +61,17 @@ bool WebRequestFormInfo::isValid()
     return true;
 }
 
-QString WebRequestFormInfo::getContentType() const
+void WebRequestFormInfo::setContentType(const QString &contentType)
 {
-    return contentType;
+    if (contentType != m_contentType) {
+        m_contentType = contentType;
+        emit contentTypeChanged();
+    }
 }
 
-void WebRequestFormInfo::setContentType(const QString &newContentType)
+QString WebRequestFormInfo::contentType() const
 {
-    contentType = newContentType;
+    return m_contentType;
 }
 
 void WebRequestFormInfo::setData(const QVariant &data)
@@ -125,7 +118,7 @@ WebRequestFormInfo::WebRequestFormInfo(QObject *parent)
 
 WebRequestFormInfo::WebRequestFormInfo(const WebRequestFormInfo &other)
     : m_data(other.data())
-    , contentType(other.getContentType())
+    , m_contentType(other.contentType())
     , m_url(other.url())
 {
 }
