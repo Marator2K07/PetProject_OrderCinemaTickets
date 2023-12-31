@@ -41,6 +41,13 @@ private:
     QByteArray(WebContext::*handleRequestDataMethod)(QVariant);
     QByteArray handleRequestDataAsString(QVariant data);
     QByteArray handleRequestDataAsJson(QVariant data);
+    ///
+    /// \brief determineSuitableMethods
+    /// определяем подходящие данные данные для
+    /// requestMethod и handleRequestDataMethod
+    void determineSuitableMethods(RequestType::State type,
+                                  RequestBodyType::State bodyType);
+
 
 signals:
 

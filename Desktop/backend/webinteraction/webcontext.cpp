@@ -32,3 +32,39 @@ QByteArray WebContext::handleRequestDataAsJson(QVariant data)
 {
 
 }
+
+void WebContext::determineSuitableMethods(RequestType::State type,
+                                          RequestBodyType::State bodyType)
+{
+    // выбор типа метода отправки
+    switch (type) {
+    case RequestType::State::GET:
+    {
+        requestMethod = &sendGetRequest;
+        break;
+    }
+    case RequestType::State::POST:
+    {
+        requestMethod = &sendPostRequest;
+        break;
+    }
+    default:
+        break;
+    }
+    // выбор метода типа управления данными запроса
+    switch (bodyType) {
+    case RequestBodyType::State::TEXT:
+    {
+        handleRequestDataMethod = &handleRequestDataAsString;
+        break;
+    }
+    case RequestBodyType::State::JSON:
+    {
+        handleRequestDataMethod = &handleRequestDataAsJson;
+        break;
+    }
+    default:
+        break;
+    }
+}
+
