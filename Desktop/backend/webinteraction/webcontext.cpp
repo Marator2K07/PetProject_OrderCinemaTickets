@@ -17,22 +17,30 @@ void WebContext::ignoreSslVerify()
 
 void WebContext::sendGetRequest(IWebRequestModel *info)
 {
-
+    QNetworkRequest request(info->url());
+    webManager->get(request);
 }
 
 void WebContext::sendPostRequest(IWebRequestModel *info)
 {
-
+    QNetworkRequest request(info->url());
+    request.setHeader(QNetworkRequest::ContentTypeHeader,
+                      info->contentType());
+    QByteArray data = ((this)->*handleRequestDataMethod)(info->data());
+    webManager->post(request, data);
 }
 
 QByteArray WebContext::handleRequestDataAsString(QVariant data)
 {
-
+    QString str = data.toString();
+    return str.toUtf8();
 }
 
 QByteArray WebContext::handleRequestDataAsJson(QVariant data)
 {
-
+    QJsonObject json = data.toJsonObject();
+    QJsonDocument doc(json);
+    return doc.toJson();
 }
 
 void WebContext::determineSuitableMethods(RequestType::State type,
