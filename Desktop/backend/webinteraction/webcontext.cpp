@@ -3,7 +3,9 @@
 WebContext::WebContext(QObject *parent)
     : QObject{parent}
 {
-
+    webManager = new QNetworkAccessManager(this);
+    connect(webManager, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(getResponce(QNetworkReply*)));
 }
 
 void WebContext::ignoreSslVerify()
@@ -72,4 +74,17 @@ void WebContext::sendRequest(IWebRequestModel *info)
 {
     determineSuitableMethods(info->type(), info->bodyType());
     ((this)->*requestMethod)(info);
+}
+
+void WebContext::getResponce(QNetworkReply *responce)
+{
+    // пока просто тестовый вывод в консоль
+    if(responce->error() == QNetworkReply::NoError){
+        QString contents = QString::fromUtf8(responce->readAll());
+        qDebug() << contents;
+    }
+    else{
+        QString err = responce->errorString();
+        qDebug() << err;
+    }
 }

@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QByteArray>
 #include <QDataStream>
+#include <QNetworkReply>
 #include <QJsonDocument>
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
@@ -50,6 +51,7 @@ private:
 
 private slots:
     void sendRequest(IWebRequestModel *info);
+    void getResponce(QNetworkReply *responce);
 
 signals:
 
