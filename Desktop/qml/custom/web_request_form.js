@@ -1,4 +1,5 @@
-.import RequestTypes 1.0 as RequestTypesModul
+.import RequestTypes 1.0 as RequestTypesModule
+.import RequestBodyTypes 1.0 as RequestBodyTypesModule
 
 function initComboBoxModel(originalModel, customModel) {
     for (var i = 0; i < customModel.itemsCount(); i++) {
@@ -11,13 +12,21 @@ function initComboBoxModel(originalModel, customModel) {
 function controlFormElements(controlValue,
                              dataTypeCombo,
                              multiLineText) {
-    if (controlValue === RequestTypesModul.RequestTypes.GET) {
+    if (controlValue === RequestTypesModule.RequestTypes.GET) {
         dataTypeCombo.enabled = false;
         multiLineText.enabled = false;
         multiLineText.isActive = false;
-    } else if (controlValue === RequestTypesModul.RequestTypes.POST) {
+    } else if (controlValue === RequestTypesModule.RequestTypes.POST) {
         dataTypeCombo.enabled = true;
         multiLineText.enabled = true;
         multiLineText.isActive = true;
+    }
+}
+
+function selectContentType(model, controlValue) {
+    if (controlValue === RequestBodyTypesModule.RequestBodyTypes.TEXT) {
+        model.contentType = "text/plain";
+    } else if (controlValue === RequestBodyTypesModule.RequestBodyTypes.JSON) {
+        model.contentType = "application/json";
     }
 }
