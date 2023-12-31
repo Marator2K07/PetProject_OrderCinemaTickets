@@ -8,6 +8,6 @@ target_link_libraries(webinteraction PRIVATE
     Qt6::Network
 )
 target_link_libraries(webinteraction PRIVATE
-    # пока ничего нет
+    webrequestmodel
 )
 target_include_directories(webinteraction PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
