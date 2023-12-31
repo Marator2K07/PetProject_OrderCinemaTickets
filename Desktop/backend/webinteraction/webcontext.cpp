@@ -68,3 +68,8 @@ void WebContext::determineSuitableMethods(RequestType::State type,
     }
 }
 
+void WebContext::sendRequest(IWebRequestInfo *info)
+{
+    determineSuitableMethods(info->type(), info->bodyType());
+    ((this)->*requestMethod)(info);
+}

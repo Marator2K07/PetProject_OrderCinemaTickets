@@ -29,16 +29,16 @@ public:
 
 private:
     QNetworkAccessManager *webManager;
-
     // указатель на метод отправки запроса:
     // (методы: sendGetRequest или sendPostRequest)
     void(WebContext::*requestMethod)(IWebRequestInfo *);
-    void sendGetRequest(IWebRequestInfo *info);
-    void sendPostRequest(IWebRequestInfo *info);
-
     // указатель на метод обработки данных в определенном формате
     // (методы: handleRequestDataAsString и handleRequestDataAsJson)
     QByteArray(WebContext::*handleRequestDataMethod)(QVariant);
+
+private:
+    void sendGetRequest(IWebRequestInfo *info);
+    void sendPostRequest(IWebRequestInfo *info);
     QByteArray handleRequestDataAsString(QVariant data);
     QByteArray handleRequestDataAsJson(QVariant data);
     ///
@@ -48,6 +48,8 @@ private:
     void determineSuitableMethods(RequestType::State type,
                                   RequestBodyType::State bodyType);
 
+private slots:
+    void sendRequest(IWebRequestInfo *info);
 
 signals:
 
