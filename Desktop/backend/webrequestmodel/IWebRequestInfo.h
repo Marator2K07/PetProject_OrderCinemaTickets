@@ -20,6 +20,9 @@ public:
     // каждый запрос может иметь тип тела запроса
     virtual void setBodyType(const RequestBodyType::State &type) = 0;
     virtual RequestBodyType::State bodyType() const = 0;
+    // каждый запрос может иметь тип контента запроса
+    virtual void setContentType(const QString &contentType) = 0;
+    virtual QString contentType() const = 0;
     // каждый запрос должен иметь адрес
     virtual void setUrl(const QString &url) = 0;
     virtual QString url() const = 0;
