@@ -1,5 +1,5 @@
-#ifndef IWEBREQUESTINFO_H
-#define IWEBREQUESTINFO_H
+#ifndef IWEBREQUESTMODEL_H
+#define IWEBREQUESTMODEL_H
 
 #include "RequestType.h"
 #include "RequestBodyType.h"
@@ -11,7 +11,7 @@
 /// \brief The IWebRequestInfo class
 /// интерфейс для организации структуры
 /// данных и функциональности какого-либо веб запроса
-class IWebRequestInfo
+class IWebRequestModel
 {
 public:
     // каждый запрос должен иметь тип запроса
@@ -31,13 +31,13 @@ public:
     virtual QVariant data() const = 0;
 
     // самый главный метод - метод отправки данных запроса
-    virtual void send(const IWebRequestInfo *) = 0;
+    virtual void send(const IWebRequestModel *) = 0;
 
-    virtual ~IWebRequestInfo() {}
+    virtual ~IWebRequestModel() {}
 
 private:
     // должна существовать возможность проверить запрос
     virtual bool isValid() = 0;
 };
 
-#endif // IWEBREQUESTINFO_H
+#endif // IWEBREQUESTMODEL_H

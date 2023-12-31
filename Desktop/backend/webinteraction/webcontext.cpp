@@ -13,12 +13,12 @@ void WebContext::ignoreSslVerify()
     QSslConfiguration::setDefaultConfiguration(config);
 }
 
-void WebContext::sendGetRequest(IWebRequestInfo *info)
+void WebContext::sendGetRequest(IWebRequestModel *info)
 {
 
 }
 
-void WebContext::sendPostRequest(IWebRequestInfo *info)
+void WebContext::sendPostRequest(IWebRequestModel *info)
 {
 
 }
@@ -68,7 +68,7 @@ void WebContext::determineSuitableMethods(RequestType::State type,
     }
 }
 
-void WebContext::sendRequest(IWebRequestInfo *info)
+void WebContext::sendRequest(IWebRequestModel *info)
 {
     determineSuitableMethods(info->type(), info->bodyType());
     ((this)->*requestMethod)(info);

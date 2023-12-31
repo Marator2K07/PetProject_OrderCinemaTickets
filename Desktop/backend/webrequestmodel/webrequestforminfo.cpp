@@ -91,7 +91,7 @@ WebRequestFormInfo::~WebRequestFormInfo()
 {
 }
 
-void WebRequestFormInfo::send(const IWebRequestInfo *)
+void WebRequestFormInfo::send(const IWebRequestModel *)
 {
     if (isValid()) {
         emit requestIsReady(this);

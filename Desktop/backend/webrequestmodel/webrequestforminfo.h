@@ -1,7 +1,7 @@
 #ifndef WEBREQUESTFORMINFO_H
 #define WEBREQUESTFORMINFO_H
 
-#include "IWebRequestInfo.h"
+#include "IWebRequestModel.h"
 #include <QObject>
 #include <QtQml>
 
@@ -10,7 +10,7 @@
 /// класс для работы с данными запроса
 /// теперь может обрабатываться/быть qml элементом
 class WebRequestFormInfo : public QObject,
-                           public IWebRequestInfo
+                           public IWebRequestModel
 {
     Q_OBJECT
     QML_ELEMENT
@@ -43,7 +43,7 @@ public:
 
 public slots:
     // IWebRequestInfo interface
-    void send(const IWebRequestInfo *) override;
+    void send(const IWebRequestModel *) override;
 
 private:
     RequestType::State m_type; // тип запроса (ГЕТ или ПОСТ)

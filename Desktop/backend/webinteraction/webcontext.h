@@ -3,7 +3,7 @@
 
 #include "RequestType.h"
 #include "RequestBodyType.h"
-#include "IWebRequestInfo.h"
+#include "IWebRequestModel.h"
 
 #include <QDebug>
 #include <QObject>
@@ -31,14 +31,14 @@ private:
     QNetworkAccessManager *webManager;
     // указатель на метод отправки запроса:
     // (методы: sendGetRequest или sendPostRequest)
-    void(WebContext::*requestMethod)(IWebRequestInfo *);
+    void(WebContext::*requestMethod)(IWebRequestModel *);
     // указатель на метод обработки данных в определенном формате
     // (методы: handleRequestDataAsString и handleRequestDataAsJson)
     QByteArray(WebContext::*handleRequestDataMethod)(QVariant);
 
 private:
-    void sendGetRequest(IWebRequestInfo *info);
-    void sendPostRequest(IWebRequestInfo *info);
+    void sendGetRequest(IWebRequestModel *info);
+    void sendPostRequest(IWebRequestModel *info);
     QByteArray handleRequestDataAsString(QVariant data);
     QByteArray handleRequestDataAsJson(QVariant data);
     ///
@@ -49,7 +49,7 @@ private:
                                   RequestBodyType::State bodyType);
 
 private slots:
-    void sendRequest(IWebRequestInfo *info);
+    void sendRequest(IWebRequestModel *info);
 
 signals:
 
