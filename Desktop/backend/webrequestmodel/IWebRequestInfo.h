@@ -6,7 +6,6 @@
 
 #include <QVariant>
 #include <QJsonObject>
-#include <QtQml>
 
 ///
 /// \brief The IWebRequestInfo class

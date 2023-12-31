@@ -3,6 +3,7 @@
 
 #include "IWebRequestInfo.h"
 #include <QObject>
+#include <QtQml>
 
 ///
 /// \brief The WebRequestInfo class
