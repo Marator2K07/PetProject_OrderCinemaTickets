@@ -54,7 +54,9 @@ private slots:
     void getResponce(QNetworkReply *responce);
 
 signals:
-
+    // пока в качестве параметра сигнала используем стандартный
+    // класс ответа, потом будет модель-интерфейс
+    void responceReady(QNetworkReply *);
 };
 
 #endif // WEBCONTEXT_H
