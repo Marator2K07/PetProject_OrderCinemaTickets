@@ -39,13 +39,13 @@ bool WebRequestFormInfo::isValid()
 
     bool correctData = true;
     // если POST запрос, то нужна дополнительная обработка
-    if (m_type == RequestType::State::POST) {
+    if (m_type == RequestEnums::Type::POST) {
         // парсим в соотвествии с типом
         switch (m_bodyType) {
-        case RequestBodyType::State::TEXT:
+        case RequestEnums::DataType::TEXT:
             correctData = correctDataAsText();
             break;
-        case RequestBodyType::State::JSON:
+        case RequestEnums::DataType::JSON:
             correctData = correctDataAsJson();
             break;
         default:
@@ -123,7 +123,7 @@ WebRequestFormInfo::WebRequestFormInfo(const WebRequestFormInfo &other)
 {
 }
 
-void WebRequestFormInfo::setType(const RequestType::State &type)
+void WebRequestFormInfo::setType(const RequestEnums::Type &type)
 {
     if (type != m_type) {
         m_type = type;
@@ -131,12 +131,12 @@ void WebRequestFormInfo::setType(const RequestType::State &type)
     }
 }
 
-RequestType::State WebRequestFormInfo::type() const
+RequestEnums::Type WebRequestFormInfo::type() const
 {
     return m_type;
 }
 
-void WebRequestFormInfo::setBodyType(const RequestBodyType::State &type)
+void WebRequestFormInfo::setBodyType(const RequestEnums::DataType &type)
 {
     if (type != m_bodyType) {
         m_bodyType = type;
@@ -144,7 +144,7 @@ void WebRequestFormInfo::setBodyType(const RequestBodyType::State &type)
     }
 }
 
-RequestBodyType::State WebRequestFormInfo::bodyType() const
+RequestEnums::DataType WebRequestFormInfo::bodyType() const
 {
     return m_bodyType;
 }

@@ -1,9 +1,7 @@
 #ifndef IWEBREQUESTMODEL_H
 #define IWEBREQUESTMODEL_H
 
-#include "RequestType.h"
-#include "RequestBodyType.h"
-
+#include "RequestEnums.h"
 #include <QVariant>
 #include <QJsonObject>
 
@@ -15,11 +13,11 @@ class IWebRequestModel
 {
 public:
     // каждый запрос должен иметь тип запроса
-    virtual void setType(const RequestType::State &type) = 0;
-    virtual RequestType::State type() const = 0;
+    virtual void setType(const RequestEnums::Type &type) = 0;
+    virtual RequestEnums::Type type() const = 0;
     // каждый запрос может иметь тип тела запроса
-    virtual void setBodyType(const RequestBodyType::State &type) = 0;
-    virtual RequestBodyType::State bodyType() const = 0;
+    virtual void setBodyType(const RequestEnums::DataType &type) = 0;
+    virtual RequestEnums::DataType bodyType() const = 0;
     // каждый запрос может иметь тип контента запроса
     virtual void setContentType(const QString &contentType) = 0;
     virtual QString contentType() const = 0;

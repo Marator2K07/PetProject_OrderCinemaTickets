@@ -14,9 +14,9 @@ class WebRequestFormInfo : public QObject,
 {
     Q_OBJECT
     QML_ELEMENT
-    Q_PROPERTY(RequestType::State type READ type
+    Q_PROPERTY(RequestEnums::Type type READ type
                    WRITE setType NOTIFY typeChanged)
-    Q_PROPERTY(RequestBodyType::State bodyType READ bodyType
+    Q_PROPERTY(RequestEnums::DataType bodyType READ bodyType
                    WRITE setBodyType NOTIFY bodyTypeChanged)
     Q_PROPERTY(QString contentType READ contentType
                    WRITE setContentType NOTIFY contentTypeChanged)
@@ -28,10 +28,10 @@ public:
     WebRequestFormInfo(const WebRequestFormInfo &other);
 
     // IWebRequestInfo interface {
-    void setType(const RequestType::State &type) override;
-    RequestType::State type() const override;
-    void setBodyType(const RequestBodyType::State &type) override;
-    RequestBodyType::State bodyType() const override;
+    void setType(const RequestEnums::Type &type) override;
+    RequestEnums::Type type() const override;
+    void setBodyType(const RequestEnums::DataType &type) override;
+    RequestEnums::DataType bodyType() const override;
     void setUrl(const QString &url) override;
     QString url() const override;
     void setData(const QVariant &data) override;
@@ -46,8 +46,8 @@ public slots:
     void send(const IWebRequestModel *) override;
 
 private:
-    RequestType::State m_type; // тип запроса (ГЕТ или ПОСТ)
-    RequestBodyType::State m_bodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
+    RequestEnums::Type m_type; // тип запроса (ГЕТ или ПОСТ)
+    RequestEnums::DataType m_bodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
     QString m_url; // сам текст строки запроса
     QVariant m_data; // содержимое тела запроса
     QString m_contentType; // информация для заголовка запроса о типе контента тела
