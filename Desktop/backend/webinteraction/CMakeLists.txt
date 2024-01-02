@@ -10,5 +10,6 @@ target_link_libraries(webinteraction PRIVATE
 )
 target_link_libraries(webinteraction PRIVATE
     webrequestmodel
+    webresponcemodel
 )
 target_include_directories(webinteraction PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
