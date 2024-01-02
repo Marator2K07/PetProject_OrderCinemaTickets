@@ -18,7 +18,8 @@ void WebContext::ignoreSslVerify()
 void WebContext::sendGetRequest(IWebRequestModel *info)
 {
     QNetworkRequest request(info->url());
-    webManager->get(request);
+    // вместе с отправкой запроса посылаем сигнал с ответом для управления
+    emit startProcessingReply(webManager->get(request));
 }
 
 void WebContext::sendPostRequest(IWebRequestModel *info)
@@ -27,7 +28,8 @@ void WebContext::sendPostRequest(IWebRequestModel *info)
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       info->contentType());
     QByteArray data = ((this)->*handleRequestDataMethod)(info->data());
-    webManager->post(request, data);
+    // вместе с отправкой запроса посылаем сигнал с ответом для управления
+    emit startProcessingReply(webManager->post(request, data));
 }
 
 QByteArray WebContext::handleRequestDataAsString(QVariant data)
