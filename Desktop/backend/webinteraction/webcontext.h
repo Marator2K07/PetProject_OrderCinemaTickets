@@ -1,8 +1,7 @@
 #ifndef WEBCONTEXT_H
 #define WEBCONTEXT_H
 
-#include "RequestType.h"
-#include "RequestBodyType.h"
+#include "RequestEnums.h"
 #include "IWebRequestModel.h"
 
 #include <QDebug>
@@ -46,8 +45,8 @@ private:
     /// \brief determineSuitableMethods
     /// определяем подходящие данные данные для
     /// requestMethod и handleRequestDataMethod
-    void determineSuitableMethods(RequestType::State type,
-                                  RequestBodyType::State bodyType);
+    void determineSuitableMethods(RequestEnums::Type type,
+                                  RequestEnums::DataType bodyType);
 
 private slots:
     void sendRequest(IWebRequestModel *info);

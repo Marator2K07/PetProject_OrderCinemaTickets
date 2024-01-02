@@ -45,17 +45,17 @@ QByteArray WebContext::handleRequestDataAsJson(QVariant data)
     return doc.toJson();
 }
 
-void WebContext::determineSuitableMethods(RequestType::State type,
-                                          RequestBodyType::State bodyType)
+void WebContext::determineSuitableMethods(RequestEnums::Type type,
+                                          RequestEnums::DataType bodyType)
 {
     // выбор типа метода отправки
     switch (type) {
-    case RequestType::State::GET:
+    case RequestEnums::Type::GET:
     {
         requestMethod = &sendGetRequest;
         break;
     }
-    case RequestType::State::POST:
+    case RequestEnums::Type::POST:
     {
         requestMethod = &sendPostRequest;
         break;
@@ -65,12 +65,12 @@ void WebContext::determineSuitableMethods(RequestType::State type,
     }
     // выбор метода типа управления данными запроса
     switch (bodyType) {
-    case RequestBodyType::State::TEXT:
+    case RequestEnums::DataType::TEXT:
     {
         handleRequestDataMethod = &handleRequestDataAsString;
         break;
     }
-    case RequestBodyType::State::JSON:
+    case RequestEnums::DataType::JSON:
     {
         handleRequestDataMethod = &handleRequestDataAsJson;
         break;
