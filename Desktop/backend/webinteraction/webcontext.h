@@ -54,6 +54,9 @@ private slots:
     void getResponce(QNetworkReply *responce);
 
 signals:
+    // т.к. ответ обрабатывается не мгновенно, есть
+    // возможность послать его для дальнейшего управления
+    void startProcessingReply(QNetworkReply *);
     // пока в качестве параметра сигнала используем стандартный
     // класс ответа, потом будет модель-интерфейс
     void responceReady(QNetworkReply *);
