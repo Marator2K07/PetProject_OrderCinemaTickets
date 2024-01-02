@@ -1,7 +1,7 @@
 #ifndef REQUESTRESPONCEHANDLING_H
 #define REQUESTRESPONCEHANDLING_H
 
-#include "IWebRequestModel.h"
+#include "IWebResponceModel.h"
 #include <QNetworkReply>
 #include <QObject>
 #include <QDebug>
@@ -20,6 +20,10 @@ public:
 private slots:
     // начало обработки ответа пришедшего от веб контекста
     void processingResponce(QNetworkReply *reply);
+
+signals:
+    // при полном получении ответа
+    void responceReady(IWebResponceModel *);
 };
 
 #endif // REQUESTRESPONCEHANDLING_H

@@ -92,9 +92,6 @@ void WebContext::getResponce(QNetworkReply *responce)
     if(responce->error() == QNetworkReply::NoError){
         QString contents = QString::fromUtf8(responce->readAll());
         qDebug() << contents;
-        // предполагается, что в случае отсутствия ошибок ответ
-        // можно передать дальше, например с помощью сигнала
-        emit responceReady(responce);
     }
     else{
         QString err = responce->errorString();
