@@ -1,7 +1,5 @@
 qt_add_library(webinteraction STATIC
-    RequestBodyType.h
-    RequestType.h
-    RequestRoot.h
+    RequestEnums.h
     webcontext.h webcontext.cpp
     requestresponcehandling.h requestresponcehandling.cpp
 )
