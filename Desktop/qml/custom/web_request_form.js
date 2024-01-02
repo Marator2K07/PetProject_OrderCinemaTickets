@@ -1,5 +1,4 @@
-.import RequestTypes 1.0 as RequestTypesModule
-.import RequestBodyTypes 1.0 as RequestBodyTypesModule
+.import RequestEnums 1.0 as RequestEnumsModule
 
 function initComboBoxModel(originalModel, customModel) {
     for (var i = 0; i < customModel.itemsCount(); i++) {
@@ -12,11 +11,11 @@ function initComboBoxModel(originalModel, customModel) {
 function controlFormElements(controlValue,
                              dataTypeCombo,
                              multiLineText) {
-    if (controlValue === RequestTypesModule.RequestTypes.GET) {
+    if (controlValue === RequestEnumsModule.RequestEnums.GET) {
         dataTypeCombo.enabled = false;
         multiLineText.enabled = false;
         multiLineText.isActive = false;
-    } else if (controlValue === RequestTypesModule.RequestTypes.POST) {
+    } else if (controlValue === RequestEnumsModule.RequestEnums.POST) {
         dataTypeCombo.enabled = true;
         multiLineText.enabled = true;
         multiLineText.isActive = true;
@@ -24,9 +23,9 @@ function controlFormElements(controlValue,
 }
 
 function selectContentType(model, controlValue) {
-    if (controlValue === RequestBodyTypesModule.RequestBodyTypes.TEXT) {
+    if (controlValue === RequestEnumsModule.RequestEnums.TEXT) {
         model.contentType = "text/plain";
-    } else if (controlValue === RequestBodyTypesModule.RequestBodyTypes.JSON) {
+    } else if (controlValue === RequestEnumsModule.RequestEnums.JSON) {
         model.contentType = "application/json";
     }
 }
