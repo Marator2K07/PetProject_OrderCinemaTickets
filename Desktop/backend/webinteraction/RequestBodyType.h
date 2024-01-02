@@ -3,8 +3,8 @@
 
 #include <QObject>
 
-class RequestBodyType : public QObject {
-    Q_OBJECT
+class RequestBodyType {
+    Q_GADGET
 public:
     enum State {
         TEXT = 0,

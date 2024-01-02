@@ -3,8 +3,8 @@
 
 #include <QObject>
 
-class RequestType : public QObject {
-    Q_OBJECT
+class RequestType {
+    Q_GADGET
 public:
     enum State {
         GET = 0,
