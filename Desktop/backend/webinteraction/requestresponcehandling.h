@@ -1,7 +1,11 @@
 #ifndef REQUESTRESPONCEHANDLING_H
 #define REQUESTRESPONCEHANDLING_H
 
+#include "IWebRequestModel.h"
+#include <QNetworkReply>
 #include <QObject>
+#include <QDebug>
+#include <QHash>
 
 ///
 /// \brief The RequestResponceHandling class
@@ -13,8 +17,9 @@ class RequestResponceHandling : public QObject
 public:
     explicit RequestResponceHandling(QObject *parent = nullptr);
 
-signals:
-
+private slots:
+    // начало обработки ответа пришедшего от веб контекста
+    void processingResponce(QNetworkReply *reply);
 };
 
 #endif // REQUESTRESPONCEHANDLING_H

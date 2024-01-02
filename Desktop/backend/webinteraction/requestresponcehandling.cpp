@@ -5,3 +5,7 @@ RequestResponceHandling::RequestResponceHandling(QObject *parent)
 {    
 }
 
+void RequestResponceHandling::processingResponce(QNetworkReply *reply)
+{
+
+}
