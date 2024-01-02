@@ -21,15 +21,15 @@ void EnumItemsModel::setModel(const QList<EnumItem> &model)
 void EnumItemsModel::initializeAsRequestTypes()
 {
     m_model.clear();
-    m_model.append(EnumItem((int)RequestType::State::GET, "GET"));
-    m_model.append(EnumItem((int)RequestType::State::POST, "POST"));
+    m_model.append(EnumItem((int)RequestEnums::Type::GET, "GET"));
+    m_model.append(EnumItem((int)RequestEnums::Type::POST, "POST"));
 }
 
 void EnumItemsModel::initializeAsRequestBodyTypes()
 {
     m_model.clear();
-    m_model.append(EnumItem((int)RequestBodyType::State::TEXT, "TEXT"));
-    m_model.append(EnumItem((int)RequestBodyType::State::JSON, "JSON"));
+    m_model.append(EnumItem((int)RequestEnums::DataType::TEXT, "TEXT"));
+    m_model.append(EnumItem((int)RequestEnums::DataType::JSON, "JSON"));
 }
 
 void EnumItemsModel::addEnumItem(int value, QString text)

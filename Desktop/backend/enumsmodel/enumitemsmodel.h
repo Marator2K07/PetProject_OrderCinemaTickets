@@ -1,8 +1,7 @@
 #ifndef ENUMITEMSMODEL_H
 #define ENUMITEMSMODEL_H
 
-#include "RequestType.h"
-#include "RequestBodyType.h"
+#include "RequestEnums.h"
 #include "enumitem.h"
 
 #include <QObject>
