@@ -2,6 +2,6 @@
 
 CommunicationHandler::CommunicationHandler(QObject *parent)
     : QObject{parent}
-{
-
+{    
 }
+

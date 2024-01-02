@@ -1,4 +1,3 @@
 add_subdirectory(webinteraction)
 add_subdirectory(enumsmodel)
 add_subdirectory(webrequestmodel)
-add_subdirectory(communicationhandling)

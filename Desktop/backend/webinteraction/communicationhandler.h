@@ -13,6 +13,8 @@ class CommunicationHandler : public QObject
 public:
     explicit CommunicationHandler(QObject *parent = nullptr);
 
+private:
+
 signals:
 
 };
