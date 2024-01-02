@@ -3,10 +3,7 @@
 #include <QQmlContext>
 
 #include "src/app_environment.h"
-
-#include "RequestType.h"
-#include "RequestBodyType.h"
-
+#include "RequestEnums.h"
 #include "enumitemsmodel.h"
 #include "webrequestforminfo.h"
 
@@ -19,8 +16,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     // регистрация типов перечислений из библиотеки webinteraction
-    qmlRegisterType<RequestType>("RequestTypes", 1, 0, "RequestTypes");
-    qmlRegisterType<RequestBodyType>("RequestBodyTypes", 1, 0, "RequestBodyTypes");
+    qmlRegisterType<RequestEnums>("RequestEnums", 1, 0, "RequestEnums");
     // и не только перечислений
     qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
     qmlRegisterType<WebRequestFormInfo>("WebRequestFormInfo", 1, 0, "WebRequestFormInfo");
