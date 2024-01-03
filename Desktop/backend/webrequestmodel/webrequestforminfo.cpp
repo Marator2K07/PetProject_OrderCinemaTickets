@@ -65,7 +65,7 @@ void WebRequestFormInfo::setContentType(const QString &contentType)
 {
     if (contentType != m_contentType) {
         m_contentType = contentType;
-        emit contentTypeChanged();
+        emit contentTypeChanged(contentType);
     }
 }
 
@@ -78,7 +78,7 @@ void WebRequestFormInfo::setData(const QVariant &data)
 {
     if (data != m_data) {
         m_data = data;
-        emit dataChanged();
+        emit dataChanged(data);
     }
 }
 
@@ -107,7 +107,7 @@ void WebRequestFormInfo::setUrl(const QString &url)
 {
     if (url != m_url) {
         m_url = url;
-        emit urlChanged();
+        emit urlChanged(url);
     }
 }
 
@@ -127,7 +127,7 @@ void WebRequestFormInfo::setType(const RequestEnums::Type &type)
 {
     if (type != m_type) {
         m_type = type;
-        emit typeChanged();
+        emit typeChanged(type);
     }
 }
 
@@ -140,7 +140,7 @@ void WebRequestFormInfo::setBodyType(const RequestEnums::DataType &type)
 {
     if (type != m_bodyType) {
         m_bodyType = type;
-        emit typeChanged();
+        emit bodyTypeChanged(type);
     }
 }
 
@@ -153,7 +153,7 @@ void WebRequestFormInfo::setIdentifier(const RequestEnums::Identifier &identifie
 {
     if (identifier != m_identifier) {
         m_identifier = identifier;
-        emit identifierChanged();
+        emit identifierChanged(identifier);
     }
 }
 

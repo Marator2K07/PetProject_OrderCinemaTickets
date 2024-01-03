@@ -67,12 +67,12 @@ private:
     // }
 
 signals:
-    void typeChanged();
-    void bodyTypeChanged();
-    void urlChanged();
-    void dataChanged();
-    void contentTypeChanged();
-    void identifierChanged();
+    void typeChanged(RequestEnums::Type);
+    void bodyTypeChanged(RequestEnums::DataType);
+    void identifierChanged(RequestEnums::Identifier);
+    void urlChanged(QString);
+    void dataChanged(QVariant);
+    void contentTypeChanged(QString);
 
     // простой сигнал для вывода относительно важных сообщений
     void updateStatus(QString);
