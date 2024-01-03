@@ -1,5 +1,5 @@
-#ifndef WEBREQUESTFORMINFO_H
-#define WEBREQUESTFORMINFO_H
+#ifndef REQUESTFORMMODEL_H
+#define REQUESTFORMMODEL_H
 
 #include "IWebRequestModel.h"
 #include <QObject>
@@ -9,7 +9,7 @@
 /// \brief The WebRequestInfo class
 /// класс для работы с данными запроса
 /// теперь может обрабатываться/быть qml элементом
-class WebRequestFormInfo : public QObject,
+class RequestFormModel : public QObject,
                            public IWebRequestModel
 {
     Q_OBJECT
@@ -26,8 +26,8 @@ class WebRequestFormInfo : public QObject,
     Q_PROPERTY(QVariant data READ data WRITE setData NOTIFY dataChanged)    
 
 public:
-    explicit WebRequestFormInfo(QObject *parent = nullptr);
-    WebRequestFormInfo(const WebRequestFormInfo &other);
+    explicit RequestFormModel(QObject *parent = nullptr);
+    RequestFormModel(const RequestFormModel &other);
 
     // IWebRequestInfo interface {
     void setType(const RequestEnums::Type &type) override;
@@ -42,7 +42,7 @@ public:
     QVariant data() const override;
     void setContentType(const QString &сontentType) override;
     QString contentType() const override;
-    ~WebRequestFormInfo() override;
+    ~RequestFormModel() override;
     // }
 
 public slots:
@@ -77,8 +77,8 @@ signals:
     // простой сигнал для вывода относительно важных сообщений
     void updateStatus(QString);
     // в случае валидности запроса
-    void requestIsReady(WebRequestFormInfo *);
+    void requestIsReady(RequestFormModel *);
 };
 Q_DECLARE_METATYPE(WebRequestFormInfo)
 
-#endif // WEBREQUESTFORMINFO_H
+#endif // REQUESTFORMMODEL_H

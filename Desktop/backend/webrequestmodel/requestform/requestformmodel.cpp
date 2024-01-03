@@ -1,6 +1,6 @@
-#include "webrequestforminfo.h"
+#include "requestformmodel.h"
 
-bool WebRequestFormInfo::correctDataAsText()
+bool RequestFormModel::correctDataAsText()
 {
     QString data = qvariant_cast<QString>(m_data);
     // проверка на корректность текста пока довольно условна
@@ -13,7 +13,7 @@ bool WebRequestFormInfo::correctDataAsText()
     }
 }
 
-bool WebRequestFormInfo::correctDataAsJson()
+bool RequestFormModel::correctDataAsJson()
 {
     // пытаемся запарсить
     QJsonParseError error;
@@ -29,7 +29,7 @@ bool WebRequestFormInfo::correctDataAsJson()
     }
 }
 
-bool WebRequestFormInfo::isValid()
+bool RequestFormModel::isValid()
 {
     // не помешает и такая банальная проверка
     if (m_url.length() <= 1) {
@@ -61,7 +61,7 @@ bool WebRequestFormInfo::isValid()
     return true;
 }
 
-void WebRequestFormInfo::setContentType(const QString &contentType)
+void RequestFormModel::setContentType(const QString &contentType)
 {
     if (contentType != m_contentType) {
         m_contentType = contentType;
@@ -69,12 +69,12 @@ void WebRequestFormInfo::setContentType(const QString &contentType)
     }
 }
 
-QString WebRequestFormInfo::contentType() const
+QString RequestFormModel::contentType() const
 {
     return m_contentType;
 }
 
-void WebRequestFormInfo::setData(const QVariant &data)
+void RequestFormModel::setData(const QVariant &data)
 {
     if (data != m_data) {
         m_data = data;
@@ -82,28 +82,28 @@ void WebRequestFormInfo::setData(const QVariant &data)
     }
 }
 
-QVariant WebRequestFormInfo::data() const
+QVariant RequestFormModel::data() const
 {
     return m_data;
 }
 
-WebRequestFormInfo::~WebRequestFormInfo()
+RequestFormModel::~RequestFormModel()
 {
 }
 
-void WebRequestFormInfo::send(const IWebRequestModel *)
+void RequestFormModel::send(const IWebRequestModel *)
 {
     if (isValid()) {
         emit requestIsReady(this);
     }
 }
 
-QString WebRequestFormInfo::url() const
+QString RequestFormModel::url() const
 {
     return m_url;
 }
 
-void WebRequestFormInfo::setUrl(const QString &url)
+void RequestFormModel::setUrl(const QString &url)
 {
     if (url != m_url) {
         m_url = url;
@@ -111,19 +111,19 @@ void WebRequestFormInfo::setUrl(const QString &url)
     }
 }
 
-WebRequestFormInfo::WebRequestFormInfo(QObject *parent)
+RequestFormModel::RequestFormModel(QObject *parent)
     : QObject{parent}
 {
 }
 
-WebRequestFormInfo::WebRequestFormInfo(const WebRequestFormInfo &other)
+RequestFormModel::RequestFormModel(const RequestFormModel &other)
     : m_data(other.data())
     , m_contentType(other.contentType())
     , m_url(other.url())
 {
 }
 
-void WebRequestFormInfo::setType(const RequestEnums::Type &type)
+void RequestFormModel::setType(const RequestEnums::Type &type)
 {
     if (type != m_type) {
         m_type = type;
@@ -131,12 +131,12 @@ void WebRequestFormInfo::setType(const RequestEnums::Type &type)
     }
 }
 
-RequestEnums::Type WebRequestFormInfo::type() const
+RequestEnums::Type RequestFormModel::type() const
 {
     return m_type;
 }
 
-void WebRequestFormInfo::setBodyType(const RequestEnums::DataType &type)
+void RequestFormModel::setBodyType(const RequestEnums::DataType &type)
 {
     if (type != m_bodyType) {
         m_bodyType = type;
@@ -144,12 +144,12 @@ void WebRequestFormInfo::setBodyType(const RequestEnums::DataType &type)
     }
 }
 
-RequestEnums::DataType WebRequestFormInfo::bodyType() const
+RequestEnums::DataType RequestFormModel::bodyType() const
 {
     return m_bodyType;
 }
 
-void WebRequestFormInfo::setIdentifier(const RequestEnums::Identifier &identifier)
+void RequestFormModel::setIdentifier(const RequestEnums::Identifier &identifier)
 {
     if (identifier != m_identifier) {
         m_identifier = identifier;
@@ -157,7 +157,7 @@ void WebRequestFormInfo::setIdentifier(const RequestEnums::Identifier &identifie
     }
 }
 
-RequestEnums::Identifier WebRequestFormInfo::identifier() const
+RequestEnums::Identifier RequestFormModel::identifier() const
 {
     return m_identifier;
 }

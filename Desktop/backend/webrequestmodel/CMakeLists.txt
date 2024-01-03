@@ -1,6 +1,7 @@
-qt_add_library(webrequestmodel STATIC
-    webrequestforminfo.h webrequestforminfo.cpp
+qt_add_library(webrequestmodel STATIC     
     IWebRequestModel.h
+    requestform/requestformmodel.h
+    requestform/requestformmodel.cpp
 )
 target_link_libraries(webrequestmodel PRIVATE
     Qt6::Core
