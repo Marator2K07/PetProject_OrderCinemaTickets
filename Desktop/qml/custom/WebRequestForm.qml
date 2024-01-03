@@ -4,7 +4,7 @@ import QtQuick.Layouts
 // своя подключенная модель данных для комбобокс
 import EnumItemsModel
 // своя общая модель данных для данного визуального элемента
-import WebRequestFormInfo
+import RequestFormModel
 
 import "web_request_form.js" as Script
 
@@ -16,7 +16,7 @@ Rectangle {
     color: "#ffffff"
 
     // класс с основной моделью формы
-    WebRequestFormInfo {
+    RequestFormModel {
         id: requestModel
         url: urlTextInput.url
         data: requestDataTextInput.body

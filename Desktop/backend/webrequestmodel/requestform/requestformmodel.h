@@ -7,8 +7,7 @@
 
 ///
 /// \brief The WebRequestInfo class
-/// класс для работы с данными запроса
-/// теперь может обрабатываться/быть qml элементом
+/// модель для работы с данными запроса
 class RequestFormModel : public QObject,
                            public IWebRequestModel
 {
@@ -79,6 +78,6 @@ signals:
     // в случае валидности запроса
     void requestIsReady(RequestFormModel *);
 };
-Q_DECLARE_METATYPE(WebRequestFormInfo)
+Q_DECLARE_METATYPE(RequestFormModel)
 
 #endif // REQUESTFORMMODEL_H

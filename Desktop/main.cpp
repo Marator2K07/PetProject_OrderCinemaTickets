@@ -5,7 +5,7 @@
 #include "src/app_environment.h"
 #include "RequestEnums.h"
 #include "enumitemsmodel.h"
-#include "webrequestforminfo.h"
+#include "requestform/requestformmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<RequestEnums>("RequestEnums", 1, 0, "RequestEnums");
     // и не только перечислений
     qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
-    qmlRegisterType<WebRequestFormInfo>("WebRequestFormInfo", 1, 0, "WebRequestFormInfo");
+    qmlRegisterType<RequestFormModel>("RequestFormModel", 1, 0, "RequestFormModel");
 
     const QUrl url(u"qrc:/DesktopApp/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
