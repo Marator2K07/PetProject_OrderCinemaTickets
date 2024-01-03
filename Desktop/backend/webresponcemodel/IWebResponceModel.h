@@ -17,8 +17,6 @@ public:
     // каждый ответ может иметь полученные данные в виде массива байтов
     virtual void setData(const QByteArray &data) = 0;
     virtual QByteArray data() const = 0;
-    // должна существовать возможность проверить ответ на "испорченность"
-    virtual bool withErrors() = 0;
 
     virtual ~IWebResponceModel() {}
 };
