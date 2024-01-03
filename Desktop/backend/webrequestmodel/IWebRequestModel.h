@@ -18,6 +18,9 @@ public:
     // каждый запрос может иметь тип тела запроса
     virtual void setBodyType(const RequestEnums::DataType &type) = 0;
     virtual RequestEnums::DataType bodyType() const = 0;
+    // каждый запрос должен иметь идентификатор для связи с моделью ответа
+    virtual void setIdentifier(const RequestEnums::Identifier &identifier) = 0;
+    virtual RequestEnums::Identifier identifier() const = 0;
     // каждый запрос может иметь тип контента запроса
     virtual void setContentType(const QString &contentType) = 0;
     virtual QString contentType() const = 0;
@@ -28,7 +31,7 @@ public:
     virtual void setData(const QVariant &data) = 0;
     virtual QVariant data() const = 0;
 
-    // самый главный метод - метод отправки данных запроса
+    // самый главный метод(слот) - метод отправки данных запроса
     virtual void send(const IWebRequestModel *) = 0;
 
     virtual ~IWebRequestModel() {}
