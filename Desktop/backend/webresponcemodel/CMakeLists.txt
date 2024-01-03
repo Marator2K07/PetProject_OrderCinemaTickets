@@ -1,5 +1,7 @@
 qt_add_library(webresponcemodel STATIC
     IWebResponceModel.h
+    simplewindow/simplewindowmodel.h
+    simplewindow/simplewindowmodel.cpp
 )
 target_link_libraries(webresponcemodel PRIVATE
     Qt6::Core
