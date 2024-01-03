@@ -18,6 +18,8 @@ class WebRequestFormInfo : public QObject,
                    WRITE setType NOTIFY typeChanged)
     Q_PROPERTY(RequestEnums::DataType bodyType READ bodyType
                    WRITE setBodyType NOTIFY bodyTypeChanged)
+    Q_PROPERTY(RequestEnums::Identifier identifier READ identifier
+                   WRITE setIdentifier NOTIFY identifierChanged)
     Q_PROPERTY(QString contentType READ contentType
                    WRITE setContentType NOTIFY contentTypeChanged)
     Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
@@ -32,6 +34,8 @@ public:
     RequestEnums::Type type() const override;
     void setBodyType(const RequestEnums::DataType &type) override;
     RequestEnums::DataType bodyType() const override;
+    void setIdentifier(const RequestEnums::Identifier &identifier) override;
+    RequestEnums::Identifier identifier() const override;
     void setUrl(const QString &url) override;
     QString url() const override;
     void setData(const QVariant &data) override;
@@ -48,6 +52,7 @@ public slots:
 private:
     RequestEnums::Type m_type; // тип запроса (ГЕТ или ПОСТ)
     RequestEnums::DataType m_bodyType; // тип данных запроса (ТЕКСТ или ДЖЕЙСОН)
+    RequestEnums::Identifier m_identifier; // для распознавания источника запроса
     QString m_url; // сам текст строки запроса
     QVariant m_data; // содержимое тела запроса
     QString m_contentType; // информация для заголовка запроса о типе контента тела
@@ -67,6 +72,7 @@ signals:
     void urlChanged();
     void dataChanged();
     void contentTypeChanged();
+    void identifierChanged();
 
     // простой сигнал для вывода относительно важных сообщений
     void updateStatus(QString);

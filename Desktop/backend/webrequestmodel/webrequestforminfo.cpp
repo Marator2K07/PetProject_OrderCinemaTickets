@@ -148,3 +148,16 @@ RequestEnums::DataType WebRequestFormInfo::bodyType() const
 {
     return m_bodyType;
 }
+
+void WebRequestFormInfo::setIdentifier(const RequestEnums::Identifier &identifier)
+{
+    if (identifier != m_identifier) {
+        m_identifier = identifier;
+        emit identifierChanged();
+    }
+}
+
+RequestEnums::Identifier WebRequestFormInfo::identifier() const
+{
+    return m_identifier;
+}
