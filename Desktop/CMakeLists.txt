@@ -43,6 +43,7 @@ target_link_libraries(appDesktopApp PRIVATE
     webinteraction
     enumsmodel
     webrequestmodel
+    webresponcemodel
 )
 
 include(GNUInstallDirs)

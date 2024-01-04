@@ -5,6 +5,8 @@
 #include "src/app_environment.h"
 #include "RequestEnums.h"
 #include "enumitemsmodel.h"
+#include "webcontext.h"
+#include "requestresponcehandling.h"
 #include "requestform/requestformmodel.h"
 
 int main(int argc, char *argv[])
@@ -29,6 +31,12 @@ int main(int argc, char *argv[])
         }, Qt::QueuedConnection);
     // загружаем путь для импорта модуля/плагина в заданной папке
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
+
+    // связываем два взаимодействующих класса для работы с запросами/ответами сразу
+    WebContext webContext;
+    RequestResponceHandling responceHandler;
+    QObject::connect(&webContext, SIGNAL(startProcessingReply(QNetworkAccessManager*)),
+                     &responceHandler, SLOT(processingResponce(QNetworkAccessManager*)));
 
     engine.load(url);
 
