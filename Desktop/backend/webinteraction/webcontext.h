@@ -15,16 +15,14 @@
 
 ///
 /// \brief The WebContext class
-/// Основной класс-посредник для интернет взаимодействия
+/// Основной класс для интернет взаимодействия
 class WebContext : public QObject
 {
     Q_OBJECT
 public:
     explicit WebContext(QObject *parent = nullptr);
-    ///
-    /// \brief ignoreSslVerify
-    /// дабы избежать множество проблем
-    /// можно отключить/игнорировать Ssl верификацию
+    // дабы избежать множество проблем
+    // можно отключить/игнорировать Ssl верификацию
     void ignoreSslVerify();
 
 private:
@@ -41,16 +39,13 @@ private:
     void sendPostRequest(IWebRequestModel *info);
     QByteArray handleRequestDataAsString(QVariant data);
     QByteArray handleRequestDataAsJson(QVariant data);
-    ///
-    /// \brief determineSuitableMethods
-    /// определяем подходящие данные данные для
-    /// requestMethod и handleRequestDataMethod
+    // определяем подходящие данные данные для
+    // requestMethod и handleRequestDataMethod
     void determineSuitableMethods(RequestEnums::Type type,
                                   RequestEnums::DataType bodyType);
 
 private slots:
     void sendRequest(IWebRequestModel *info);
-    void getResponce(QNetworkReply *responce);
 
 signals:
     // т.к. ответ обрабатывается не мгновенно, есть
