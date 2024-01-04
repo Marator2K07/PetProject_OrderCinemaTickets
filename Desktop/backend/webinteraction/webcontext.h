@@ -50,7 +50,7 @@ private slots:
 signals:
     // т.к. ответ обрабатывается не мгновенно, есть
     // возможность послать его для дальнейшего управления
-    void startProcessingReply(QNetworkReply *);
+    void startProcessingReply(QNetworkAccessManager *);
 };
 
 #endif // WEBCONTEXT_H
