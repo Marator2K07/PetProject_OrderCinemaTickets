@@ -2,8 +2,8 @@
 #define IWEBREQUESTMODEL_H
 
 #include "RequestEnums.h"
-#include <QVariant>
 #include <QJsonObject>
+#include <QVariant>
 
 ///
 /// \brief The IWebRequestInfo class

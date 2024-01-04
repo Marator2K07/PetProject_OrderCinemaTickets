@@ -4,7 +4,6 @@
 #include "RequestEnums.h"
 #include "IWebRequestModel.h"
 
-#include <QDebug>
 #include <QObject>
 #include <QByteArray>
 #include <QDataStream>

@@ -1,7 +1,6 @@
 #ifndef IWEBRESPONCEMODEL_H
 #define IWEBRESPONCEMODEL_H
 
-#include <QNetworkReply>
 #include <QByteArray>
 
 ///

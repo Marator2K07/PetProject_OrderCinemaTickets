@@ -2,9 +2,11 @@
 #define REQUESTRESPONCEHANDLING_H
 
 #include "IWebResponceModel.h"
+
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
+#include <QDebug>
 #include <QHash>
 
 ///
