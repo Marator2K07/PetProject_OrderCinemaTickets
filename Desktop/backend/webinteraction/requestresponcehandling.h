@@ -2,9 +2,9 @@
 #define REQUESTRESPONCEHANDLING_H
 
 #include "IWebResponceModel.h"
+#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
-#include <QDebug>
 #include <QHash>
 
 ///
@@ -17,9 +17,15 @@ class RequestResponceHandling : public QObject
 public:
     explicit RequestResponceHandling(QObject *parent = nullptr);
 
+private:
+    // пока ничего
+
 private slots:
     // начало обработки ответа пришедшего от веб контекста
-    void processingResponce(QNetworkReply *reply);
+    void processingResponce(QNetworkAccessManager *manager);
+    // выполняется при окончании обработки ответа, то есть
+    // когда он будет доступен для доступа
+    void endOfProcessing(QNetworkReply *reply);
 
 signals:
     // при полном получении ответа
