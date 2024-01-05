@@ -35,8 +35,12 @@ int main(int argc, char *argv[])
     // связываем два взаимодействующих класса для работы с запросами/ответами сразу
     WebContext webContext;
     RequestResponceHandling responceHandler;
-    QObject::connect(&webContext, SIGNAL(startProcessingReply(QNetworkAccessManager*)),
-                     &responceHandler, SLOT(processingResponce(QNetworkAccessManager*)));
+    QObject::connect(&webContext, SIGNAL(startProcessingReply(QNetworkReply*)),
+                     &responceHandler, SLOT(processingResponce(QNetworkReply*)));
+
+    // назначаем корневые qml свойства
+    engine.rootContext()->setContextProperty("webContext", &webContext);
+    engine.rootContext()->setContextProperty("responceHandler", &responceHandler);
 
     engine.load(url);
 
