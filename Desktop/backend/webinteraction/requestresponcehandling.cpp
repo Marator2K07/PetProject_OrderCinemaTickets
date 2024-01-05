@@ -5,23 +5,31 @@ RequestResponceHandling::RequestResponceHandling(QObject *parent)
 {    
 }
 
-void RequestResponceHandling::processingResponce(QNetworkAccessManager *manager)
+void RequestResponceHandling::processingResponce(QNetworkReply *reply)
 {
-    connect(manager, SIGNAL(finished(QNetworkReply*)),
-            this, SLOT(endOfProcessing(QNetworkReply*)));
+    connect(reply, SIGNAL(finished()), this, SLOT(endOfProcessing()));
+    replies.append(reply);
     // помимо связи основанной на окончании загрузки ответа, также
     // ниже в будущем можно будет поместить обработчик прогресса загрузки
 }
 
-void RequestResponceHandling::endOfProcessing(QNetworkReply *reply)
+void RequestResponceHandling::endOfProcessing()
 {
+    // 1) берем самый первый ответ в очереди
+    QNetworkReply *curReply = replies.dequeue();
+
+    // 2) Обработка данных и их отправка (через сигнал)
     // пока просто тестовый вывод в консоль
-    if(reply->error() == QNetworkReply::NoError){
-        QString contents = QString::fromUtf8(reply->readAll());
+    if(curReply->error() == QNetworkReply::NoError){
+        QString contents = QString::fromUtf8(curReply->readAll());
         qDebug() << contents;
     }
     else{
-        QString err = reply->errorString();
+        QString err = curReply->errorString();
         qDebug() << err;
     }
+
+    // 3) Убираем всю лишнюю информацию и связи
+    disconnect(curReply, SIGNAL(finished()), this, SLOT(endOfProcessing()));
+    curReply->deleteLater();
 }

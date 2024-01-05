@@ -7,6 +7,7 @@
 #include <QNetworkReply>
 #include <QObject>
 #include <QDebug>
+#include <QQueue>
 #include <QHash>
 
 ///
@@ -20,14 +21,15 @@ public:
     explicit RequestResponceHandling(QObject *parent = nullptr);
 
 private:
-    // пока ничего
+    // пришедшие запросы
+    QQueue<QNetworkReply *> replies;
 
 private slots:
     // начало обработки ответа пришедшего от веб контекста
-    void processingResponce(QNetworkAccessManager *manager);
+    void processingResponce(QNetworkReply *reply);
     // выполняется при окончании обработки ответа, то есть
     // когда он будет доступен для доступа
-    void endOfProcessing(QNetworkReply *reply);
+    void endOfProcessing();
 
 signals:
     // при полном получении ответа
