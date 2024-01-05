@@ -180,13 +180,20 @@ Rectangle {
             Layout.bottomMargin: 10
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
+            // в случае удачной проверки посылаемых данных
+            // вызывается сигнал RequestIsReady у requestModel
             onClicked: {
-                console.log(requestModel.url);
-                console.log(requestModel.data);
-                console.log(requestModel.type);
-                console.log(requestModel.bodyType);
-                console.log(requestModel.contentType);
+                requestModel.send(requestModel);
             }
+        }
+    }
+
+    // связываем сигнал RequestIsReady у requestModel
+    // и слот sendRequest у webContext
+    Connections {
+        target: requestModel
+        function onRequestIsReady(requestModel) {
+            webContext.sendRequest(requestModel);
         }
     }
 }
