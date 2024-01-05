@@ -12,6 +12,11 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
+/// Важное примечание:
+/// для корректной работы данного класса, особенно
+/// при связи с https ресурсами, необходимо установить
+/// OpenSSL библиотеки новым или старым способом
+
 ///
 /// \brief The WebContext class
 /// Основной класс для интернет взаимодействия
@@ -20,8 +25,8 @@ class WebContext : public QObject
     Q_OBJECT
 public:
     explicit WebContext(QObject *parent = nullptr);
-    // дабы избежать множество проблем
-    // можно отключить/игнорировать Ssl верификацию
+    // дабы избежать проблемы на стадии
+    // разработки можно игнорировать Ssl ошибки
     void ignoreSslVerify();
 
 private:
@@ -43,13 +48,13 @@ private:
     void determineSuitableMethods(RequestEnums::Type type,
                                   RequestEnums::DataType bodyType);
 
-private slots:
+public slots:
     void sendRequest(IWebRequestModel *info);
 
 signals:
     // т.к. ответ обрабатывается не мгновенно, есть
     // возможность послать его для дальнейшего управления
-    void startProcessingReply(QNetworkAccessManager *);
+    void startProcessingReply(QNetworkReply *);
 };
 
 #endif // WEBCONTEXT_H

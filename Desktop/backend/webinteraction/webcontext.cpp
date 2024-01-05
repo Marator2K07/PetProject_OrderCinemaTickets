@@ -4,6 +4,13 @@ WebContext::WebContext(QObject *parent)
     : QObject{parent}
 {
     webManager = new QNetworkAccessManager(this);
+    // В случае будущей надобности обработки ssl ошибок
+    /*
+    #ifndef QT_NO_SSL
+        connect(webManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                SLOT(slotSslErrors(QNetworkReply*,QList<QSslError>)));
+    #endif
+    */
 }
 
 void WebContext::ignoreSslVerify()
@@ -16,7 +23,8 @@ void WebContext::ignoreSslVerify()
 void WebContext::sendGetRequest(IWebRequestModel *info)
 {
     QNetworkRequest request(info->url());
-    webManager->get(request);
+    // вместе с отправкой запроса посылаем сигнал
+    emit startProcessingReply(webManager->get(request));
 }
 
 void WebContext::sendPostRequest(IWebRequestModel *info)
@@ -25,7 +33,8 @@ void WebContext::sendPostRequest(IWebRequestModel *info)
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       info->contentType());
     QByteArray data = ((this)->*handleRequestDataMethod)(info->data());
-    webManager->post(request, data);
+    // вместе с отправкой запроса посылаем сигнал
+    emit startProcessingReply(webManager->post(request, data));
 }
 
 QByteArray WebContext::handleRequestDataAsString(QVariant data)
@@ -79,8 +88,5 @@ void WebContext::determineSuitableMethods(RequestEnums::Type type,
 void WebContext::sendRequest(IWebRequestModel *info)
 {
     determineSuitableMethods(info->type(), info->bodyType());
-    // вместе с отправкой запроса посылаем сигнал
-    // с веб менеджером для дальнейшей обработки
-    ((this)->*requestMethod)(info);
-    emit startProcessingReply(webManager);
+    ((this)->*requestMethod)(info);    
 }
