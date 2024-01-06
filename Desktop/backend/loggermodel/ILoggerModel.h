@@ -16,10 +16,8 @@ public:
     virtual void setMessages(const QQueue<QString> &messages) = 0;
     virtual QString messages() const = 0;
 
-    // запись данных в обьект модели логгера
-    virtual void writeInModel(QString) = 0;
-    // обычная запись в файл
-    virtual void writeInFile(QString) = 0;
+    // будущий слот принятия информационных сообщений
+    virtual void newInfo(QString) = 0;
 
     virtual ~ILoggerModel() {}
 };
