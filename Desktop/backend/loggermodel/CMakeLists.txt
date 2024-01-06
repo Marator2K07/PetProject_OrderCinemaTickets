@@ -1,5 +1,6 @@
 qt_add_library(loggermodel STATIC
     ILoggerModel.h
+    ILoggingObject.h
 )
 target_link_libraries(loggermodel PRIVATE
     Qt6::Core
