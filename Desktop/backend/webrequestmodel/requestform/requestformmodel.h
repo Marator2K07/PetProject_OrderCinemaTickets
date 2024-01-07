@@ -2,6 +2,7 @@
 #define REQUESTFORMMODEL_H
 
 #include "IWebRequestModel.h"
+#include "ILoggingObject.h"
 #include <QObject>
 #include <QtQml>
 
@@ -9,7 +10,8 @@
 /// \brief The WebRequestInfo class
 /// модель для работы с данными запроса
 class RequestFormModel : public QObject,
-                         public IWebRequestModel
+                         public IWebRequestModel,
+                         public ILoggingObject
 {
     Q_OBJECT
     QML_ELEMENT
@@ -61,9 +63,8 @@ private:
     bool correctDataAsText();
     // проверка тела запроса в виде JSON файла
     bool correctDataAsJson();
-    // IWebRequestInfo interface {
+    // IWebRequestInfo interface
     bool isValid() override;
-    // }
 
 signals:
     void typeChanged(RequestEnums::Type);
@@ -73,10 +74,10 @@ signals:
     void dataChanged(QVariant);
     void contentTypeChanged(QString);
 
-    // простой сигнал для вывода относительно важных сообщений
-    void updateStatus(QString);
     // в случае валидности запроса
     void requestIsReady(RequestFormModel *);
+    // ILoggingObject interface
+    void updateInfo(QString) override;
 };
 
 #endif // REQUESTFORMMODEL_H
