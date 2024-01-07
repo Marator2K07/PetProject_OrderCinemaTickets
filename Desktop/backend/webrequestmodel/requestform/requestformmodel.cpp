@@ -5,10 +5,10 @@ bool RequestFormModel::correctDataAsText()
     QString data = qvariant_cast<QString>(m_data);
     // проверка на корректность текста пока довольно условна
     if (data.length() >= 1) {
-        emit updateStatus("Data as text is correct.");
+        emit updateInfo("Request data as text is correct.");
         return true;
     } else {
-        emit updateStatus("Data as text is too short.");
+        emit updateInfo("Request data as text is too short.");
         return false;
     }
 }
@@ -21,10 +21,10 @@ bool RequestFormModel::correctDataAsJson()
         fromJson(QString(qvariant_cast<QString>(m_data)).toUtf8(), &error);
     // возвращаем успешность парсинга
     if (error.error == error.NoError) {
-        emit updateStatus("Data as json is correct.");
+        emit updateInfo("Request data as json is correct.");
         return true;
     } else {
-        emit updateStatus(error.errorString());
+        emit updateInfo(error.errorString());
         return false;
     }
 }
@@ -32,8 +32,8 @@ bool RequestFormModel::correctDataAsJson()
 bool RequestFormModel::isValid()
 {
     // не помешает и такая банальная проверка
-    if (m_url.length() <= 1) {
-        emit updateStatus("To short request url adress.");
+    if (!m_url.contains("https://") || !m_url.contains("http://")) {
+        emit updateInfo("Incorrect request url adress.");
         return false;
     }
 
@@ -57,7 +57,7 @@ bool RequestFormModel::isValid()
         return false;
     }
     // если дошли до сюда, то все прошло хорошо
-    emit updateStatus("Request is valid.");
+    emit updateInfo("Request is valid.");
     return true;
 }
 
