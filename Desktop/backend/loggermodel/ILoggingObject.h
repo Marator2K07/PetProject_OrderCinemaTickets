@@ -8,9 +8,9 @@
 /// для организации функциональности логируемого класса
 class ILoggingObject
 {
-public:
+signals:
     // отправка данных в обьект логгера
-    virtual void log(QString) = 0;
+    virtual void updateInfo(QString) = 0;
 };
 
 #endif // ILOGGINGOBJECT_H
