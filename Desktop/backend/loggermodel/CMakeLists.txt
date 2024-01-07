@@ -1,6 +1,8 @@
 qt_add_library(loggermodel STATIC
     ILoggerModel.h
     ILoggingObject.h
+    windowlogger/windowloggermodel.h
+    windowlogger/windowloggermodel.cpp
 )
 target_link_libraries(loggermodel PRIVATE
     Qt6::Core
