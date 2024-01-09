@@ -2,9 +2,11 @@
 #define LOGGER_H
 
 #include "ILoggingObject.h"
+#include <QTextStream>
 #include <QDateTime>
 #include <QObject>
 #include <QQueue>
+#include <QFile>
 
 ///
 /// \brief The Logger class
@@ -25,6 +27,9 @@ public:
 
 public slots:
     void log(QString message);
+    // сохранение всех оставшихся/накопившихся
+    // сообщений в поле класса messages
+    void save();
 
 private:
     QString fileName;

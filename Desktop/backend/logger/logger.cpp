@@ -21,9 +21,26 @@ void Logger::log(QString message)
     // не помешает добавить время к логируемому сообщению
     QString curTime = QDateTime::currentDateTime().
                       toString("dd.MM.yyyy hh:mm:ss");
-    QString newMessage = QString("1%; message: 2%").
+    QString newMessage = QString("[1%] message: 2%").
                          arg(curTime, message);
     messages.append(newMessage);
+}
+
+void Logger::save()
+{
+    QFile file(filePath+fileName);
+    // при успешном открытии файла мы освобождаем очередь
+    // из сообщений и записываем каждое в файл лога
+    if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
+        QTextStream stream(&file);
+        while (messages.size() > 0) {
+            stream << messages.dequeue() << "\n";
+        }
+    } else {
+        emit showMessage("Error occurred while saving the log file.");
+        emit showMessage("Incorrect data for path/file name");
+    }
+    file.close();
 }
 
 QString Logger::getFileName() const
