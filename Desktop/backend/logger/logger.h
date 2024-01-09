@@ -15,10 +15,16 @@ class Logger : public QObject
 public:
     explicit Logger(QObject *parent = nullptr);
 
+    QString getFilePath() const;
+    void setFilePath(const QString &newFilePath);
+    QString getFileName() const;
+    void setFileName(const QString &newFileName);
+
 public slots:
     void log(QString message);
 
 private:
+    QString fileName;
     QString filePath;
     QQueue<QString> messages;
 };

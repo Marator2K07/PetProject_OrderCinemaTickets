@@ -14,3 +14,23 @@ void Logger::log(QString message)
                          arg(curTime, message);
     messages.append(newMessage);
 }
+
+QString Logger::getFileName() const
+{
+    return fileName;
+}
+
+void Logger::setFileName(const QString &newFileName)
+{
+    fileName = newFileName;
+}
+
+QString Logger::getFilePath() const
+{
+    return filePath;
+}
+
+void Logger::setFilePath(const QString &newFilePath)
+{
+    filePath = newFilePath;
+}
