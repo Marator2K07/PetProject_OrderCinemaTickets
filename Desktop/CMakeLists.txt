@@ -41,6 +41,7 @@ target_link_libraries(appDesktopApp PRIVATE
 )
 target_link_libraries(appDesktopApp PRIVATE
     webinteraction
+    logger
     loggermodel
     enumsmodel
     webrequestmodel

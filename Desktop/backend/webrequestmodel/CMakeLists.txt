@@ -9,6 +9,6 @@ target_link_libraries(webrequestmodel PRIVATE
 )
 target_link_libraries(webrequestmodel PRIVATE
     webinteraction
-    loggermodel
+    logger
 )
 target_include_directories(webrequestmodel PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
