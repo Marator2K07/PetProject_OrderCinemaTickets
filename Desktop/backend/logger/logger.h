@@ -14,6 +14,9 @@ class Logger : public QObject
     Q_OBJECT
 public:
     explicit Logger(QObject *parent = nullptr);
+    Logger(const QString &fileName,
+           const QString &filePath,
+           QObject *parent = nullptr);
 
     QString getFilePath() const;
     void setFilePath(const QString &newFilePath);

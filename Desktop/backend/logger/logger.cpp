@@ -2,6 +2,17 @@
 
 Logger::Logger(QObject *parent)
     : QObject{parent}
+    , fileName{"app_log.txt"}
+    , filePath{"/"}
+{
+}
+
+Logger::Logger(const QString &fileName,
+               const QString &filePath,
+               QObject *parent)
+    : QObject{parent}
+    , fileName{fileName}
+    , filePath{filePath}
 {
 }
 
