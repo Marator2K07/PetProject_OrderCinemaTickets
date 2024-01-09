@@ -5,15 +5,14 @@
 
 ///
 /// \brief The ILoggerModel interface
-/// для организации функциональности
-/// модели логгера приложения
+/// организация функциональности модели
+/// для визуального представления логгера
 class ILoggerModel
 {
 public:
     // каждая модель логгера содержит в себе произошедшие события
     virtual void setMessages(const QString &messages) = 0;
     virtual QString messages() const = 0;
-
     // будущий слот принятия информационных сообщений
     virtual void acceptMessage(QString) = 0;
 

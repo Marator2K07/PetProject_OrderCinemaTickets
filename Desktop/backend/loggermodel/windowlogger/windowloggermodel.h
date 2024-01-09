@@ -5,6 +5,10 @@
 #include <QObject>
 #include <QQmlEngine>
 
+///
+/// \brief The WindowLoggerModel class
+/// частный случай модели логгера для представления
+/// в виде отдельного окна с многострочным текстом
 class WindowLoggerModel : public QObject,
                           public ILoggerModel
 
