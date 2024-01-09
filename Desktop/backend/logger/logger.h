@@ -42,7 +42,7 @@ private slots:
 signals:
     // главный обьект логгера может посылать
     // сигналы всем подписчикам(моделям - логгерам)
-    void showMessage(const QString);
+    void messageReady(const QString);
 };
 
 #endif // LOGGER_H

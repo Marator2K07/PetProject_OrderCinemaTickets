@@ -37,8 +37,8 @@ void Logger::save()
             stream << messages.dequeue() << "\n";
         }
     } else {
-        emit showMessage("Error occurred while saving the log file.");
-        emit showMessage("Incorrect data for path/file name");
+        emit messageReady("Error occurred while saving the log file.");
+        emit messageReady("Incorrect data for path/file name.\n");
     }
     file.close();
 }
