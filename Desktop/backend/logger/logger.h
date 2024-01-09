@@ -36,6 +36,9 @@ private:
     QString filePath;
     QQueue<QString> messages;
 
+private slots:
+    void onExit();
+
 signals:
     // главный обьект логгера может посылать
     // сигналы всем подписчикам(моделям - логгерам)

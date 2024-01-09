@@ -43,6 +43,12 @@ void Logger::save()
     file.close();
 }
 
+void Logger::onExit()
+{
+    log("End of work session");
+    save();
+}
+
 QString Logger::getFileName() const
 {
     return fileName;
