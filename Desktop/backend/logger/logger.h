@@ -30,6 +30,11 @@ private:
     QString fileName;
     QString filePath;
     QQueue<QString> messages;
+
+signals:
+    // главный обьект логгера может посылать
+    // сигналы всем подписчикам(моделям - логгерам)
+    void showMessage(const QString);
 };
 
 #endif // LOGGER_H
