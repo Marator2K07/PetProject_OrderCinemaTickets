@@ -1,6 +1,5 @@
 qt_add_library(loggermodel STATIC
     ILoggerModel.h
-    ILoggingObject.h
     windowlogger/windowloggermodel.h
     windowlogger/windowloggermodel.cpp
 )
