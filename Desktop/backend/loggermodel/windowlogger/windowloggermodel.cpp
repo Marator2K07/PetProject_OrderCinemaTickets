@@ -6,25 +6,11 @@ WindowLoggerModel::WindowLoggerModel(QObject *parent)
 }
 
 WindowLoggerModel::WindowLoggerModel(const WindowLoggerModel &other)
-    : m_path{other.path()}
-    , m_messages{other.messages()}
+    : m_messages{other.messages()}
 {
 }
 
-void WindowLoggerModel::setPath(const QString &path)
-{
-    if (path != m_path) {
-        m_path = path;
-        emit pathChanged(path);
-    }
-}
-
-QString WindowLoggerModel::path() const
-{
-    return m_path;
-}
-
-void WindowLoggerModel::setMessages(const QQueue<QString> &messages)
+void WindowLoggerModel::setMessages(const QString &messages)
 {
     if (messages != m_messages) {
         m_messages = messages;
@@ -32,12 +18,12 @@ void WindowLoggerModel::setMessages(const QQueue<QString> &messages)
     }
 }
 
-QQueue<QString> WindowLoggerModel::messages() const
+QString WindowLoggerModel::messages() const
 {
     return m_messages;
 }
 
-void WindowLoggerModel::log(QString)
+void WindowLoggerModel::acceptMessage(QString msg)
 {
-    
+    m_messages.append(msg);
 }
