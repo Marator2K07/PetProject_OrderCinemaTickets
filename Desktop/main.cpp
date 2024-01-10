@@ -23,12 +23,16 @@ int main(int argc, char *argv[])
     qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
     qmlRegisterType<RequestFormModel>("RequestFormModel", 1, 0, "RequestFormModel");
 
-    const QUrl url(u"qrc:/DesktopApp/Main.qml"_qs);
+    // запоминаем все пути до основных визуальных элементов приложения
+    const QUrl urlMain(u"qrc:/DesktopApp/Main.qml"_qs);
+    const QUrl urlLogger(u"qrc:/DesktopApp/Logger.qml"_qs);
+
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-        &app, [url](QObject *obj, const QUrl &objUrl) {
-            if (!obj && url == objUrl)
+        &app, [urlMain](QObject *obj, const QUrl &objUrl) {
+            if (!obj && urlMain == objUrl)
                 QCoreApplication::exit(-1);
         }, Qt::QueuedConnection);
+
     // загружаем путь для импорта модуля/плагина в заданной папке
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
 
