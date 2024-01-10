@@ -19,7 +19,7 @@
 
 ///
 /// \brief The WebContext class
-/// Основной класс для интернет взаимодействия
+/// основной класс для интернет взаимодействия
 class WebContext : public QObject
 {
     Q_OBJECT

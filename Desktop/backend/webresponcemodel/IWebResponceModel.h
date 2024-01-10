@@ -4,9 +4,9 @@
 #include <QByteArray>
 
 ///
-/// \brief The IWebResponceModel class
-/// интерфейс для организации структуры
-/// данных и функциональности какого-либо веб ответа
+/// \brief The IWebResponceModel interface
+/// организация структуры данных и
+/// функциональности модели веб-ответа
 class IWebResponceModel
 {
 public:

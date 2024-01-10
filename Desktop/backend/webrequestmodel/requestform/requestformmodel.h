@@ -7,8 +7,9 @@
 #include <QtQml>
 
 ///
-/// \brief The WebRequestInfo class
-/// модель для работы с данными запроса
+/// \brief The RequestFormModel class
+/// модель данных для работы со
+/// спец. формой задания вэб-запроса
 class RequestFormModel : public QObject,
                          public IWebRequestModel,
                          public ILoggingObject

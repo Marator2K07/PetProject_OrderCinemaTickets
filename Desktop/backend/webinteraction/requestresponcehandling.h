@@ -13,7 +13,7 @@
 ///
 /// \brief The RequestResponceHandling class
 /// класс посредник для обработки ответа на запрос
-/// и отправки его конкретному обьекту ответа
+/// и отправки его конкретному обьекту модели ответа
 class RequestResponceHandling : public QObject
 {
     Q_OBJECT

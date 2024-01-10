@@ -5,7 +5,7 @@
 
 ///
 /// \brief The ILoggingObject interface
-/// для организации функциональности логируемого класса
+/// организация функциональности логируемого класса
 class ILoggingObject
 {
 signals:
