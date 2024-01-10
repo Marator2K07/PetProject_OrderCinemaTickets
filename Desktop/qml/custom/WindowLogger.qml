@@ -3,8 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
-    width: 700
-    height: 450
+    anchors.fill: parent
     color: "#151515"
 
     ColumnLayout {
@@ -57,6 +56,18 @@ Rectangle {
                 selectionColor: "black"
                 selectByKeyboard: true
                 selectByMouse: true
+
+                // при добавлении новой информации в логер
+                // фокус движется за последней строкой в тексте
+                property string lastText: textEdit.text
+                onTextChanged: function moveTextField() {
+                    if (textEdit.text > textEdit.lastText) {
+                        vbar.increase();
+                    } else {
+                        vbar.decrease();
+                    }
+                    textEdit.lastText = textEdit.text;
+                }
             }
         }
     }
