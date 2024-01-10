@@ -46,7 +46,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("webContext", &webContext);
     engine.rootContext()->setContextProperty("responceHandler", &responceHandler);
 
-    engine.load(url);
+    engine.load(urlLogger);
+    engine.load(urlMain);
 
     return app.exec();
 }
