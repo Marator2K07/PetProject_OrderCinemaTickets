@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 // своя подключенная модель данных для комбобокс
 import EnumItemsModel
-// своя общая модель данных для данного визуального элемента
+// своя модель данных для данного визуального элемента
 import RequestFormModel
 
 import "web_request_form.js" as Script
@@ -15,7 +15,7 @@ Rectangle {
     anchors.fill: parent
     color: "#ffffff"
 
-    // класс с основной моделью формы
+    // класс с моделью формы запроса
     RequestFormModel {
         id: requestModel
         url: urlTextInput.url
