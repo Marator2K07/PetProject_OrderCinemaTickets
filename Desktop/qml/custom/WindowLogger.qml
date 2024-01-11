@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+// своя модель данных для данного визуального элемента
+import WindowLoggerModel
 
 Rectangle {
     anchors.fill: parent
@@ -14,6 +16,12 @@ Rectangle {
         anchors.bottomMargin: 5
         anchors.topMargin: 5
         spacing: 8
+
+        // класс с моделью оконного логера
+        WindowLoggerModel {
+            id: loggerModel
+            messages: textEdit.text
+        }
 
         Rectangle {
             id: rectangle
