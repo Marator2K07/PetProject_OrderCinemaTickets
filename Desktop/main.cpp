@@ -8,6 +8,7 @@
 #include "webcontext.h"
 #include "requestresponcehandling.h"
 #include "requestform/requestformmodel.h"
+#include "windowlogger/windowloggermodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +23,7 @@ int main(int argc, char *argv[])
     // и не только перечислений
     qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
     qmlRegisterType<RequestFormModel>("RequestFormModel", 1, 0, "RequestFormModel");
+    qmlRegisterType<WindowLoggerModel>("WindowLoggerModel", 1, 0, "WindowLoggerModel");
 
     // запоминаем все пути до основных визуальных элементов приложения
     const QUrl urlMain(u"qrc:/DesktopApp/Main.qml"_qs);
