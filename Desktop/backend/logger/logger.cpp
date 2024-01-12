@@ -21,9 +21,11 @@ void Logger::log(QString message)
     // не помешает добавить время к логируемому сообщению
     QString curTime = QDateTime::currentDateTime().
                       toString("dd.MM.yyyy hh:mm:ss");
-    QString newMessage = QString("[1%] message: 2%").
+    QString newMessage = QString("[%1] message: %2\n").
                          arg(curTime, message);
     messages.append(newMessage);
+    // отображаем лог, если есть подписчики
+    emit messageReady(newMessage);
 }
 
 void Logger::save()
@@ -37,8 +39,8 @@ void Logger::save()
             stream << messages.dequeue() << "\n";
         }
     } else {
-        emit messageReady("Error occurred while saving the log file.");
-        emit messageReady("Incorrect data for path/file name.\n");
+        log("Error occurred while saving the log file.");
+        log("Incorrect data for path/file name.\n");
     }
     file.close();
 }
