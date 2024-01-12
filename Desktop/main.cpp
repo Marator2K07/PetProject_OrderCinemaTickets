@@ -6,6 +6,7 @@
 #include "RequestEnums.h"
 #include "enumitemsmodel.h"
 #include "webcontext.h"
+#include "logger.h"
 #include "requestresponcehandling.h"
 #include "requestform/requestformmodel.h"
 #include "windowlogger/windowloggermodel.h"
@@ -38,13 +39,17 @@ int main(int argc, char *argv[])
     // загружаем путь для импорта модуля/плагина в заданной папке
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
 
-    // связываем два взаимодействующих класса для работы с запросами/ответами сразу
+    // создаем важные обьекты для приложения,
+    // которые будут использоваться глобально
+    Logger logger("/","log.txt");
     WebContext webContext;
     RequestResponceHandling responceHandler;
+    // связываем, что нужно
     QObject::connect(&webContext, SIGNAL(startProcessingReply(QNetworkReply*)),
                      &responceHandler, SLOT(processingResponce(QNetworkReply*)));
 
     // назначаем корневые qml свойства
+    engine.rootContext()->setContextProperty("logger", &logger);
     engine.rootContext()->setContextProperty("webContext", &webContext);
     engine.rootContext()->setContextProperty("responceHandler", &responceHandler);
 
