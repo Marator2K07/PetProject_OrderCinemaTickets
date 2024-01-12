@@ -188,12 +188,17 @@ Rectangle {
         }
     }
 
-    // связываем сигнал RequestIsReady у requestModel
-    // и слот sendRequest у webContext
     Connections {
         target: requestModel
+        // связываем сигнал RequestIsReady у requestModel
+        // и слот sendRequest у webContext
         function onRequestIsReady(requestModel) {
             webContext.sendRequest(requestModel);
+        }
+        // связываем сигнал updateInfo у requestModel
+        // и слот log у logger
+        function onUpdateInfo(message) {
+            logger.log(message);
         }
     }
 }
