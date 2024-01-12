@@ -32,7 +32,7 @@ bool RequestFormModel::correctDataAsJson()
 bool RequestFormModel::isValid()
 {
     // не помешает и такая банальная проверка
-    if (!m_url.contains("https://") || !m_url.contains("http://")) {
+    if (!m_url.contains("https://") && !m_url.contains("http://")) {
         emit updateInfo("Incorrect request url adress.");
         return false;
     }
@@ -57,7 +57,7 @@ bool RequestFormModel::isValid()
         return false;
     }
     // если дошли до сюда, то все прошло хорошо
-    emit updateInfo("Request is valid.");
+    emit updateInfo("Request has been sended.");
     return true;
 }
 
