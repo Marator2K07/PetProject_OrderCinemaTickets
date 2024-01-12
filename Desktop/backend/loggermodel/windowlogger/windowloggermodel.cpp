@@ -23,7 +23,8 @@ QString WindowLoggerModel::messages() const
     return m_messages;
 }
 
-void WindowLoggerModel::acceptMessage(QString msg)
+void WindowLoggerModel::acceptMessage(QString message)
 {
-    m_messages.append(msg);
+    m_messages.append(message);
+    emit messagesChanged(m_messages);
 }

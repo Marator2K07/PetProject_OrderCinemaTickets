@@ -24,8 +24,11 @@ public:
     // ILoggerModel interface {
     void setMessages(const QString &messages) override;
     QString messages() const override;
-    void acceptMessage(QString msg) override;
     // }
+
+public slots:
+    // ILoggerModel interface
+    void acceptMessage(QString message) override;
 
 private:
     QString m_messages;
