@@ -20,7 +20,6 @@ Rectangle {
         // класс с моделью оконного логера
         WindowLoggerModel {
             id: loggerModel
-            messages: textEdit.text
         }
 
         Rectangle {
@@ -51,7 +50,7 @@ Rectangle {
                 id: textEdit
                 readOnly: true
                 activeFocusOnPress: true
-                text: "..."
+                text: loggerModel.messages
                 anchors.left: parent.left
                 font.pixelSize: 20
                 color: "black"
@@ -95,5 +94,14 @@ Rectangle {
         anchors.bottomMargin: 8
         anchors.topMargin: 8
         anchors.rightMargin: 8
+    }
+
+    Connections {
+        // связываем сигнал messageReady у logger
+        // и слот acceptMessage у loggerModel
+        target: logger
+        function onMessageReady(message) {
+            loggerModel.acceptMessage(message);
+        }
     }
 }
