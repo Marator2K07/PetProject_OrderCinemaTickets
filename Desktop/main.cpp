@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
     WebContext webContext;
     RequestResponceHandling responceHandler;
     // связываем, что нужно
-    QObject::connect(&webContext, SIGNAL(startProcessingReply(QNetworkReply*)),
-                     &responceHandler, SLOT(processingResponce(QNetworkReply*)));
+    QObject::connect(&webContext, SIGNAL(startProcessingReply(QNetworkReply *, RequestEnums::Identifier)),
+                     &responceHandler, SLOT(processingResponce(QNetworkReply *, RequestEnums::Identifier)));
 
     // назначаем корневые qml свойства
     engine.rootContext()->setContextProperty("logger", &logger);
