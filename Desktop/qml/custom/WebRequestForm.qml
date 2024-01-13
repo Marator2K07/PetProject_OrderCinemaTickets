@@ -5,6 +5,8 @@ import QtQuick.Layouts
 import EnumItemsModel
 // своя модель данных для данного визуального элемента
 import RequestFormModel
+// подключение перечислений для идентификаторов запроса
+import RequestEnums
 
 import "web_request_form.js" as Script
 
@@ -18,6 +20,7 @@ Rectangle {
     // класс с моделью формы запроса
     RequestFormModel {
         id: requestModel
+        identifier: RequestEnums.REQUESTFORM // идентификатор запроса
         url: urlTextInput.url
         data: requestDataTextInput.body
     }
