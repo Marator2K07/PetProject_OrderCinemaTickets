@@ -52,9 +52,8 @@ public slots:
     void sendRequest(IWebRequestModel *info);
 
 signals:
-    // т.к. ответ обрабатывается не мгновенно, есть
-    // возможность послать его для дальнейшего управления
-    void startProcessingReply(QNetworkReply *);
+    // после отправки запроса, начинаем обрабатывать ответ
+    void startProcessingReply(QNetworkReply *, RequestEnums::Identifier);
 };
 
 #endif // WEBCONTEXT_H

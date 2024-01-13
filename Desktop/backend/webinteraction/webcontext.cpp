@@ -24,7 +24,7 @@ void WebContext::sendGetRequest(IWebRequestModel *info)
 {
     QNetworkRequest request(info->url());
     // вместе с отправкой запроса посылаем сигнал
-    emit startProcessingReply(webManager->get(request));
+    emit startProcessingReply(webManager->get(request), info->identifier());
 }
 
 void WebContext::sendPostRequest(IWebRequestModel *info)
@@ -34,7 +34,7 @@ void WebContext::sendPostRequest(IWebRequestModel *info)
                       info->contentType());
     QByteArray data = ((this)->*handleRequestDataMethod)(info->data());
     // вместе с отправкой запроса посылаем сигнал
-    emit startProcessingReply(webManager->post(request, data));
+    emit startProcessingReply(webManager->post(request, data), info->identifier());
 }
 
 QByteArray WebContext::handleRequestDataAsString(QVariant data)
