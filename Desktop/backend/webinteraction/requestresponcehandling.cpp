@@ -5,7 +5,8 @@ RequestResponceHandling::RequestResponceHandling(QObject *parent)
 {    
 }
 
-void RequestResponceHandling::processingResponce(QNetworkReply *reply)
+void RequestResponceHandling::processingResponce(QNetworkReply *reply,
+                                                 RequestEnums::Identifier identifier)
 {
     connect(reply, SIGNAL(finished()), this, SLOT(endOfProcessing()));
     replies.append(reply);

@@ -2,6 +2,7 @@
 #define REQUESTRESPONCEHANDLING_H
 
 #include "IWebResponceModel.h"
+#include "RequestEnums.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -21,12 +22,13 @@ public:
     explicit RequestResponceHandling(QObject *parent = nullptr);
 
 private:
-    // пришедшие запросы
+    // созданные в ходе запросов веб-ответы
     QQueue<QNetworkReply *> replies;
 
 private slots:
     // начало обработки ответа пришедшего от веб контекста
-    void processingResponce(QNetworkReply *reply);
+    void processingResponce(QNetworkReply *reply,
+                            RequestEnums::Identifier identifier);
     // выполняется при окончании обработки ответа, то есть
     // когда он будет доступен для доступа
     void endOfProcessing();
