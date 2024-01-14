@@ -62,4 +62,26 @@ Rectangle {
             }
         }
     ]
+
+    // переходы между состояниями
+    transitions: [
+        Transition {
+            from: "*"
+            to: "Loading"
+            NumberAnimation {
+                properties: "font.pixelSize, opacity"
+                easing.type: Easing.Linear
+                duration: 550
+            }
+        },
+        Transition {
+            from: "*"
+            to: "Loaded"
+            NumberAnimation {
+                properties: "font.pixelSize, opacity"
+                easing.type: Easing.Linear
+                duration: 550
+            }
+        }
+    ]
 }
