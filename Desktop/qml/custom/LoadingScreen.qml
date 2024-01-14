@@ -32,4 +32,34 @@ Rectangle {
             duration: 550
         }
     }
+
+    // состояния элемента
+    states: [
+        State {
+            name: "Loading"
+            when: mainRect.isLoading
+            PropertyChanges {
+                target: loadingSpinner
+                font.pixelSize: 75
+                text: "◡"
+            }
+            PropertyChanges {
+                target: mainRect
+                opacity: 0.9
+            }
+        },
+        State {
+            name: "Loaded"
+            when: !mainRect.isLoading
+            PropertyChanges {
+                target: loadingSpinner
+                font.pixelSize: 22
+                text: "Uploaded successfully"
+            }
+            PropertyChanges {
+                target: mainRect
+                opacity: 0.0
+            }
+        }
+    ]
 }
