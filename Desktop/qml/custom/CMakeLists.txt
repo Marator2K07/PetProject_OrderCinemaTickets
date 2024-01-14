@@ -9,6 +9,7 @@ qt6_add_qml_module(qmlcustom
         WebRequestForm.qml
 	CustomButton.qml
 	WindowLogger.qml
+        LoadingScreen.qml
     RESOURCE_PREFIX "/"
     RESOURCES
         web_request_form.js
