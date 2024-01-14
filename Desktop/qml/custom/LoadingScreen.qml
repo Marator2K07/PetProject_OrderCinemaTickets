@@ -4,7 +4,7 @@ import QtQuick.Controls
 Rectangle {
     id: mainRect
     anchors.fill: parent
-    opacity: 0.9
+    opacity: 0.95
     color: "lightgray"
 
     property alias spinnerColor: loadingSpinner.color;
@@ -45,7 +45,7 @@ Rectangle {
             }
             PropertyChanges {
                 target: mainRect
-                opacity: 0.9
+                opacity: 0.95
             }
         },
         State {
@@ -71,7 +71,7 @@ Rectangle {
             NumberAnimation {
                 properties: "font.pixelSize, opacity"
                 easing.type: Easing.Linear
-                duration: 550
+                duration: 850
             }
         },
         Transition {
@@ -80,8 +80,17 @@ Rectangle {
             NumberAnimation {
                 properties: "font.pixelSize, opacity"
                 easing.type: Easing.Linear
-                duration: 550
+                duration: 850
             }
         }
     ]
+
+    onIsLoadingChanged: {
+        if (isLoading) {
+            rotateSpinnerAnimation.start();
+        } else {
+            rotateSpinnerAnimation.stop();
+        }
+    }
+
 }
