@@ -2,9 +2,14 @@ import QtQuick
 import QtQuick.Controls
 
 Rectangle {
+    id: mainRect
     anchors.fill: parent
-    opacity: 0.8
+    opacity: 0.9
     color: "lightgray"
+
+    property alias spinnerColor: loadingSpinner.color;
+    property alias backgroundColor: mainRect.color;
+    property bool isLoading: true;
 
     Label
     {
