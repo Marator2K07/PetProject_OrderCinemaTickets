@@ -25,9 +25,11 @@ Rectangle {
         anchors.centerIn: parent
 
         NumberAnimation on rotation {
-            from: 0; to: 360;
-            loops: Animation.Infinite;
-            duration: 550;
+            id: rotateSpinnerAnimation
+            from: 0; to: 360
+            alwaysRunToEnd: true
+            loops: -1
+            duration: 550
         }
     }
 }
