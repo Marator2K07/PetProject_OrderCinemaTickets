@@ -93,4 +93,8 @@ Rectangle {
         }
     }
 
+    // чтобы нельзя было сквозь экран загрузки взаимодействовать
+    MouseArea {
+        anchors.fill: parent
+    }
 }
