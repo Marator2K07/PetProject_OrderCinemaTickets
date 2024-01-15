@@ -4,7 +4,7 @@ qt6_add_qml_module(qmlcustom
     VERSION 1.0
     QML_FILES
         CustomComboBox.qml
-        LineTextInput.qml
+        MyLineText.qml
         MultiLineTextInput.qml
         WebRequestForm.qml
 	CustomButton.qml
