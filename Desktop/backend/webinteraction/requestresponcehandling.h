@@ -29,8 +29,8 @@ private slots:
     // начало обработки ответа пришедшего от веб контекста
     void processingResponce(QNetworkReply *reply,
                             RequestEnums::Identifier identifier);
-    // выполняется при окончании обработки ответа, то есть
-    // когда он будет доступен для доступа
+    // выполняется при окончании обработки ответа,
+    // то есть когда он будет доступен
     void endOfProcessing();
 
 signals:
