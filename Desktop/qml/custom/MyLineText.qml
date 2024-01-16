@@ -12,16 +12,17 @@ Rectangle {
     property int textSize;
     property color textColor;
     property color textSelectionColor;
+    property bool readOnly;
     // основные свойства для mainRect
     property int borderWidth;
     property int borderRadius;
     property color backgroundColor;
     property color hoveredBackgroundColor;
+    property bool hoverEnabled;
 
     MouseArea {
         anchors.fill: parent
-        hoverEnabled: true
-
+        hoverEnabled: mainRect.hoverEnabled
         onHoveredChanged: {
             if (containsMouse) {
                 toHoveredColor.start()
@@ -33,6 +34,7 @@ Rectangle {
 
     TextInput {
         id: textInput
+        readOnly: mainRect.readOnly
         color: textColor
         anchors.fill: parent
         font.pixelSize: textSize

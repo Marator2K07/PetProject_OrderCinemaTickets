@@ -48,6 +48,8 @@ Rectangle {
             MyLineText {
                 id: urlTextInput
                 textData: qsTr("...")
+                readOnly: false
+                hoverEnabled: true
                 textSize: 22
                 textColor: "#5e2970"
                 textSelectionColor: "#5e2970"
