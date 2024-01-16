@@ -26,9 +26,9 @@ Rectangle {
 
         onHoveredChanged: {
             if (containsMouse) {
-                colorAnimation1.start()
+                toHoveredColor.start()
             } else {
-                colorAnimation2.start()
+                fromHoveredColor.start()
             }
         }
     }
@@ -50,7 +50,7 @@ Rectangle {
     }
 
     ColorAnimation {
-        id: colorAnimation1
+        id: toHoveredColor
         target: mainRect
         property: "color"
         to: "#e3c8eb"
@@ -58,7 +58,7 @@ Rectangle {
     }
 
     ColorAnimation {
-        id: colorAnimation2
+        id: fromHoveredColor
         target: mainRect
         property: "color"
         to: "#ffffff"
