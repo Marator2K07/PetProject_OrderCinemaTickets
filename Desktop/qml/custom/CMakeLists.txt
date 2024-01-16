@@ -5,11 +5,12 @@ qt6_add_qml_module(qmlcustom
     QML_FILES
         CustomComboBox.qml
         MyLineText.qml
-        MultiLineTextInput.qml
+        MyMultiLineText.qml
         WebRequestForm.qml
 	CustomButton.qml
 	WindowLogger.qml
         LoadingScreen.qml
+        RawResponceSection.qml
     RESOURCE_PREFIX "/"
     RESOURCES
         web_request_form.js
