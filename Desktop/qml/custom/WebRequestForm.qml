@@ -22,7 +22,7 @@ Rectangle {
         id: requestModel
         identifier: RequestEnums.REQUESTFORM // идентификатор запроса
         url: urlTextInput.textData
-        data: requestDataTextInput.body
+        data: requestDataTextInput.textData
     }
 
     ColumnLayout {
@@ -146,32 +146,25 @@ Rectangle {
             }
         }
 
-        Rectangle {
-            id: mediator
-            height: mainLayout.height * (4/5)
-            color: "#ffffff"
-            Layout.fillHeight: true
-            Layout.rightMargin: 10
-            Layout.leftMargin: 10
+        MyMultiLineText {
+            id: requestDataTextInput
+            textData: qsTr("...")
+            readOnly: false
+            hoverEnabled: true
+            vBarWidth: 10
+            isActive: false
+            textSize: 22
+            textColor: "#5e2970"
+            textSelectionColor: "#5e2970"
+            borderWidth: 1
+            borderRadius: 4
+            backgroundColor: "#ffffff"
+            hoveredBackgroundColor: "#e3c8eb"
             Layout.fillWidth: true
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-            MyMultiLineText {
-                id: requestDataTextInput
-                textData: qsTr("...")
-                readOnly: false
-                hoverEnabled: true
-                vBarWidth: 10
-                isActive: false
-                textSize: 22
-                textColor: "#5e2970"
-                textSelectionColor: "#5e2970"
-                borderWidth: 1
-                borderRadius: 4
-                backgroundColor: "#ffffff"
-                hoveredBackgroundColor: "#e3c8eb"
-                anchors.fill: parent
-            }
+            Layout.fillHeight: true
+            Layout.topMargin: 40
+            Layout.leftMargin: 10
+            Layout.rightMargin: 10
         }
 
         RowLayout {
@@ -181,7 +174,6 @@ Rectangle {
             Layout.rightMargin: 10
             Layout.leftMargin: 10
             spacing: 10
-            Layout.fillWidth: false
 
             Text {
                 id: statusLabel
