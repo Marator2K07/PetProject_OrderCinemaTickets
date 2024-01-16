@@ -4,10 +4,8 @@ import QtQuick.Layouts
 // своя модель данных для данного визуального элемента
 import WindowLoggerModel
 
-Rectangle {
-    id: mainRect
+Item {
     anchors.fill: parent
-    color: "#151515"
 
 
     // класс с моделью оконного логера
@@ -18,10 +16,6 @@ Rectangle {
     ColumnLayout {
         id: columnLayout
         anchors.fill: parent
-        anchors.rightMargin: 5
-        anchors.leftMargin: 5
-        anchors.bottomMargin: 5
-        anchors.topMargin: 5
 
         MyMultiLineText {
             id: requestDataTextInput
