@@ -45,8 +45,16 @@ Rectangle {
             height: 40
             spacing: 10
 
-            LineTextInput {
+            MyLineText {
                 id: urlTextInput
+                textData: qsTr("...")
+                textSize: 22
+                textColor: "#5e2970"
+                textSelectionColor: "#5e2970"
+                borderWidth: 1
+                borderRadius: 4
+                backgroundColor: "#ffffff"
+                hoveredBackgroundColor: "#e3c8eb"
                 height: rowUrlLayout.height
                 Layout.fillWidth: true
                 Layout.leftMargin: 10
