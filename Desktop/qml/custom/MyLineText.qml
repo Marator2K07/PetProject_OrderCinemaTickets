@@ -2,14 +2,23 @@ import QtQuick
 import QtQuick.Controls
 
 Rectangle {
-    id: rectangle
+    id: mainRect
     width: 400
     height: 30
     radius: 3
     border.width: 1
     clip: true
 
-    property alias url: textInput.text
+    // основные свойства для текста
+    property string textData: qsTr("...")
+    property int textSize: 22
+    property color textColor: "#5e2970"
+    property color textSelectionColor: "#5e2970"
+    // основные свойства для mainRect
+    property int borderWidth: 2
+    property int borderRadius: 3
+    property color backgroundColor: "#ffffff"
+    property color hoveredBackgroundColor: "#e3c8eb"
 
     MouseArea {
         anchors.fill: parent
@@ -42,7 +51,7 @@ Rectangle {
 
     ColorAnimation {
         id: colorAnimation1
-        target: rectangle
+        target: mainRect
         property: "color"
         to: "#e3c8eb"
         from: "#ffffff"
@@ -50,7 +59,7 @@ Rectangle {
 
     ColorAnimation {
         id: colorAnimation2
-        target: rectangle
+        target: mainRect
         property: "color"
         to: "#ffffff"
         from: "#e3c8eb"
