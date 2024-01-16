@@ -55,6 +55,7 @@ Rectangle {
 
         TextEdit {
             id: textEdit
+            readOnly: mainRect.readOnly
             activeFocusOnPress: true
             anchors.left: parent.left
             font.pixelSize: textSize
