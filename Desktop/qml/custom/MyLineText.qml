@@ -3,10 +3,10 @@ import QtQuick.Controls
 
 Rectangle {
     id: mainRect
-    width: 400
-    height: 30
-    radius: 3
-    border.width: 1
+    width: parent.width
+    height: textSize * 1.5
+    radius: borderRadius
+    border.width: borderWidth
     clip: true
 
     // основные свойства для текста
@@ -35,16 +35,16 @@ Rectangle {
 
     TextInput {
         id: textInput
-        color: "#5e2970"
-        text: qsTr("...")
+        color: textColor
+        text: textData
         anchors.fill: parent
-        font.pixelSize: 20
+        font.pixelSize: textSize
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
         anchors.leftMargin: 7
         font.strikeout: false
         font.weight: Font.Medium
-        selectionColor: "#5e2970"
+        selectionColor: textSelectionColor
         font.bold: false
         selectByMouse: true
     }
