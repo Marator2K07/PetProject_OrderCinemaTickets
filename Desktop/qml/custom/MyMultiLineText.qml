@@ -34,10 +34,10 @@ Rectangle {
         hoverEnabled: mainRect.hoverEnabled
         onHoveredChanged: {
             if (containsMouse && isActive) {
-                colorAnimation1.start()
+                toHoveredColor.start()
                 textEdit.forceActiveFocus();
             } else if (!containsMouse && isActive) {
-                colorAnimation2.start()
+                fromHoveredColor.start()
             }
         }
         onWheel: function moveTextField(wheelEvent) {
@@ -82,7 +82,7 @@ Rectangle {
     }
 
     ColorAnimation {
-        id: colorAnimation1
+        id: toHoveredColor
         target: mainRect
         property: "color"
         to: hoveredBackgroundColor
@@ -90,7 +90,7 @@ Rectangle {
     }
 
     ColorAnimation {
-        id: colorAnimation2
+        id: fromHoveredColor
         target: mainRect
         property: "color"
         to: backgroundColor
