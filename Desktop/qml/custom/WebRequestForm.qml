@@ -21,7 +21,7 @@ Rectangle {
     RequestFormModel {
         id: requestModel
         identifier: RequestEnums.REQUESTFORM // идентификатор запроса
-        url: urlTextInput.url
+        url: urlTextInput.textData
         data: requestDataTextInput.body
     }
 

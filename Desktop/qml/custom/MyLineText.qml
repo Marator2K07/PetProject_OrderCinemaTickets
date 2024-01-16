@@ -8,7 +8,7 @@ Rectangle {
     clip: true
 
     // основные свойства для текста
-    property string textData;
+    property alias textData: textInput.text
     property int textSize;
     property color textColor;
     property color textSelectionColor;
@@ -34,7 +34,6 @@ Rectangle {
     TextInput {
         id: textInput
         color: textColor
-        text: textData
         anchors.fill: parent
         font.pixelSize: textSize
         horizontalAlignment: Text.AlignLeft
