@@ -16,6 +16,7 @@ Rectangle {
     // основные свойства для текста
     property alias textData: textEdit.text
     property int textSize;
+    property int textLineHeight: 30;
     property color textColor;
     property color textSelectionColor;
     property bool readOnly;
@@ -60,12 +61,24 @@ Rectangle {
             height: contentHeight
             color: textColor
             width: mainRect.width - vbar.width - 7
-            y: -vbar.position * textEdit.height
+            y: -vbar.position * height
             wrapMode: TextEdit.Wrap
             anchors.leftMargin: 7
             selectionColor: textSelectionColor
             selectByKeyboard: true
             selectByMouse: true
+
+            // адаптация vbar при изменении свойства contentHeight
+            property int tempContentHeight: 0
+            onContentHeightChanged: {
+                if (contentHeight > tempContentHeight) {
+                    vbar.increase();
+                } else if (contentHeight < tempContentHeight) {
+                    vbar.decrease();
+                }
+                tempContentHeight = contentHeight;
+                vbar.stepSize = textLineHeight / contentHeight;
+            }
         }
     }
 
@@ -74,7 +87,7 @@ Rectangle {
         hoverEnabled: true
         active: hovered || pressed
         orientation: Qt.Vertical
-        size: mainRect.height / textEdit.height
+        size: mainRect.height / textEdit.contentHeight
         width: vBarWidth
         anchors.top: parent.top
         anchors.right: parent.right
