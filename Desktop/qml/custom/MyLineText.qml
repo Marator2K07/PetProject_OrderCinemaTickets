@@ -5,6 +5,7 @@ Rectangle {
     id: mainRect
     radius: borderRadius
     border.width: borderWidth
+    color: backgroundColor
     clip: true
 
     // основные свойства для текста
@@ -52,15 +53,15 @@ Rectangle {
         id: toHoveredColor
         target: mainRect
         property: "color"
-        to: "#e3c8eb"
-        from: "#ffffff"
+        to: hoveredBackgroundColor
+        from: backgroundColor
     }
 
     ColorAnimation {
         id: fromHoveredColor
         target: mainRect
         property: "color"
-        to: "#ffffff"
-        from: "#e3c8eb"
+        to: backgroundColor
+        from: hoveredBackgroundColor
     }
 }
