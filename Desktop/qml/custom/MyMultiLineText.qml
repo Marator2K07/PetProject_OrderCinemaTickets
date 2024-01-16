@@ -2,25 +2,36 @@ import QtQuick
 import QtQuick.Controls
 
 Rectangle {
-    id: rectangle
-    width: 400
-    height: 150
-    radius: 3
-    border.width: 1
+    id: mainRect
+    color: backgroundColor
+    radius: borderRadius
+    border.width: borderWidth
     anchors.centerIn: parent
     anchors.top: parent.bottom
-    anchors.left: parent.left
-    clip: true
+    anchors.left: parent.left    
     Keys.onUpPressed: vbar.decrease()
     Keys.onDownPressed: vbar.increase()
+    clip: true
 
-    property bool isActive: true
-    property alias body: textEdit.text
+    // основные свойства для текста
+    property alias textData: textEdit.text
+    property int textSize;
+    property color textColor;
+    property color textSelectionColor;
+    property bool readOnly;
+    property int vBarWidth;
+    // основные свойства для mainRect
+    property int borderWidth;
+    property int borderRadius;
+    property color backgroundColor;
+    property color hoveredBackgroundColor;
+    property bool hoverEnabled;
+    property bool isActive;
 
     MouseArea{
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: true
+        hoverEnabled: mainRect.hoverEnabled
         onHoveredChanged: {
             if (containsMouse && isActive) {
                 colorAnimation1.start()
@@ -44,16 +55,15 @@ Rectangle {
         TextEdit {
             id: textEdit
             activeFocusOnPress: true
-            text: "..."
             anchors.left: parent.left
-            font.pixelSize: 20
+            font.pixelSize: textSize
             height: contentHeight
-            color: "#5e2970"
-            width: rectangle.width - vbar.width - 7
+            color: textColor
+            width: mainRect.width - vbar.width - 7
             y: -vbar.position * textEdit.height
             wrapMode: TextEdit.Wrap
             anchors.leftMargin: 7
-            selectionColor: "#5e2970"
+            selectionColor: textSelectionColor
             selectByKeyboard: true
             selectByMouse: true
         }
@@ -61,13 +71,11 @@ Rectangle {
 
     ScrollBar {
         id: vbar
-        x: 390
-        y: 0
         hoverEnabled: true
         active: hovered || pressed
         orientation: Qt.Vertical
-        size: rectangle.height / textEdit.height
-        width: 10
+        size: mainRect.height / textEdit.height
+        width: vBarWidth
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -75,17 +83,17 @@ Rectangle {
 
     ColorAnimation {
         id: colorAnimation1
-        target: rectangle
+        target: mainRect
         property: "color"
-        to: "#e3c8eb"
-        from: "#ffffff"
+        to: hoveredBackgroundColor
+        from: backgroundColor
     }
 
     ColorAnimation {
         id: colorAnimation2
-        target: rectangle
+        target: mainRect
         property: "color"
-        to: "#ffffff"
-        from: "#e3c8eb"
+        to: backgroundColor
+        from: hoveredBackgroundColor
     }
 }
