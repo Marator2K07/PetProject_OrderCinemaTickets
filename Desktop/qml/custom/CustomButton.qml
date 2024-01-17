@@ -11,18 +11,19 @@ Button {
                         textItem.implicitHeight + topPadding + bottomPadding)
 
     // свойства для всех трех состояний
-    property color defBackgroundColor;
-    property color hoverBackgroundColor;
-    property color presBackgroundColor;
-    property color defBorderColor;
-    property color hoverBorderColor;
-    property color presBorderColor;
-    property color defTextColor;
-    property color hoverTextColor;
-    property color presTextColor;
+    property color defBackgroundColor: "white";
+    property color hoverBackgroundColor: "#e3c8eb";
+    property color presBackgroundColor: "#5e2970";
+    property color defBorderColor: "black";
+    property color hoverBorderColor: "black";
+    property color presBorderColor: "black";
+    property color defTextColor: "black";
+    property color hoverTextColor: "white";
+    property color presTextColor: "#e3c8eb";
     // ссылки свойств на основные элементы кнопки
     property alias buttonRect: buttonBackground;
     property alias textItem: textItem;
+    property alias colorAnim: colorAnim;
 
     background: buttonBackground
     Rectangle {
@@ -83,7 +84,7 @@ Button {
 
     transitions: Transition {
         ColorAnimation {
-            duration: 222
+            id: colorAnim
         }
     }
 }
