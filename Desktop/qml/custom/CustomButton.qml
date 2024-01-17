@@ -41,35 +41,42 @@ Button {
 
     states: [
         State {
-            name: "normal"
-            when: !control.down
-
+            name: "Default"
+            when: !control.down && !control.hovered
             PropertyChanges {
                 target: buttonBackground
-                color: "#d307ff"
-                font.pixelSize: 22
-                border.color: "#047eff"
+                color: defBackgroundColor
+                border.color: defBorderColor
             }
-
             PropertyChanges {
                 target: textItem
-                color: "#047eff"
-                font.pixelSize: 22
+                color: defTextColor
             }
         },
         State {
-            name: "down"
+            name: "Pressed"
             when: control.down
             PropertyChanges {
-                target: textItem
-                color: "#ffffff"
-                font.pixelSize: 22
+                target: buttonBackground
+                color: presBackgroundColor
+                border.color: presBorderColor
             }
-
+            PropertyChanges {
+                target: textItem
+                color: presTextColor
+            }            
+        },
+        State {
+            name: "Hovered"
+            when: !control.down && control.hovered
             PropertyChanges {
                 target: buttonBackground
-                color: "#047eff"
-                border.color: "#00000000"
+                color: hoverBackgroundColor
+                border.color: hoverBorderColor
+            }
+            PropertyChanges {
+                target: textItem
+                color: hoverTextColor
             }
         }
     ]
