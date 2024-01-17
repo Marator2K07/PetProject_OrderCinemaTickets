@@ -7,7 +7,7 @@ qt6_add_qml_module(qmlcustom
         MyLineText.qml
         MyMultiLineText.qml
         WebRequestForm.qml
-	CustomButton.qml
+        MyButton.qml
 	WindowLogger.qml
         LoadingScreen.qml
         RawResponceSection.qml
