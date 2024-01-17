@@ -13,6 +13,19 @@ Button {
     rightPadding: 5
 
     text: "Push me"
+    // свойства для всех трех состояний
+    property color defBackgroundColor;
+    property color hoverBackgroundColor;
+    property color presBackgroundColor;
+    property color defBorderColor;
+    property color hoverBorderColor;
+    property color presBorderColor;
+    property color defTextColor;
+    property color hoverTextColor;
+    property color presTextColor;
+    // ссылки свойств на основные элементы кнопки
+    property alias buttonRect: buttonBackground;
+    property alias textItem: textItem;
 
     background: buttonBackground
     Rectangle {
