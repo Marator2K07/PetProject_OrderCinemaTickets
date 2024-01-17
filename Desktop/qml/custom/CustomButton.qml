@@ -9,10 +9,7 @@ Button {
     implicitHeight: Math.max(
                         buttonBackground ? buttonBackground.implicitHeight : 0,
                         textItem.implicitHeight + topPadding + bottomPadding)
-    leftPadding: 5
-    rightPadding: 5
 
-    text: "Push me"
     // свойства для всех трех состояний
     property color defBackgroundColor;
     property color hoverBackgroundColor;
@@ -29,21 +26,15 @@ Button {
 
     background: buttonBackground
     Rectangle {
-        id: buttonBackground
-        implicitWidth: 100
-        implicitHeight: 40
-        opacity: enabled ? 1 : 0.3
-        radius: 2
-        border.color: "black"
+        id: buttonBackground        
+        border.color: defBorderColor
     }
 
     contentItem: textItem
     Text {
         id: textItem
         text: control.text
-
-        opacity: enabled ? 1.0 : 0.3
-        color: "#047eff"
+        color: defTextColor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
@@ -85,7 +76,7 @@ Button {
 
     transitions: Transition {
         ColorAnimation {
-            duration: 200
+            duration: 222
         }
     }
 }
