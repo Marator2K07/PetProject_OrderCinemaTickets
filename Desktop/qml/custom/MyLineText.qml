@@ -3,22 +3,16 @@ import QtQuick.Controls
 
 Rectangle {
     id: mainRect
-    radius: borderRadius
-    border.width: borderWidth
     color: backgroundColor
     clip: true
 
     // основные свойства для текста
-    property alias textData: textInput.text
-    property int textSize;
-    property color textColor;
-    property color textSelectionColor;
-    property bool readOnly;
+    property alias textItem: textInput
+    property color textColor: "#5e2970";
+    property color textSelectionColor: "#5e2970";
     // основные свойства для mainRect
-    property int borderWidth;
-    property int borderRadius;
-    property color backgroundColor;
-    property color hoveredBackgroundColor;
+    property color backgroundColor: "#ffffff";
+    property color hoveredBackgroundColor: "#e3c8eb";
     property bool hoverEnabled;
 
     MouseArea {
