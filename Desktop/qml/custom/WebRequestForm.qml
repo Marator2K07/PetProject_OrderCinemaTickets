@@ -191,12 +191,15 @@ Rectangle {
             }
         }
 
-        Button {
+        MyButton {
             id: sendRequestButton
             text: qsTr("Send request")
+            padding: 5
+            buttonRect.radius: 5
+            textItem.font.pixelSize: 20
+            colorAnim.duration: 150
             Layout.bottomMargin: 10
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
             // в случае удачной проверки посылаемых данных
             // вызывается сигнал RequestIsReady у requestModel
             onClicked: {
