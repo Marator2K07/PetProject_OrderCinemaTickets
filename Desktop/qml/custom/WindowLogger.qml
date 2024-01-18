@@ -19,18 +19,15 @@ Item {
 
         MyMultiLineText {
             id: requestDataTextInput
-            textData: loggerModel.messages
-            readOnly: true
+            textItem.text: loggerModel.messages
+            textItem.readOnly: true
+            textItem.font.pixelSize: 22
+            textItem.leftPadding: 8
             hoverEnabled: false
             vBarWidth: 10
             isActive: false
-            textSize: 22
-            textColor: "#5e2970"
-            textSelectionColor: "#5e2970"
-            borderWidth: 1
-            borderRadius: 4
-            backgroundColor: "#ffffff"
-            hoveredBackgroundColor: "#e3c8eb"
+            border.width: 1
+            radius: 4
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
