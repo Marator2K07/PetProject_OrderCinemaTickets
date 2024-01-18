@@ -3,29 +3,19 @@ import QtQuick.Controls
 
 Rectangle {
     id: mainRect
-    color: backgroundColor
-    radius: borderRadius
-    border.width: borderWidth
-    anchors.centerIn: parent
-    anchors.top: parent.bottom
-    anchors.left: parent.left    
+    color: backgroundColor 
     Keys.onUpPressed: vbar.decrease()
     Keys.onDownPressed: vbar.increase()
     clip: true
 
     // основные свойства для текста
-    property alias textData: textEdit.text
-    property int textSize;
-    property int textLineHeight: 30;
-    property color textColor;
-    property color textSelectionColor;
-    property bool readOnly;
+    property alias textItem: textEdit;
+    property color textColor: "#5e2970";
+    property color textSelectionColor: "#5e2970";
     property int vBarWidth;
     // основные свойства для mainRect
-    property int borderWidth;
-    property int borderRadius;
-    property color backgroundColor;
-    property color hoveredBackgroundColor;
+    property color backgroundColor: "#ffffff";
+    property color hoveredBackgroundColor: "#e3c8eb";
     property bool hoverEnabled;
     property bool isActive;
 
@@ -55,10 +45,8 @@ Rectangle {
 
         TextEdit {
             id: textEdit
-            readOnly: mainRect.readOnly
             activeFocusOnPress: true
             anchors.left: parent.left
-            font.pixelSize: textSize
             height: contentHeight
             color: textColor
             width: mainRect.width - vbar.width - 7
@@ -78,7 +66,7 @@ Rectangle {
                     vbar.decrease();
                 }
                 tempContentHeight = contentHeight;
-                vbar.stepSize = textLineHeight / contentHeight;
+                vbar.stepSize = font.pixelSize * 1.35 / contentHeight;
             }
         }
     }
