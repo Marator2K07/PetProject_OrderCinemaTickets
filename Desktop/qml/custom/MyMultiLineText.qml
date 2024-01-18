@@ -49,10 +49,9 @@ Rectangle {
             anchors.left: parent.left
             height: contentHeight
             color: textColor
-            width: mainRect.width - vbar.width - 7
+            width: mainRect.width - vbar.width - leftPadding
             y: -vbar.position * height
             wrapMode: TextEdit.Wrap
-            anchors.leftMargin: 7
             selectionColor: textSelectionColor
             selectByKeyboard: true
             selectByMouse: true
