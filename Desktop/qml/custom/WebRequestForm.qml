@@ -58,9 +58,13 @@ Rectangle {
                 Layout.leftMargin: 10
             }
 
-            CustomComboBox {
+            MyComboBox {
                 id: requestTypeComboBox
-                Layout.fillWidth: false
+                font.pixelSize: 20
+                rectItem.radius: 5
+                rectItem.border.width: 1
+                leftPadding: 7
+                implicitHeight: rowUrlLayout.height
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.rightMargin: 10
 
@@ -111,10 +115,15 @@ Rectangle {
                 Layout.leftMargin: 10
             }
 
-            CustomComboBox {
+            MyComboBox {
                 id: requestDataTypeComboBox
-                Layout.rightMargin: 10
+                font.pixelSize: 20
+                rectItem.radius: 5
+                rectItem.border.width: 1
+                leftPadding: 7
+                implicitHeight: rowUrlLayout.height
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                Layout.rightMargin: 10
 
                 // сначала создаем и ицициализируем свою модель данных
                 EnumItemsModel {
