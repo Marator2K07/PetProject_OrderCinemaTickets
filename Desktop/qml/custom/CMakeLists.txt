@@ -3,7 +3,7 @@ qt6_add_qml_module(qmlcustom
     URI "Qml.Custom"
     VERSION 1.0
     QML_FILES
-        CustomComboBox.qml
+        MyComboBox.qml
         MyLineText.qml
         MyMultiLineText.qml
         WebRequestForm.qml
