@@ -3,7 +3,7 @@
 function initComboBoxModel(originalModel, customModel) {
     for (var i = 0; i < customModel.itemsCount(); i++) {
         var item = customModel.getEnumItem(i);
-        originalModel.append({"info": item.text(),
+        originalModel.append({"key": item.text(),
                               "value": item.value()});
     }
 }
@@ -13,10 +13,12 @@ function controlFormElements(controlValue,
                              multiLineText) {
     if (controlValue === RequestEnumsModule.RequestEnums.GET) {
         dataTypeCombo.enabled = false;
+        dataTypeCombo.isActive = false;
         multiLineText.enabled = false;
         multiLineText.isActive = false;
     } else if (controlValue === RequestEnumsModule.RequestEnums.POST) {
         dataTypeCombo.enabled = true;
+        dataTypeCombo.isActive = true;
         multiLineText.enabled = true;
         multiLineText.isActive = true;
     }
