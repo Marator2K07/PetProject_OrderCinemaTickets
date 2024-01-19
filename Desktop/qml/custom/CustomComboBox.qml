@@ -3,24 +3,25 @@ import QtQuick.Controls
 
 ComboBox {
     id: control
-    width: 120
-    height: 40
-    font.pixelSize: 20
-    topInset: 0
-    bottomInset: 0
-    textRole: "info"
+    textRole: "key"
     valueRole: "value"
 
-    property color fillColor: "#ffffff"
-    property color fillDropColor: "#e3c8eb"
-    property color selectFillColor: "#5e2970"
-    property color borderColor: "#000000"
+    property alias rectItem: comboRect
+    property color defTextColor: "#000000"
+    property color hovTextColor: "#ffffff"
+    property color defBackgroundColor: "#ffffff"
+    property color hovBackgroundColor: "#5e2970"
+    property color dropDefBackgroundColor: "#e3c8eb"
+    property color dropHovBackgroundColor: "#5e2970"
+    property bool isActive: true
 
     contentItem: Text {
-        leftPadding: 10
+        leftPadding: control.leftPadding
+        height: control.height
         text: control.displayText
         font: control.font
-        color: "black"
+        color: hovered && isActive ? hovTextColor :
+                                     defTextColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
@@ -28,13 +29,10 @@ ComboBox {
     }
 
     background: Rectangle {
-        implicitWidth: control.width
-        implicitHeight: control.height
-        color: fillColor
-        border.color: borderColor
-        border.width: 1
+        id: comboRect
+        color: hovered && isActive ? hovBackgroundColor :
+                                     defBackgroundColor
         anchors.fill: parent
-        radius: 3
     }
 
     delegate: ItemDelegate {
@@ -42,13 +40,14 @@ ComboBox {
         contentItem: Rectangle
         {
             anchors.fill:parent
-            color: hovered ? selectFillColor : fillDropColor
-            height: 40
+            color: hovered && isActive ? dropHovBackgroundColor :
+                                         dropDefBackgroundColor
 
             Text {
+                text: key
                 anchors.centerIn: parent
-                text: info
-                color: "white"
+                color: hovered && isActive ? hovTextColor :
+                                             defTextColor
                 font: control.font
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
