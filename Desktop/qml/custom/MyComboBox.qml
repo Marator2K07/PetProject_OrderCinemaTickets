@@ -6,13 +6,14 @@ ComboBox {
     textRole: "key"
     valueRole: "value"
 
-    property alias rectItem: comboRect
     property color defTextColor: "#000000"
     property color hovTextColor: "#ffffff"
     property color defBackgroundColor: "#ffffff"
     property color hovBackgroundColor: "#5e2970"
     property color dropDefBackgroundColor: "#e3c8eb"
     property color dropHovBackgroundColor: "#5e2970"
+
+    property alias rectItem: comboRect
     property bool isActive: true
 
     contentItem: Text {

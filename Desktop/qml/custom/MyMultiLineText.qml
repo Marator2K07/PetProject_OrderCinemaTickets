@@ -8,14 +8,13 @@ Rectangle {
     Keys.onDownPressed: vbar.increase()
     clip: true
 
-    // основные свойства для текста
-    property alias textItem: textEdit;
     property color textColor: "#5e2970";
     property color textSelectionColor: "#5e2970";
-    property int vBarWidth;
-    // основные свойства для mainRect
     property color backgroundColor: "#ffffff";
     property color hoveredBackgroundColor: "#e3c8eb";
+
+    property alias textItem: textEdit;
+    property int vBarWidth;
     property bool hoverEnabled;
     property bool isActive;
 

@@ -6,13 +6,12 @@ Rectangle {
     color: backgroundColor
     clip: true
 
-    // основные свойства для текста
-    property alias textItem: textInput
     property color textColor: "#5e2970";
     property color textSelectionColor: "#5e2970";
-    // основные свойства для mainRect
     property color backgroundColor: "#ffffff";
     property color hoveredBackgroundColor: "#e3c8eb";
+
+    property alias textItem: textInput
     property bool hoverEnabled;
 
     MouseArea {

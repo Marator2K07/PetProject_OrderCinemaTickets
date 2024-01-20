@@ -7,8 +7,6 @@ import WindowLoggerModel
 Item {
     anchors.fill: parent
 
-
-    // класс с моделью оконного логера
     WindowLoggerModel {
         id: loggerModel
     }
