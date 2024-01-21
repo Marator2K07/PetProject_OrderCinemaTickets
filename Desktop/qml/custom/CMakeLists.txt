@@ -8,7 +8,7 @@ qt6_add_qml_module(qmlcustom
         MyMultiLineText.qml
         WebRequestForm.qml
         MyButton.qml
-	WindowLogger.qml
+        LoggerSection.qml
         LoadingScreen.qml
         RawResponceSection.qml
     RESOURCE_PREFIX "/"

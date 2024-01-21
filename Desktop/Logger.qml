@@ -3,7 +3,9 @@ import QtQuick.Window
 import Qml.Custom 1.0 // наш подгруженный модуль/плагин в папке qml
 
 Window {
-    WindowLogger {
+    LoggerSection {
+
+    }
 
     }
 
