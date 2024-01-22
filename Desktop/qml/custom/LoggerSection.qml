@@ -2,12 +2,12 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 // своя модель данных для данного визуального элемента
-import LoggerSectionModel
+import FullViewLoggerModel
 
 Item {
     anchors.fill: parent
 
-    LoggerSectionModel {
+    FullViewLoggerModel {
         id: loggerModel
     }
 

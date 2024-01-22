@@ -1,16 +1,16 @@
-#ifndef LOGGERSECTIONMODEL_H
-#define LOGGERSECTIONMODEL_H
+#ifndef FULLVIEWLOGGERMODEL_H
+#define FULLVIEWLOGGERMODEL_H
 
 #include <ILoggerModel.h>
 #include <QObject>
 #include <QQmlEngine>
 
 ///
-/// \brief The LoggerSectionModel class
+/// \brief The FullViewLoggerModel class
 /// частный случай модели логгера для представления
 /// в виде отдельного окна с многострочным текстом
-class LoggerSectionModel : public QObject,
-                           public ILoggerModel
+class FullViewLoggerModel : public QObject,
+                            public ILoggerModel
 
 {
     Q_OBJECT
@@ -18,8 +18,8 @@ class LoggerSectionModel : public QObject,
     Q_PROPERTY(QString messages READ messages WRITE setMessages
                    NOTIFY messagesChanged)
 public:
-    explicit LoggerSectionModel(QObject *parent = nullptr);
-    LoggerSectionModel(const LoggerSectionModel &other);
+    explicit FullViewLoggerModel(QObject *parent = nullptr);
+    FullViewLoggerModel(const FullViewLoggerModel &other);
 
     // ILoggerModel interface {
     void setMessages(const QString &messages) override;
@@ -37,4 +37,4 @@ signals:
     void messagesChanged(QString);
 };
 
-#endif // LOGGERSECTIONMODEL_H
+#endif // FULLVIEWLOGGERMODEL_H

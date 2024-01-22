@@ -1,7 +1,7 @@
 qt_add_library(loggermodel STATIC
     ILoggerModel.h
-    loggersection/loggersectionmodel.h
-    loggersection/loggersectionmodel.cpp
+    fullviewlogger/fullviewloggermodel.h
+    fullviewlogger/fullviewloggermodel.cpp
 )
 target_link_libraries(loggermodel PRIVATE
     Qt6::Core
