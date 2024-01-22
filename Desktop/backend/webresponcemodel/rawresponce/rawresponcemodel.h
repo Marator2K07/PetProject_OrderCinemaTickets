@@ -1,16 +1,16 @@
-#ifndef SIMPLEWINDOWMODEL_H
-#define SIMPLEWINDOWMODEL_H
+#ifndef RAWRESPONCEMODEL_H
+#define RAWRESPONCEMODEL_H
 
 #include "IWebResponceModel.h"
 #include <QObject>
 #include <QtQml>
 
 ///
-/// \brief The SimpleWindowModel class
+/// \brief The RawResponceModel class
 /// модель данных для простого окна просмотра
 /// веб-ответа без какого-либо форматирования
-class SimpleWindowModel : public QObject,
-                          public IWebResponceModel
+class RawResponceModel : public QObject,
+                         public IWebResponceModel
 {
     Q_OBJECT
     QML_ELEMENT
@@ -18,15 +18,15 @@ class SimpleWindowModel : public QObject,
     Q_PROPERTY(QByteArray data READ data WRITE setData NOTIFY dataChanged)
 
 public:
-    explicit SimpleWindowModel(QObject *parent = nullptr);
-    SimpleWindowModel(const SimpleWindowModel &other);
+    explicit RawResponceModel(QObject *parent = nullptr);
+    RawResponceModel(const RawResponceModel &other);
 
     // IWebResponceModel interface {
     void setError(const QString &error) override;
     QString error() const override;
     void setData(const QByteArray &data) override;
     QByteArray data() const override;
-    ~SimpleWindowModel() override;
+    ~RawResponceModel() override;
     // }
 
 private:
@@ -38,4 +38,4 @@ signals:
     void dataChanged(QByteArray);
 };
 
-#endif // SIMPLEWINDOWMODEL_H
+#endif // RAWRESPONCEMODEL_H
