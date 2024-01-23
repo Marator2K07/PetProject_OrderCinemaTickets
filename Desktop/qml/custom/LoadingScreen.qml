@@ -4,8 +4,8 @@ import QtQuick.Controls
 Rectangle {
     id: mainRect
     anchors.fill: parent
-    opacity: 0.95
-    color: "lightgray"
+    opacity: loadingStateOpacity
+    color: defBackgroundColor
 
     property color defBackgroundColor: "lightgray"
     property double loadingStateOpacity: 0.95
@@ -23,14 +23,11 @@ Rectangle {
     Label
     {
         id: loadingSpinner
-        width: 33
-        height: 39
-        font.pixelSize: 75
+        font.pixelSize: loadedStateFontSize
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         bottomPadding: height/5
-        color: "#cc00f8"
-        text: "◡"
+        text: loadingStateStr
         anchors.centerIn: parent
 
         NumberAnimation on rotation {
@@ -38,7 +35,6 @@ Rectangle {
             from: 0; to: 360
             alwaysRunToEnd: true
             loops: -1
-            duration: 550
         }
     }
 
@@ -49,12 +45,12 @@ Rectangle {
             when: mainRect.isLoading
             PropertyChanges {
                 target: loadingSpinner
-                font.pixelSize: 75
-                text: "◡"
+                font.pixelSize: loadingStateFontSize
+                text: loadingStateStr
             }
             PropertyChanges {
                 target: mainRect
-                opacity: 0.95
+                opacity: loadingStateOpacity
             }
         },
         State {
@@ -62,12 +58,12 @@ Rectangle {
             when: !mainRect.isLoading
             PropertyChanges {
                 target: loadingSpinner
-                font.pixelSize: 22
-                text: "Uploaded successfully"
+                font.pixelSize: loadedStateFontSize
+                text: loadedStateStr
             }
             PropertyChanges {
                 target: mainRect
-                opacity: 0.0
+                opacity: loadedStateOpacity
             }
         }
     ]
@@ -80,7 +76,7 @@ Rectangle {
             NumberAnimation {
                 properties: "font.pixelSize, opacity"
                 easing.type: Easing.Linear
-                duration: 850
+                duration: changeStateDuration
             }
         },
         Transition {
@@ -89,7 +85,7 @@ Rectangle {
             NumberAnimation {
                 properties: "font.pixelSize, opacity"
                 easing.type: Easing.Linear
-                duration: 850
+                duration: changeStateDuration
             }
         }
     ]
