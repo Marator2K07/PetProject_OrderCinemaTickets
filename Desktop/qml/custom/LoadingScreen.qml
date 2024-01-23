@@ -7,8 +7,17 @@ Rectangle {
     opacity: 0.95
     color: "lightgray"
 
-    property alias spinnerColor: loadingSpinner.color;
-    property alias backgroundColor: mainRect.color;
+    property color defBackgroundColor: "lightgray"
+    property double loadingStateOpacity: 0.95
+    property double loadedStateOpacity: 0.00
+    property int loadingStateFontSize: 75
+    property int loadedStateFontSize: 22
+    property string loadingStateStr: "◡"
+    property string loadedStateStr: "Uploaded"
+
+    property alias loadingSpinLabel: loadingSpinner;
+    property alias rotateAnim: rotateSpinnerAnimation;
+    property int changeStateDuration: 750
     property bool isLoading: true;
 
     Label
