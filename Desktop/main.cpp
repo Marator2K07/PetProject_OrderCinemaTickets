@@ -10,6 +10,7 @@
 #include "requestresponcehandling.h"
 #include "requestform/requestformmodel.h"
 #include "fullviewlogger/fullviewloggermodel.h"
+#include "rawresponce/rawresponcemodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
     qmlRegisterType<RequestFormModel>("RequestFormModel", 1, 0, "RequestFormModel");
     qmlRegisterType<FullViewLoggerModel>("FullViewLoggerModel", 1, 0, "FullViewLoggerModel");
+    qmlRegisterType<RawResponceModel>("RawResponceModel", 1, 0, "RawResponceModel");
 
     // запоминаем все пути до основных визуальных элементов приложения
     const QUrl urlMain(u"qrc:/DesktopApp/Main.qml"_qs);
