@@ -40,3 +40,9 @@ QByteArray RawResponceModel::data() const
 RawResponceModel::~RawResponceModel()
 {
 }
+
+void RawResponceModel::subscribe(RequestResponceHandling *responceHandler,
+                                 RequestEnums::Identifier identifier)
+{
+    responceHandler->takeSubscriber(this, identifier);
+}

@@ -27,6 +27,8 @@ public:
     void setData(const QByteArray &data) override;
     QByteArray data() const override;
     ~RawResponceModel() override;
+    Q_INVOKABLE void subscribe(RequestResponceHandling *responceHandler,
+                               RequestEnums::Identifier identifier) override;
     // }
 
 private:

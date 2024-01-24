@@ -21,8 +21,8 @@ public:
     virtual void setData(const QByteArray &data) = 0;
     virtual QByteArray data() const = 0;
     // модель ответа сама подает знак, что готова принимать информацию
-    virtual subscribe(RequestResponceHandling *responceHandler,
-                      RequestEnums::Identifier identifier) = 0;
+    virtual void subscribe(RequestResponceHandling *responceHandler,
+                           RequestEnums::Identifier identifier) = 0;
 
     virtual ~IWebResponceModel() {}
 };
