@@ -1,6 +1,7 @@
 #ifndef IWEBRESPONCEMODEL_H
 #define IWEBRESPONCEMODEL_H
 
+#include "RequestEnums.h"
 #include <QByteArray>
 
 ///
@@ -16,6 +17,9 @@ public:
     // каждый ответ может иметь полученные данные в виде массива байтов
     virtual void setData(const QByteArray &data) = 0;
     virtual QByteArray data() const = 0;
+    // модель ответа сама подает знак, что готова принимать информацию
+    virtual subscribe(IWebResponceModel *curModel,
+                      RequestEnums::Identifier) = 0;
 
     virtual ~IWebResponceModel() {}
 };
