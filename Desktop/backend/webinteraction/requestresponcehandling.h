@@ -10,6 +10,9 @@
 #include <QDebug>
 #include <QQueue>
 #include <QHash>
+#include <QList>
+
+class IWebResponceModel;
 
 ///
 /// \brief The RequestResponceHandling class

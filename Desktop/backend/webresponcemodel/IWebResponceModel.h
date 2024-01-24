@@ -5,6 +5,8 @@
 #include "requestresponcehandling.h"
 #include <QByteArray>
 
+class RequestResponceHandling;
+
 ///
 /// \brief The IWebResponceModel interface
 /// организация структуры данных и
