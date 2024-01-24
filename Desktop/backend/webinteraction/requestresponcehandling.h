@@ -25,8 +25,10 @@ public:
     explicit RequestResponceHandling(QObject *parent = nullptr);
 
 private:
-    // созданные в ходе запросов веб-ответы
+    // обрабатываемые в ходе запросов веб-ответы
     QQueue<QNetworkReply *> replies;
+    // хэш-список подписчиков (моделей, готовых получать ответ)
+    QHash<RequestEnums::Identifier, QList<IWebResponceModel *>> subscribers;
 
 private slots:
     // начало обработки ответа пришедшего от веб контекста
