@@ -5,6 +5,25 @@ RequestResponceHandling::RequestResponceHandling(QObject *parent)
 {    
 }
 
+void RequestResponceHandling::takeSubscriber(IWebResponceModel *newSubscriber,
+                                             RequestEnums::Identifier identifier)
+{
+    // в случае если у нас еще не был отмечен переданный идентификатор
+    // мы создаем новую запись в хэш-списке в виде нового списка,
+    // проициниализированный одной записью - записью нашего нового подписчика
+    if (!subscribers.contains(identifier)) {
+        subscribers.insert(identifier, QList<IWebResponceModel *>{newSubscriber});
+    }
+    // если такой идентификатор уже существует, далее смотрим наличие или
+    // отсутствие переданного подписчика в нем
+    else {
+        QList<IWebResponceModel *> currentList = subscribers.value(identifier);
+        if (currentList.indexOf(newSubscriber) == -1) {
+            subscribers[identifier].push_back(newSubscriber);
+        }
+    }
+}
+
 void RequestResponceHandling::processingResponce(QNetworkReply *reply,
                                                  RequestEnums::Identifier identifier)
 {

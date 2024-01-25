@@ -23,6 +23,9 @@ class RequestResponceHandling : public QObject
     Q_OBJECT
 public:
     explicit RequestResponceHandling(QObject *parent = nullptr);
+    // подключаем модель ответа для получения информации
+    void takeSubscriber(IWebResponceModel *newSubscriber,
+                        RequestEnums::Identifier identifier);
 
 private:
     // обрабатываемые в ходе запросов веб-ответы
