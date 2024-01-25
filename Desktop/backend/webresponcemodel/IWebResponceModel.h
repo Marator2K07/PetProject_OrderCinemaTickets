@@ -20,6 +20,9 @@ public:
     // каждый ответ может иметь полученные данные в виде массива байтов
     virtual void setData(const QByteArray &data) = 0;
     virtual QByteArray data() const = 0;
+    // модель ответа может находится в двух состояниях - загружается или загружена
+    virtual void setIsLoading(const bool &isLoading) = 0;
+    virtual bool isLoading() const = 0;
     // модель ответа сама подает знак, что готова принимать информацию
     virtual void subscribe(RequestResponceHandling *responceHandler,
                            RequestEnums::Identifier identifier) = 0;
