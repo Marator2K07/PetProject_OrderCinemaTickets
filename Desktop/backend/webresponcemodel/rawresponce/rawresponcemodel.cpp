@@ -37,6 +37,19 @@ QByteArray RawResponceModel::data() const
     return m_data;
 }
 
+void RawResponceModel::setIsLoading(const bool &isLoading)
+{
+    if (isLoading != m_isLoading) {
+        m_isLoading = isLoading;
+        emit isLoadingChanged(isLoading);
+    }
+}
+
+bool RawResponceModel::isLoading() const
+{
+    return m_isLoading;
+}
+
 RawResponceModel::~RawResponceModel()
 {
 }
