@@ -2,6 +2,7 @@ qt_add_library(webinteraction STATIC
     RequestEnums.h
     webcontext.h webcontext.cpp
     requestresponcehandling.h requestresponcehandling.cpp
+    replywithidentifier.h replywithidentifier.cpp
 )
 target_link_libraries(webinteraction PRIVATE
     Qt6::Core
