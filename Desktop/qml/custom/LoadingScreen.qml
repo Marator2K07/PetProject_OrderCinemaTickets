@@ -13,7 +13,7 @@ Rectangle {
     property int loadingStateFontSize: 75
     property int loadedStateFontSize: 22
     property string loadingStateStr: "◡"
-    property string loadedStateStr: "Uploaded"
+    property string loadedStateStr: ""
 
     property alias loadingSpinLabel: loadingSpinner;
     property alias rotateAnim: rotateSpinnerAnimation;
