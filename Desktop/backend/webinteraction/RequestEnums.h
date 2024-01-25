@@ -23,7 +23,8 @@ public:
     // для идентфикации данного запроса
     // во время дальнейшей обработки
     enum Identifier {
-        REQUESTFORM = 0
+        REQUESTFORM = 0,
+        IDENTIFIERNONE
     };
     Q_ENUM(Identifier)
 };
