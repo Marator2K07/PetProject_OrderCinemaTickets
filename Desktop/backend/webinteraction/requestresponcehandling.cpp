@@ -28,7 +28,14 @@ void RequestResponceHandling::processingResponce(QNetworkReply *reply,
                                                  RequestEnums::Identifier identifier)
 {
     connect(reply, SIGNAL(finished()), this, SLOT(endOfProcessing()));
-    replies.append(reply);
+    // уведомляем подписчиков, что загрузка информации началась
+    if (subscribers.contains(identifier)) {
+        foreach (IWebResponceModel *responceModel, subscribers[identifier]) {
+            responceModel->setIsLoading(true);
+        }
+    }
+    // ставим загрузку в условную очередь
+    repliesWithIdentifiers.append(ReplyWithIdentifier(reply, identifier));
     // помимо связи основанной на окончании загрузки ответа, также
     // ниже в будущем можно будет поместить обработчик прогресса загрузки
 }
