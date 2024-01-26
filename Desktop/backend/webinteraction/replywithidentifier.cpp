@@ -7,6 +7,21 @@ ReplyWithIdentifier::ReplyWithIdentifier(QObject *parent)
 {
 }
 
+ReplyWithIdentifier::ReplyWithIdentifier(const ReplyWithIdentifier &other,
+                                         QObject *parent)
+    : reply{other.reply}
+    , identifier{other.identifier}
+    , QObject{parent}
+{
+}
+
+ReplyWithIdentifier &ReplyWithIdentifier::operator =(const ReplyWithIdentifier &other)
+{
+    reply = other.getReply();
+    identifier = other.getIdentifier();
+    return *this;
+}
+
 QNetworkReply *ReplyWithIdentifier::getReply() const
 {
     return reply;
