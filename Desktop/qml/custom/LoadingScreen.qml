@@ -17,8 +17,8 @@ Rectangle {
 
     property alias loadingSpinLabel: loadingSpinner;
     property alias rotateAnim: rotateSpinnerAnimation;
-    property int changeStateDuration: 750
-    property bool isLoading: true;
+    property int changeStateDuration: 350
+    property bool isLoading: false;
 
     Label
     {
