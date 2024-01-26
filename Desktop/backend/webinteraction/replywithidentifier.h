@@ -16,6 +16,8 @@ class ReplyWithIdentifier : public QObject
     Q_OBJECT
 public:
     explicit ReplyWithIdentifier(QObject *parent = nullptr);
+    ReplyWithIdentifier(QNetworkReply *reply,
+                        const RequestEnums::Identifier &identifier);
 
     ReplyWithIdentifier(const ReplyWithIdentifier &other,
                         QObject *parent = nullptr);

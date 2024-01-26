@@ -41,3 +41,10 @@ void ReplyWithIdentifier::setIdentifier(const RequestEnums::Identifier &newIdent
 {
     identifier = newIdentifier;
 }
+
+ReplyWithIdentifier::ReplyWithIdentifier(QNetworkReply *reply,
+                                         const RequestEnums::Identifier &identifier)
+    : reply(reply)
+    , identifier(identifier)
+{
+}
