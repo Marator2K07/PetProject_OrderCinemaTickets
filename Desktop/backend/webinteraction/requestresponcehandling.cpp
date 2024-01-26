@@ -54,7 +54,8 @@ void RequestResponceHandling::endOfProcessing()
         replyContent = curReply->readAll();
     }
     else{
-        replyError = curReply->errorString();
+        replyError = QString("%1%2").arg(curReply->errorString(),
+                                         curReply->readAll());
     }
     // отправляем ответ и уведомляем, что загрузка/обработка информации закончилась
     if (subscribers.contains(curIdentifier)) {
