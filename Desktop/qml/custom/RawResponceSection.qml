@@ -7,13 +7,12 @@ import RawResponceModel
 import RequestEnums
 
 Item {
+    id: mainItem
     anchors.fill: parent
-
-    property alias isLoading: loadingScreen.isLoading
-    property bool withError: false
 
     RawResponceModel {
         id: responceModel
+        isLoading: false
     }
 
     MyMultiLineText {
@@ -34,6 +33,8 @@ Item {
 
     Label {
         id: errorMessage
+        width: mainItem.width
+        wrapMode: Text.Wrap
         font.pixelSize: loadingScreen.loadedStateFontSize
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -43,6 +44,7 @@ Item {
 
     LoadingScreen {
         id: loadingScreen
+        isLoading: responceModel.isLoading
         rotateAnim.duration: 650
         loadingSpinLabel.height: 39
     }
