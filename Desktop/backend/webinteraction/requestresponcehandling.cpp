@@ -34,29 +34,37 @@ void RequestResponceHandling::processingResponce(QNetworkReply *reply,
             responceModel->setIsLoading(true);
         }
     }
-    // ставим загрузку в условную очередь
+    // ставим ответ с идентификатором в условную очередь
     repliesWithIdentifiers.append(ReplyWithIdentifier(reply, identifier));
+
     // помимо связи основанной на окончании загрузки ответа, также
     // ниже в будущем можно будет поместить обработчик прогресса загрузки
 }
 
 void RequestResponceHandling::endOfProcessing()
 {
-    // 1) берем самый первый ответ в очереди
-    QNetworkReply *curReply = replies.dequeue();
-
-    // 2) Обработка данных и их отправка (через сигнал)
-    // пока просто тестовый вывод в консоль
+    // берем готовый ответ и идентификатор из очереди
+    ReplyWithIdentifier curReplyWithIdentifier = repliesWithIdentifiers.dequeue();
+    QNetworkReply *curReply = curReplyWithIdentifier.getReply();
+    RequestEnums::Identifier curIdentifier = curReplyWithIdentifier.getIdentifier();
+    // обработка полученных данных для ответа
+    QString replyError;
+    QByteArray replyContent;
     if(curReply->error() == QNetworkReply::NoError){
-        QString contents = QString::fromUtf8(curReply->readAll());
-        qDebug() << contents;
+        replyContent = curReply->readAll();
     }
     else{
-        QString err = curReply->errorString();
-        qDebug() << err;
+        replyError = curReply->errorString();
     }
-
-    // 3) Убираем всю лишнюю информацию и связи
+    // отправляем ответ и уведомляем, что загрузка/обработка информации закончилась
+    if (subscribers.contains(curIdentifier)) {
+        foreach (IWebResponceModel *responceModel, subscribers[curIdentifier]) {
+            responceModel->setError(replyError);
+            responceModel->setData(replyContent);
+            responceModel->setIsLoading(false);
+        }
+    }
+    // подчищаем всю использованную информацию и связи
     disconnect(curReply, SIGNAL(finished()), this, SLOT(endOfProcessing()));
     curReply->deleteLater();
 }
