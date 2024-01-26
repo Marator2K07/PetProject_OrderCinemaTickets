@@ -1,11 +1,10 @@
 #ifndef REQUESTRESPONCEHANDLING_H
 #define REQUESTRESPONCEHANDLING_H
 
+#include "replywithidentifier.h"
 #include "IWebResponceModel.h"
-#include "RequestEnums.h"
 
 #include <QNetworkAccessManager>
-#include <QNetworkReply>
 #include <QObject>
 #include <QDebug>
 #include <QQueue>
@@ -29,7 +28,7 @@ public:
 
 private:
     // обрабатываемые в ходе запросов веб-ответы
-    QQueue<QNetworkReply *> replies;
+    QQueue<ReplyWithIdentifier> repliesWithIdentifiers;
     // хэш-список подписчиков (моделей, готовых получать ответ)
     QHash<RequestEnums::Identifier, QList<IWebResponceModel *>> subscribers;
 
