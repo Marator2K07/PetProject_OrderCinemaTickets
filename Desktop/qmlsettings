@@ -5,6 +5,7 @@ qt6_add_qml_module(mainApp
     QML_FILES
         Main.qml
         Logger.qml
+        Loadable.qml
     RESOURCE_PREFIX "/"    
 )
 
