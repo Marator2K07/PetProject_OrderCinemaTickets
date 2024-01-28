@@ -13,6 +13,10 @@ class ModuleStorage : public QObject
 public:
     explicit ModuleStorage(QObject *parent = nullptr);
 
+    Q_INVOKABLE void add(QString moduleName, QString moduleUrl);
+    Q_INVOKABLE QString url(QString moduleName) const;
+    Q_INVOKABLE void remove(QString moduleName);
+
 private:
     QHash<QString, QString> modules;
 };
