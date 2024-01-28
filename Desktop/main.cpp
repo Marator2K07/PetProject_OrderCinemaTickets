@@ -2,24 +2,13 @@
 
 #include "src/app_environment.h"
 
-#include "RequestEnums.h"
-#include "enumitemsmodel.h"
-#include "requestform/requestformmodel.h"
-#include "fullviewlogger/fullviewloggermodel.h"
-#include "rawresponce/rawresponcemodel.h"
-
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    // регистрация типов перечислений из библиотеки webinteraction
-    qmlRegisterType<RequestEnums>("RequestEnums", 1, 0, "RequestEnums");
-    // и не только перечислений
-    qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
-    qmlRegisterType<RequestFormModel>("RequestFormModel", 1, 0, "RequestFormModel");
-    qmlRegisterType<FullViewLoggerModel>("FullViewLoggerModel", 1, 0, "FullViewLoggerModel");
-    qmlRegisterType<RawResponceModel>("RawResponceModel", 1, 0, "RawResponceModel");
+    // регистрируем свои qml типы
+    set_custom_qml_types();
 
     // запоминаем все пути до основных визуальных элементов приложения
     const QUrl urlMain(u"qrc:/DesktopApp/Main.qml"_qs);

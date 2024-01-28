@@ -6,9 +6,24 @@
 #include "webcontext.h"
 #include "logger.h"
 
+#include "enumitemsmodel.h"
+#include "requestform/requestformmodel.h"
+#include "fullviewlogger/fullviewloggermodel.h"
+#include "rawresponce/rawresponcemodel.h"
+
 void set_qt_environment()
 {
     //qputenv("QT_QUICK_CONTROLS_CONF", ":/qtquickcontrols2.conf");
+}
+
+void set_custom_qml_types() {
+    // регистрация типов перечислений из библиотеки webinteraction
+    qmlRegisterType<RequestEnums>("RequestEnums", 1, 0, "RequestEnums");
+    // и не только перечислений
+    qmlRegisterType<EnumItemsModel>("EnumItemsModel", 1, 0, "EnumItemsModel");
+    qmlRegisterType<RequestFormModel>("RequestFormModel", 1, 0, "RequestFormModel");
+    qmlRegisterType<FullViewLoggerModel>("FullViewLoggerModel", 1, 0, "FullViewLoggerModel");
+    qmlRegisterType<RawResponceModel>("RawResponceModel", 1, 0, "RawResponceModel");
 }
 
 QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine) {
