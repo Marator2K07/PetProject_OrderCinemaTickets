@@ -6,6 +6,7 @@
 #include "webcontext.h"
 #include "logger.h"
 
+#include "modulestorage.h"
 #include "enumitemsmodel.h"
 #include "requestform/requestformmodel.h"
 #include "fullviewlogger/fullviewloggermodel.h"
@@ -27,9 +28,10 @@ void set_custom_qml_types() {
 }
 
 QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine) {
-    // создаем и инициализируем эти важные обьекты
+    // создаем и инициализируем при возможности эти важные обьекты
     Logger *logger = new Logger("/","log.txt");
     WebContext *webContext = new WebContext;
+    ModuleStorage *moduleStorage = new ModuleStorage;
     RequestResponceHandling *responceHandler = new RequestResponceHandling;
     // связываем, что нужно
     QObject::connect(webContext, SIGNAL(startProcessingReply(QNetworkReply *, RequestEnums::Identifier)),
@@ -37,11 +39,13 @@ QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &eng
     // назначаем корневые qml свойства
     engine.rootContext()->setContextProperty("logger", logger);
     engine.rootContext()->setContextProperty("webContext", webContext);
+    engine.rootContext()->setContextProperty("moduleStorage", moduleStorage);
     engine.rootContext()->setContextProperty("responceHandler", responceHandler);
     // на возврате на всякий случай получаем хэш-словарь наших корневых обьектов
     QHash<QString, QObject *> rootObjects;
     rootObjects.insert("logger", logger);
     rootObjects.insert("webContext", webContext);
+    rootObjects.insert("moduleStorage", moduleStorage);
     rootObjects.insert("responceHandler", responceHandler);
     return rootObjects;
 }
