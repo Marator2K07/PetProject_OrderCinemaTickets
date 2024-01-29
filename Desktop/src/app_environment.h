@@ -11,6 +11,7 @@
 #include "requestform/requestformmodel.h"
 #include "fullviewlogger/fullviewloggermodel.h"
 #include "rawresponce/rawresponcemodel.h"
+#include "buttonmenuitem/buttonmenuitemmodel.h"
 
 void set_qt_environment()
 {
@@ -25,6 +26,7 @@ void set_custom_qml_types() {
     qmlRegisterType<RequestFormModel>("RequestFormModel", 1, 0, "RequestFormModel");
     qmlRegisterType<FullViewLoggerModel>("FullViewLoggerModel", 1, 0, "FullViewLoggerModel");
     qmlRegisterType<RawResponceModel>("RawResponceModel", 1, 0, "RawResponceModel");
+    qmlRegisterType<ButtonMenuItemModel>("ButtonMenuItemModel", 1, 0, "ButtonMenuItemModel");
 }
 
 QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine) {
