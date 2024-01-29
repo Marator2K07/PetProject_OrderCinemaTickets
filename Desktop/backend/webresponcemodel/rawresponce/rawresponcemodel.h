@@ -2,8 +2,8 @@
 #define RAWRESPONCEMODEL_H
 
 #include "IWebResponceModel.h"
+#include <QQmlEngine>
 #include <QObject>
-#include <QtQml>
 
 ///
 /// \brief The RawResponceModel class

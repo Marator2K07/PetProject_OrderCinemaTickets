@@ -18,7 +18,7 @@ public:
     virtual QString image() const = 0;
     // возможная упрощенная форма (только картинка без текста)
     virtual void setSimplified(const bool &simplified) = 0;
-    virtual bool simplified() = 0;
+    virtual bool simplified() const = 0;
 
     virtual ~IMenuItemModel() {}
 };
