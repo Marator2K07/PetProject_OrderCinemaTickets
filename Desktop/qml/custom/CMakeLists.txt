@@ -11,6 +11,7 @@ qt6_add_qml_module(qmlcustom
         LoggerSection.qml
         LoadingScreen.qml
         RawResponceSection.qml
+        ButtonMenuItem.qml
     RESOURCE_PREFIX "/"
     RESOURCES
         web_request_form.js
