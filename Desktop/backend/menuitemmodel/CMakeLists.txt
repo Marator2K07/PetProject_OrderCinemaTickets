@@ -1,4 +1,5 @@
 qt_add_library(menuitemmodel STATIC
+    IMenuItemModel.h
 )
 target_link_libraries(menuitemmodel PRIVATE
     Qt6::Core
