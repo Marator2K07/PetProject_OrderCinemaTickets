@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(DesktopApp VERSION 0.1 LANGUAGES CXX)
 
+set(CMAKE_AUTORCC ON) # – автоматический запуск Resource Compiler с помощью rcc.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
