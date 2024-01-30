@@ -18,6 +18,7 @@ add_subdirectory(backend)
 
 qt6_add_executable(mainApp
     main.cpp
+    resources.qrc
 )
 qt6_add_resources(mainApp "configuration"
     PREFIX "/"
