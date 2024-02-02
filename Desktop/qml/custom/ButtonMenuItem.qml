@@ -10,24 +10,25 @@ Item {
     width: button.width
 
     property color backgroundColor: "lightgray"
+    property alias menuItemModel: menuItemModel
+    property int iconSize: 26
 
     ButtonMenuItemModel {
         id: menuItemModel
     }
 
-    RowLayout {
-        id: rowUrlLayout
-        height: button.height
-        spacing: 10
-        anchors.horizontalCenter: parent.horizontalCenter
+    MyButton {
+        id: button
+        display: menuItemModel.simplified ? AbstractButton.TextOnly :
+                                            AbstractButton.TextBesideIcon
+        icon.source: menuItemModel.image
+        icon.width: iconSize
+        icon.height: iconSize
 
-        MyButton {
-            id: button
-            text: menuItemModel.text
-            textItem.font.pixelSize: 18
-            colorAnim.duration: 150
-            defBackgroundColor: backgroundColor
-            buttonRect.border.width: 0
-        }
+        text: menuItemModel.text
+        font.pixelSize: 20
+        colorAnim.duration: 150
+        defBackgroundColor: backgroundColor
+        buttonRect.border.width: 0
     }
 }
