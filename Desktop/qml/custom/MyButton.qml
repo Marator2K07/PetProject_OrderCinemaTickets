@@ -5,10 +5,10 @@ Button {
     id: control
     implicitWidth: Math.max(
                        buttonBackground ? buttonBackground.implicitWidth : 0,
-                       textItem.implicitWidth + leftPadding + rightPadding)
+                       contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(
                         buttonBackground ? buttonBackground.implicitHeight : 0,
-                        textItem.implicitHeight + topPadding + bottomPadding)
+                        contentItem.implicitHeight + topPadding + bottomPadding)
 
     property color defBackgroundColor: "white";
     property color hoverBackgroundColor: "#e3c8eb";
@@ -21,22 +21,12 @@ Button {
     property color presTextColor: "#e3c8eb";
 
     property alias buttonRect: buttonBackground;
-    property alias textItem: textItem;
     property alias colorAnim: colorAnim;
 
     background: buttonBackground
     Rectangle {
         id: buttonBackground        
         border.color: defBorderColor
-    }
-
-    contentItem: textItem
-    Text {
-        id: textItem
-        text: control.text
-        color: defTextColor
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
     }
 
     states: [
@@ -49,7 +39,7 @@ Button {
                 border.color: defBorderColor
             }
             PropertyChanges {
-                target: textItem
+                target: contentItem
                 color: defTextColor
             }
         },
@@ -62,7 +52,7 @@ Button {
                 border.color: presBorderColor
             }
             PropertyChanges {
-                target: textItem
+                target: contentItem
                 color: presTextColor
             }            
         },
@@ -75,7 +65,7 @@ Button {
                 border.color: hoverBorderColor
             }
             PropertyChanges {
-                target: textItem
+                target: contentItem
                 color: hoverTextColor
             }
         }
