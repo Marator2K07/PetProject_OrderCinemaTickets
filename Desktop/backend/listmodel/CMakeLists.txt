@@ -1,4 +1,6 @@
 qt_add_library(listmodel STATIC
+    menulistmodel/menulistmodel.h
+    menulistmodel/menulistmodel.cpp
 )
 target_link_libraries(listmodel PRIVATE
     Qt6::Core
