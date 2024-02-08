@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     // регистрируем свои qml типы
-    set_custom_qml_types();
+    set_qml_types();
 
     // запоминаем все пути до основных визуальных элементов приложения
     const QUrl urlMain(u"qrc:/DesktopApp/Main.qml"_qs);

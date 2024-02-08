@@ -19,7 +19,7 @@ void set_qt_environment()
     //qputenv("QT_QUICK_CONTROLS_CONF", ":/qtquickcontrols2.conf");
 }
 
-void set_custom_qml_types() {
+void set_qml_types() {
     // регистрация типов перечислений из библиотеки webinteraction
     qmlRegisterType<RequestEnums>("RequestEnums", 1, 0, "RequestEnums");
     // и не только перечислений
