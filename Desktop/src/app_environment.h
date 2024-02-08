@@ -31,11 +31,17 @@ void set_qml_types() {
     qmlRegisterType<MenuListModel>("MenuListModel", 1, 0, "MenuListModel");
 }
 
+ModuleStorage *initStorage() {
+    ModuleStorage *moduleStorage = new ModuleStorage();
+    moduleStorage->add("ButtonMenuItem", u"qrc:/DesktopApp/qml/custom/ButtonMenuItem.qml"_qs);
+    return moduleStorage;
+}
+
 QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine) {
     // создаем и инициализируем при возможности эти важные обьекты
     Logger *logger = new Logger("/","log.txt");
     WebContext *webContext = new WebContext;
-    ModuleStorage *moduleStorage = new ModuleStorage;
+    ModuleStorage *moduleStorage = initStorage();
     RequestResponceHandling *responceHandler = new RequestResponceHandling;
     // связываем, что нужно
     QObject::connect(webContext, SIGNAL(startProcessingReply(QNetworkReply *, RequestEnums::Identifier)),
