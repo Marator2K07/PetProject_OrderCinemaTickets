@@ -7,7 +7,6 @@ Rectangle {
     id: mainRect
     color: "lightgray"
     anchors.top: parent.top
-    anchors.topMargin: 0
     width: parent.width
     height: 75
 
@@ -29,13 +28,23 @@ Rectangle {
                 item.menuItemModel.text = text;
                 item.menuItemModel.simplified = simplified;
                 item.menuItemModel.image = image;
+                item.anchors.centerIn = parent
             }
         }
     }
 
-    ListView {
+    ColumnLayout {
         anchors.fill: mainRect
-        model: menuListModel
-        delegate: menuItemDelegate
+        ListView {
+            id: listViewMenu
+            model: menuListModel
+            delegate: menuItemDelegate
+            orientation: ListView.Horizontal
+            Layout.alignment: Qt.AlignCenter
+            Layout.minimumWidth: contentWidth
+            Layout.preferredHeight: mainRect.height
+
+            spacing: 10
+        }
     }
 }
