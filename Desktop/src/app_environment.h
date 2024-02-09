@@ -33,7 +33,7 @@ void set_qml_types() {
 
 ModuleStorage *initStorage() {
     ModuleStorage *moduleStorage = new ModuleStorage();
-    moduleStorage->add("ButtonMenuItem", u"qrc:/DesktopApp/qml/custom/ButtonMenuItem.qml"_qs);
+    // ...
     return moduleStorage;
 }
 
