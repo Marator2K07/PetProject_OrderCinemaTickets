@@ -11,25 +11,31 @@ Rectangle {
     width: parent.width
     height: 75
 
-    RowLayout {
-        id: rowLayout
-        height: mainRect.height
-        spacing: 10
-        anchors.horizontalCenter: parent.horizontalCenter
+    property alias menuModel: menuListModel
 
-        ButtonMenuItem {
-            menuItemModel.text: qsTr("Test text")
-            menuItemModel.simplified: true
-            menuItemModel.image: "qrc:/icons/test_icon"
+    ListModel {
+        id: menuListModel
+    }
+
+    Component {
+        id: menuItemDelegate
+        Loader {
+            id: itemsLoader
+            asynchronous: true
+            source: switch(type) {
+                case "button": return "ButtonMenuItem.qml";
+            }
+            onLoaded: {
+                item.menuItemModel.text = text;
+                item.menuItemModel.simplified = simplified;
+                item.menuItemModel.image = image;
+            }
         }
-        ButtonMenuItem {
-            menuItemModel.text: qsTr("Test text")
-            menuItemModel.simplified: true
-        }
-        ButtonMenuItem {
-            menuItemModel.text: qsTr("Test text")
-            menuItemModel.simplified: false
-            menuItemModel.image: "qrc:/icons/test_icon"
-        }
+    }
+
+    ListView {
+        anchors.fill: mainRect
+        model: menuListModel
+        delegate: menuItemDelegate
     }
 }
