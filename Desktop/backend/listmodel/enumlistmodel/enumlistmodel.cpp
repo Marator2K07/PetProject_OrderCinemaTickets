@@ -1,21 +1,8 @@
 #include "enumlistmodel.h"
 
 EnumListModel::EnumListModel(QObject *parent)
-    : QObject{parent}
+    : QAbstractListModel{parent}
 {
-}
-
-QList<EnumItem> EnumListModel::model() const
-{
-    return m_model;
-}
-
-void EnumListModel::setModel(const QList<EnumItem> &model)
-{
-    if (model != m_model) {
-        m_model = model;
-        emit modelChanged();
-    }
 }
 
 void EnumListModel::initializeAsRequestTypes()
@@ -32,21 +19,12 @@ void EnumListModel::initializeAsRequestBodyTypes()
     m_model.append(EnumItem((int)RequestEnums::DataType::JSON, "JSON"));
 }
 
-void EnumListModel::addEnumItem(int value, QString text)
+int EnumListModel::rowCount(const QModelIndex &parent) const
 {
-    m_model.append(EnumItem(value, text));
+
 }
 
-EnumItem EnumListModel::getEnumItem(int pos) const
+QVariant EnumListModel::data(const QModelIndex &index, int role) const
 {
-    if (pos >= 0 && pos-1 <= m_model.length()) {
-        return m_model[pos];
-    }
-    // в случае неудачи пока что возвращаем особый элемент с ошибкой
-    return EnumItem(2222, "Not found");
-}
 
-int EnumListModel::itemsCount() const
-{
-    return m_model.length();
 }
