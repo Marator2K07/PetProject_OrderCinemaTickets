@@ -7,12 +7,11 @@
 #include "logger.h"
 
 #include "modulestorage.h"
-#include "enumitemsmodel.h"
+#include "enumslistmodel/enumitemsmodel.h"
 #include "requestform/requestformmodel.h"
 #include "fullviewlogger/fullviewloggermodel.h"
 #include "rawresponce/rawresponcemodel.h"
 #include "buttonmenuitem/buttonmenuitemmodel.h"
-#include "menulistmodel/menulistmodel.h"
 
 void set_qt_environment()
 {
@@ -28,7 +27,6 @@ void set_qml_types() {
     qmlRegisterType<FullViewLoggerModel>("FullViewLoggerModel", 1, 0, "FullViewLoggerModel");
     qmlRegisterType<RawResponceModel>("RawResponceModel", 1, 0, "RawResponceModel");
     qmlRegisterType<ButtonMenuItemModel>("ButtonMenuItemModel", 1, 0, "ButtonMenuItemModel");
-    qmlRegisterType<MenuListModel>("MenuListModel", 1, 0, "MenuListModel");
 }
 
 ModuleStorage *initStorage() {
