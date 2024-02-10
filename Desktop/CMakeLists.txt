@@ -46,7 +46,6 @@ target_link_libraries(mainApp PRIVATE
     logger
     loggermodel
     listmodel
-    enumsmodel
     modulestorage
     menuitemmodel
     webrequestmodel
