@@ -1,8 +1,8 @@
 qt_add_library(listmodel STATIC
-    enumslistmodel/enumitem.h
-    enumslistmodel/enumitem.cpp
-    enumslistmodel/enumitemsmodel.h
-    enumslistmodel/enumitemsmodel.cpp
+    enumlistmodel/enumitem.h
+    enumlistmodel/enumitem.cpp
+    enumlistmodel/enumlistmodel.h
+    enumlistmodel/enumlistmodel.cpp
 )
 target_link_libraries(listmodel PRIVATE
     Qt6::Core

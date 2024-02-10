@@ -1,5 +1,5 @@
-#ifndef ENUMITEMSMODEL_H
-#define ENUMITEMSMODEL_H
+#ifndef ENUMLISTMODEL_H
+#define ENUMLISTMODEL_H
 
 #include "RequestEnums.h"
 #include "enumitem.h"
@@ -12,7 +12,7 @@
 /// \brief The ComboBoxModel class
 /// класс управления моделью в виде
 /// списка значений перечислений
-class EnumItemsModel : public QObject
+class EnumListModel : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
@@ -20,7 +20,7 @@ class EnumItemsModel : public QObject
                    WRITE setModel NOTIFY modelChanged)
 
 public:
-    explicit EnumItemsModel(QObject *parent = nullptr);
+    explicit EnumListModel(QObject *parent = nullptr);
 
     QList<EnumItem> model() const;
     void setModel(const QList<EnumItem> &model);
@@ -43,4 +43,4 @@ signals:
     void modelChanged();
 };
 
-#endif // ENUMITEMSMODEL_H
+#endif // ENUMLISTMODEL_H

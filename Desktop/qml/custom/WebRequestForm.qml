@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 // своя подключенная модель данных для комбобокс
-import EnumItemsModel
+import EnumListModel
 // своя модель данных для данного визуального элемента
 import RequestFormModel
 // подключение перечислений для идентификаторов запроса
@@ -69,7 +69,7 @@ Rectangle {
                 Layout.rightMargin: 10
 
                 // сначала создаем и ицициализируем свою модель данных
-                EnumItemsModel {
+                EnumListModel {
                     id: customTypeModel
                     Component.onCompleted: {
                         customTypeModel.initializeAsRequestTypes();
@@ -126,7 +126,7 @@ Rectangle {
                 Layout.rightMargin: 10
 
                 // сначала создаем и ицициализируем свою модель данных
-                EnumItemsModel {
+                EnumListModel {
                     id: customDataTypeModel
                     Component.onCompleted: {
                         customDataTypeModel.initializeAsRequestBodyTypes();
@@ -196,7 +196,7 @@ Rectangle {
             text: qsTr("Send request")
             padding: 5
             buttonRect.radius: 5
-            textItem.font.pixelSize: 20
+            font.pixelSize: 20
             colorAnim.duration: 150
             Layout.bottomMargin: 10
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
