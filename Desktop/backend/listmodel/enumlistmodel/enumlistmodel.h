@@ -33,7 +33,7 @@ public:
     // }
 
 private:
-    QList<EnumItem> m_model;
+    QList<EnumItem> enumItems;
 };
 
 #endif // ENUMLISTMODEL_H

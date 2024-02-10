@@ -27,5 +27,6 @@ private:
     int m_value;
     QString m_text;
 };
+Q_DECLARE_METATYPE(EnumItem)
 
 #endif // ENUMITEM_H
