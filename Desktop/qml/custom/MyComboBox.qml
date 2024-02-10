@@ -3,8 +3,6 @@ import QtQuick.Controls
 
 ComboBox {
     id: control
-    textRole: "key"
-    valueRole: "value"
 
     property color defTextColor: "#000000"
     property color hovTextColor: "#ffffff"
@@ -37,15 +35,18 @@ ComboBox {
     }
 
     delegate: ItemDelegate {
-        width: control.width
+        required property variant value;
+        required property string info;
+
+        width: control.width        
         contentItem: Rectangle
         {
             anchors.fill:parent
             color: hovered && isActive ? dropHovBackgroundColor :
                                          dropDefBackgroundColor
 
-            Text {
-                text: key
+            Text {                
+                text: info
                 anchors.centerIn: parent
                 color: hovered && isActive ? hovTextColor :
                                              defTextColor
