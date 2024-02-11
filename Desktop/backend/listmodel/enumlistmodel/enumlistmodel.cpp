@@ -21,18 +21,16 @@ void EnumListModel::initializeAsRequestBodyTypes()
 
 int EnumListModel::rowCount(const QModelIndex &parent) const
 {
-    if (parent.internalPointer() == nullptr) {
-        return enumItems.count();
-    } else {
-        return 0;
-    }
+    return enumItems.count();
 }
 
 QVariant EnumListModel::data(const QModelIndex &index, int role) const
 {
     switch (role) {
     case Qt::DisplayRole:
-        return QVariant::fromValue(enumItems.value(index.row()));
+        return enumItems.value(index.row()).info();
+    case Qt::EditRole:
+        return enumItems.value(index.row()).value();
     // another case:
     }
     return QVariant{};
