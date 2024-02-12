@@ -27,10 +27,12 @@ int EnumListModel::rowCount(const QModelIndex &parent) const
 QVariant EnumListModel::data(const QModelIndex &index, int role) const
 {
     switch (role) {
-    case Qt::DisplayRole:
-        return enumItems.value(index.row()).info();
-    case Qt::EditRole:
+    case ItemRole:
+        return QVariant::fromValue(enumItems.value(index.row()));
+    case ValueRole:
         return enumItems.value(index.row()).value();
+    case InfoRole:
+        return enumItems.value(index.row()).info();
     // another case:
     }
     return QVariant{};
