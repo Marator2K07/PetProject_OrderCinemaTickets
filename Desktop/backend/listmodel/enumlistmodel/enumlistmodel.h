@@ -17,6 +17,13 @@ class EnumListModel : public QAbstractListModel
     Q_OBJECT
     QML_ELEMENT
 public:
+    enum EnumRoles {
+        ItemRole = Qt::UserRole + 1,
+        ValueRole,
+        InfoRole
+    };
+    Q_ENUM(EnumRoles)
+
     explicit EnumListModel(QObject *parent = nullptr);
     ///
     /// \brief initializeAsRequestTypes
@@ -30,6 +37,7 @@ public:
     // QAbstractItemModel interface
     int rowCount(const QModelIndex &parent) const override;
     QVariant data(const QModelIndex &index, int role) const override;
+    QHash<int, QByteArray> roleNames() const override;
     // }
 
 private:

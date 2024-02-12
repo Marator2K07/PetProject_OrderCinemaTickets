@@ -35,3 +35,12 @@ QVariant EnumListModel::data(const QModelIndex &index, int role) const
     }
     return QVariant{};
 }
+
+QHash<int, QByteArray> EnumListModel::roleNames() const
+{
+    QHash<int, QByteArray> roles;
+    roles[ItemRole] = "item";
+    roles[ValueRole] = "value";
+    roles[InfoRole] = "info";
+    return roles;
+}
