@@ -37,6 +37,32 @@ int EnumListModel::rowCount(const QModelIndex &parent) const
     return enumItems.count();
 }
 
+bool EnumListModel::setData(const QModelIndex &index,
+                            const QVariant &value,
+                            int role)
+{
+    // всевозможные проверки корректности пришедших данных
+    if (!hasIndex(index.row(),
+                  index.column(),
+                  index.parent()) || !value.isValid()) {
+        return false;
+    }
+
+    EnumItem &item = enumItems[index.row()];
+    switch (role) {
+    case ItemRole:
+        item = qvariant_cast<EnumItem>(value);
+    case ValueRole:
+        item.setValue(value.toInt());
+    case InfoRole:
+        item.setInfo(value.toString());
+    default:
+        return false;
+    }
+    emit dataChanged(index, index, {role});
+    return true;
+}
+
 QVariant EnumListModel::data(const QModelIndex &index, int role) const
 {
     // всевозможные проверки корректности пришедших данных
