@@ -33,11 +33,19 @@ void EnumListModel::initializeAsRequestBodyTypes()
 
 int EnumListModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return enumItems.count();
 }
 
 QVariant EnumListModel::data(const QModelIndex &index, int role) const
 {
+    // всевозможные проверки корректности пришедших данных
+    if (!hasIndex(index.row(),
+                  index.column(),
+                  index.parent()) || !value.isValid()) {
+        return QVariant{};
+    }
+
     switch (role) {
     case ItemRole:
         return QVariant::fromValue(enumItems.value(index.row()));
@@ -45,7 +53,6 @@ QVariant EnumListModel::data(const QModelIndex &index, int role) const
         return enumItems.value(index.row()).value();
     case InfoRole:
         return enumItems.value(index.row()).info();
-    // another case:
     }
     return QVariant{};
 }
