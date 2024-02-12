@@ -8,15 +8,27 @@ EnumListModel::EnumListModel(QObject *parent)
 void EnumListModel::initializeAsRequestTypes()
 {
     enumItems.clear();
+    // важное замечание: при работе с данными модели, ее надо
+    // предупреждать об этом командами beginInsertRows и endInsertRows
+    beginInsertRows(QModelIndex(), 0, 1);
     enumItems.append(EnumItem((int)RequestEnums::Type::GET, "GET"));
     enumItems.append(EnumItem((int)RequestEnums::Type::POST, "POST"));
+    endInsertRows();
+
+    emit dataChanged(createIndex(0,0), createIndex(enumItems.count(), 0));
 }
 
 void EnumListModel::initializeAsRequestBodyTypes()
 {
     enumItems.clear();
+    // важное замечание: при работе с данными модели, ее надо
+    // предупреждать об этом командами beginInsertRows и endInsertRows
+    beginInsertRows(QModelIndex(), 0, 1);
     enumItems.append(EnumItem((int)RequestEnums::DataType::TEXT, "TEXT"));
     enumItems.append(EnumItem((int)RequestEnums::DataType::JSON, "JSON"));
+    endInsertRows();
+
+    emit dataChanged(createIndex(0,0), createIndex(enumItems.count(), 0));
 }
 
 int EnumListModel::rowCount(const QModelIndex &parent) const
