@@ -1,13 +1,5 @@
 .import RequestEnums 1.0 as RequestEnumsModule
 
-function initComboBoxModel(originalModel, customModel) {
-    for (var i = 0; i < customModel.itemsCount(); i++) {
-        var item = customModel.getEnumItem(i);
-        originalModel.append({"key": item.text(),
-                              "value": item.value()});
-    }
-}
-
 function controlFormElements(controlValue,
                              dataTypeCombo,
                              multiLineText) {
