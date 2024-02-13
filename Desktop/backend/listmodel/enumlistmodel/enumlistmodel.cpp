@@ -68,7 +68,7 @@ QVariant EnumListModel::data(const QModelIndex &index, int role) const
     // всевозможные проверки корректности пришедших данных
     if (!hasIndex(index.row(),
                   index.column(),
-                  index.parent()) || !value.isValid()) {
+                  index.parent())) {
         return QVariant{};
     }
 
