@@ -5,8 +5,6 @@ import QtQuick.Layouts
 import EnumListModel
 // своя модель данных для данного визуального элемента
 import RequestFormModel
-// подключение перечислений для идентификаторов запроса
-import RequestEnums
 
 import "web_request_form.js" as Script
 
@@ -58,36 +56,30 @@ Rectangle {
                 Layout.leftMargin: 10
             }
 
+            // создаем свою модель данных для комбобокс
+            EnumListModel {
+                id: customTypeModel
+            }
+
             MyComboBox {
                 id: requestTypeComboBox
                 font.pixelSize: 20
                 rectItem.radius: 5
                 rectItem.border.width: 1
-                leftPadding: 7
+                model: customTypeModel                
                 implicitHeight: rowUrlLayout.height
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.rightMargin: 10
+                leftPadding: 7
 
-                // сначала создаем и ицициализируем свою модель данных
-                EnumListModel {
-                    id: customTypeModel
-                    Component.onCompleted: {
-                        customTypeModel.initializeAsRequestTypes();
-                    }
-                }
-                // и после инициализируем оригинальную модель данными из своей
-                model: ListModel {
-                    id: originalTypeModel
-                    Component.onCompleted: {
-                        Script.initComboBoxModel(originalTypeModel,
-                                                 customTypeModel);
-                        requestTypeComboBox.currentIndex = 0;
-                        requestModel.type = 0;
-                        // активировируем/деактивируем связанные элементы
-                        Script.controlFormElements(requestTypeComboBox.currentValue,
-                                                   requestDataTypeComboBox,
-                                                   requestDataTextInput)
-                    }
+                Component.onCompleted: {
+                    customTypeModel.initializeAsRequestTypes();
+                    requestTypeComboBox.currentIndex = 0;
+                    requestModel.type = 0;
+                    // активировируем/деактивируем связанные элементы
+                    Script.controlFormElements(requestTypeComboBox.currentValue,
+                                               requestDataTypeComboBox,
+                                               requestDataTextInput)
                 }
                 onActivated: {                    
                     requestModel.type = currentValue;
@@ -96,9 +88,10 @@ Rectangle {
                                                requestDataTypeComboBox,
                                                requestDataTextInput)
                     // ставим заголовок типа контента
-                    Script.selectContentType(requestModel, requestDataTypeComboBox.currentValue);
+                    Script.selectContentType(requestModel,
+                                             requestDataTypeComboBox.currentValue);
                 }
-            }            
+            }
         }
 
         RowLayout {
@@ -115,32 +108,26 @@ Rectangle {
                 Layout.leftMargin: 10
             }
 
+            // создаем свою модель данных для комбобокс
+            EnumListModel {
+                id: customDataTypeModel
+            }
+
             MyComboBox {
                 id: requestDataTypeComboBox
                 font.pixelSize: 20
-                rectItem.radius: 5
+                rectItem.radius: 5                
                 rectItem.border.width: 1
-                leftPadding: 7
+                model: customDataTypeModel
                 implicitHeight: rowUrlLayout.height
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.rightMargin: 10
+                leftPadding: 7
 
-                // сначала создаем и ицициализируем свою модель данных
-                EnumListModel {
-                    id: customDataTypeModel
-                    Component.onCompleted: {
-                        customDataTypeModel.initializeAsRequestBodyTypes();
-                    }
-                }
-                // и после инициализируем оригинальную модель данными из своей
-                model: ListModel {
-                    id: originalDataTypeModel
-                    Component.onCompleted: {
-                        Script.initComboBoxModel(originalDataTypeModel,
-                                                 customDataTypeModel);
-                        requestDataTypeComboBox.currentIndex = 0;
-                        requestModel.bodyType = 0;
-                    }
+                Component.onCompleted: {
+                    customDataTypeModel.initializeAsRequestBodyTypes();
+                    requestDataTypeComboBox.currentIndex = 0;
+                    requestModel.bodyType = 0;
                 }
                 onActivated: {
                     requestModel.bodyType = currentValue;
