@@ -3,6 +3,8 @@ import QtQuick.Controls
 
 ComboBox {
     id: control
+    textRole: "info"
+    valueRole: "value"
 
     property color defTextColor: "#000000"
     property color hovTextColor: "#ffffff"
@@ -35,10 +37,7 @@ ComboBox {
     }
 
     delegate: ItemDelegate {
-        required property variant value;
-        required property string info;
-
-        width: control.width        
+        width: control.width
         contentItem: Rectangle
         {
             anchors.fill:parent
