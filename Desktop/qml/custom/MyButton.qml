@@ -8,7 +8,7 @@ Button {
                        contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(
                         buttonBackground ? buttonBackground.implicitHeight : 0,
-                        contentItem.implicitHeight + topPadding + bottomPadding)
+                        contentItem.implicitHeight + bottomPadding * 1.35)
 
     property color defBackgroundColor: "white";
     property color hoverBackgroundColor: "#e3c8eb";

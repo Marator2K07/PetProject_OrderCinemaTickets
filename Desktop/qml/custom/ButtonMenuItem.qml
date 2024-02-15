@@ -26,7 +26,7 @@ Item {
         icon.height: iconSize
 
         text: menuItemModel.text
-        font.pixelSize: 20
+        font.pixelSize: 18
         colorAnim.duration: 150
         defBackgroundColor: backgroundColor
         buttonRect.border.width: 0
