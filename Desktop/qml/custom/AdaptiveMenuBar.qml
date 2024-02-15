@@ -8,7 +8,6 @@ Rectangle {
     color: "lightgray"
     anchors.top: parent.top
     width: parent.width
-    height: 75
 
     property alias menuModel: menuListModel
 
@@ -28,7 +27,7 @@ Rectangle {
                 item.menuItemModel.text = text;
                 item.menuItemModel.simplified = simplified;
                 item.menuItemModel.image = image;
-                item.anchors.centerIn = parent
+                mainRect.height = itemsLoader.childrenRect.height;
             }
         }
     }
