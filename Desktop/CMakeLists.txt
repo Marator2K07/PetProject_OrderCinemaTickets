@@ -42,6 +42,7 @@ target_link_libraries(mainApp PRIVATE
     Qt6::Qml
 )
 target_link_libraries(mainApp PRIVATE
+    actioninteraction
     webinteraction
     logger
     loggermodel

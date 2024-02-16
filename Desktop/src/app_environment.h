@@ -3,6 +3,7 @@
 #include <QHash>
 
 #include "requestresponcehandling.h"
+#include "actioncontext.h"
 #include "webcontext.h"
 #include "logger.h"
 
