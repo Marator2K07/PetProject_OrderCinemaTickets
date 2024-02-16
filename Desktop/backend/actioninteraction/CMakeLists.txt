@@ -1,4 +1,5 @@
 qt_add_library(actioninteraction STATIC
+    IAction.h
     actioncontext.h actioncontext.cpp
 )
 target_link_libraries(actioninteraction PRIVATE
