@@ -1,6 +1,7 @@
 #ifndef ACTIONCONTEXT_H
 #define ACTIONCONTEXT_H
 
+#include "clickaction.h"
 #include "IAction.h"
 
 #include <QQmlEngine>
@@ -23,7 +24,9 @@ public:
     Q_ENUM(ActionTypes)
 
     explicit ActionContext(QObject *parent = nullptr);
-    IAction* newAction(QString name);
+    // создание нового действия определенного типа,
+    // с возможностью его привязки извне
+    IAction* newAction(QString name, ActionTypes actionType);
 
 private:
     QHash<QString, IAction *> actions;
