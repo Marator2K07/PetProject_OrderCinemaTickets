@@ -1,7 +1,9 @@
 #ifndef ACTIONCONTEXT_H
 #define ACTIONCONTEXT_H
 
+#include "IAction.h"
 #include <QObject>
+#include <QHash>
 
 ///
 /// \brief The ActionContext class
@@ -13,8 +15,8 @@ class ActionContext : public QObject
 public:
     explicit ActionContext(QObject *parent = nullptr);
 
-signals:
-
+private:
+    QHash<QString, IAction *> actions;
 };
 
 #endif // ACTIONCONTEXT_H
