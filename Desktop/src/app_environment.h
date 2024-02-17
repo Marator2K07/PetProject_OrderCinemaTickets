@@ -1,4 +1,5 @@
 #include <QQmlApplicationEngine>
+#include <QGuiApplication>
 #include <QQmlContext>
 #include <QHash>
 
@@ -37,9 +38,12 @@ ModuleStorage *initStorage() {
 }
 
 QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine) {
+QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine,
+                                                      QGuiApplication &app) {
     // создаем и инициализируем при возможности эти важные обьекты
     Logger *logger = new Logger("/","log.txt");
     WebContext *webContext = new WebContext;
+    ActionContext *actionContext = new ActionContext();
     ModuleStorage *moduleStorage = initStorage();
     RequestResponceHandling *responceHandler = new RequestResponceHandling;
     // связываем, что нужно
@@ -48,12 +52,14 @@ QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &eng
     // назначаем корневые qml свойства
     engine.rootContext()->setContextProperty("logger", logger);
     engine.rootContext()->setContextProperty("webContext", webContext);
+    engine.rootContext()->setContextProperty("actionContext", actionContext);
     engine.rootContext()->setContextProperty("moduleStorage", moduleStorage);
     engine.rootContext()->setContextProperty("responceHandler", responceHandler);
     // на возврате на всякий случай получаем хэш-словарь наших корневых обьектов
     QHash<QString, QObject *> rootObjects;
     rootObjects.insert("logger", logger);
     rootObjects.insert("webContext", webContext);
+    rootObjects.insert("actionContext", actionContext);
     rootObjects.insert("moduleStorage", moduleStorage);
     rootObjects.insert("responceHandler", responceHandler);
     return rootObjects;

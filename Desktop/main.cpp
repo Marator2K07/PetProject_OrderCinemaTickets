@@ -1,12 +1,9 @@
-#include <QGuiApplication>
-
 #include "src/app_environment.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
-
     // регистрируем свои qml типы
     set_qml_types();
 
@@ -24,7 +21,7 @@ int main(int argc, char *argv[])
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
 
     // создаем важные обьекты для приложения, которые будут использоваться глобально
-    QHash<QString, QObject *> rootObjects = set_root_context_properties(engine);
+    QHash<QString, QObject *> rootObjects = set_root_context_properties(engine, app);
 
     engine.load(urlLogger);
     engine.load(urlMain);
