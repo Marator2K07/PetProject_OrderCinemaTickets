@@ -37,13 +37,20 @@ ModuleStorage *initStorage() {
     return moduleStorage;
 }
 
-QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine) {
+ActionContext *initActionContext(QGuiApplication &app) {
+    ActionContext *actionContext = new ActionContext();
+    ClickAction *appExitAction = (ClickAction *)actionContext->
+                                 newAction("exit", ActionContext::ClickType);
+    QObject::connect(*appExitAction, SIGNAL(exec()), app, SLOT(exit()));
+    return actionContext;
+}
+
 QHash<QString, QObject *> set_root_context_properties(QQmlApplicationEngine &engine,
                                                       QGuiApplication &app) {
     // создаем и инициализируем при возможности эти важные обьекты
     Logger *logger = new Logger("/","log.txt");
     WebContext *webContext = new WebContext;
-    ActionContext *actionContext = new ActionContext();
+    ActionContext *actionContext = initActionContext(app);
     ModuleStorage *moduleStorage = initStorage();
     RequestResponceHandling *responceHandler = new RequestResponceHandling;
     // связываем, что нужно
