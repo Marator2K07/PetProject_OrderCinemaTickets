@@ -4,4 +4,5 @@ qt6_add_qml_module(qmlconstants
     VERSION 1.0
     QML_FILES
         Sizes.qml
+        Colors.qml
 )
