@@ -1,15 +1,17 @@
 import QtQuick
 import QtQuick.Layouts
-// наш подгруженный модуль/плагин в папке qml
+// наши подгруженные модули/плагины в папке qml
 import Qml.Custom 1.0
+import Qml.Constants 1.0
 
 Rectangle {
     id: mainRect
-    color: "lightgray"
+    color: ConstColors.defMinorBackground
     anchors.top: parent.top
     width: parent.width
 
     property alias menuModel: menuListModel
+    property alias menuOrientation: listViewMenu.orientation
 
     ListModel {
         id: menuListModel
@@ -38,7 +40,6 @@ Rectangle {
             id: listViewMenu
             model: menuListModel
             delegate: menuItemDelegate
-            orientation: ListView.Horizontal
             Layout.alignment: Qt.AlignCenter
             Layout.minimumWidth: contentWidth
             Layout.preferredHeight: mainRect.height
