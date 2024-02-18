@@ -12,7 +12,8 @@ qt6_add_qml_module(qmlcustom
         LoadingScreen.qml
         RawResponceSection.qml
         ButtonMenuItem.qml
-        AdaptiveMenuBar.qml
+        AdaptiveMenu.qml
+        AdaptiveContextMenu.qml
     RESOURCE_PREFIX "/"
     RESOURCES
         web_request_form.js
