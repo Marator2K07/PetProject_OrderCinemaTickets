@@ -5,4 +5,6 @@ qt6_add_qml_module(qmlconstants
     QML_FILES        
         ConstSizes.qml
         ConstColors.qml
+    RESOURCES
+        qmldir
 )
