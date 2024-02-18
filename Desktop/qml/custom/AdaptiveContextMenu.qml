@@ -7,6 +7,5 @@ import Qml.Constants 1.0
 AdaptiveMenu {
     id: root
 
-    property alias menuModel: menuModel
-    property alias menuOrientation: menuOrientation
+
 }
