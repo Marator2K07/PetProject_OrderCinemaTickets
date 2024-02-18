@@ -19,6 +19,7 @@ set(QML_IMPORT_PATH "${QML_DIRS}"
 
 # устанавливаем связь/подключаем нужные библиотеки
 target_link_libraries(mainApp PRIVATE
+    qmlconstantsplugin
     qmlcustomplugin
     qmlpagesplugin
 )

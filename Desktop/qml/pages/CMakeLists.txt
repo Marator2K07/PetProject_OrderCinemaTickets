@@ -6,3 +6,7 @@ qt6_add_qml_module(qmlpages
         TemplatePage.qml
         WelcomePage.qml        
 )
+# устанавливаем связь/подключаем нужные библиотеки
+target_link_libraries(qmlpages PRIVATE
+    qmlconstantsplugin
+)
