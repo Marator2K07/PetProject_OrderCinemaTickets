@@ -3,5 +3,6 @@ qt6_add_qml_module(qmlpages
     URI "Qml.Pages"
     VERSION 1.0
     QML_FILES
-        WelcomePage.qml
+        TemplatePage.qml
+        WelcomePage.qml        
 )
