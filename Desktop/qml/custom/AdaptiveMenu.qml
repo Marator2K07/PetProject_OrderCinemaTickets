@@ -7,8 +7,10 @@ import Qml.Constants 1.0
 Rectangle {
     id: mainRect
     color: ConstColors.defMinorBackground
-    anchors.top: parent.top
-    width: parent.width
+    width: listViewMenu.orientation == ListView.Horizontal ? parent.width :
+                                                             listViewMenu.contentWidth / menuListModel.count;
+    height: listViewMenu.orientation == ListView.Horizontal ? listViewMenu.contentHeight / menuListModel.count :
+                                                              listViewMenu.contentHeight;
 
     property alias menuModel: menuListModel
     property alias menuOrientation: listViewMenu.orientation
@@ -29,12 +31,13 @@ Rectangle {
                 item.menuItemModel.text = text;
                 item.menuItemModel.simplified = simplified;
                 item.menuItemModel.image = image;
-                mainRect.height = itemsLoader.childrenRect.height;
+                listViewMenu.contentHeight += item.height;
+                listViewMenu.contentWidth += item.width;
             }
         }
     }
 
-    ColumnLayout {
+    ColumnLayout {        
         anchors.fill: mainRect
         ListView {
             id: listViewMenu
@@ -42,8 +45,8 @@ Rectangle {
             delegate: menuItemDelegate
             Layout.alignment: Qt.AlignCenter
             Layout.minimumWidth: contentWidth
-            Layout.preferredHeight: mainRect.height
-
+            Layout.minimumHeight: listViewMenu.orientation == ListView.Horizontal ? mainRect.height :
+                                                                                    contentHeight;
             spacing: 10
         }
     }
